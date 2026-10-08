@@ -3,96 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bar DAISY - カクテルレシピカード ジェネレーター</title>
-    <!-- CSS -->
+    <title>Bar DAISY カクテルレシピメーカー</title>
     <link rel="stylesheet" href="style.css">
-    <!-- html2canvas (画像化ライブラリ) -->
+    <!-- html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-    <!-- メインスクリプト -->
     <script src="app.js" defer></script>
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <h1>Bar DAISY</h1>
-            <p>オリジナルカクテル レシピカード作成</p>
-        </header>
+    <div class="container">
+        <h1>Bar DAISY</h1>
+        <p class="subtitle">オリジナルカクテル レシピカード作成</p>
 
-        <main>
-            <!-- 入力フォームエリア -->
-            <section class="form-section">
-                <div class="form-group">
-                    <label for="baseInput">ベース（例: Gin base）</label>
-                    <input type="text" id="baseInput" placeholder="Gin base">
-                </div>
+        <!-- 入力フォームエリア -->
+        <div class="form-card">
+            <div class="input-group">
+                <label for="baseInput">ベース</label>
+                <input type="text" id="baseInput" placeholder="例: Gin base">
+            </div>
 
-                <div class="form-group">
-                    <label for="cocktailNameInput">カクテル名</label>
-                    <input type="text" id="cocktailNameInput" placeholder="カクテル名を入力">
-                </div>
+            <div class="input-group">
+                <label for="cocktailNameInput">カクテル名</label>
+                <input type="text" id="cocktailNameInput" placeholder="例: カクテル名を入力">
+            </div>
 
-                <div class="form-group">
-                    <label for="imageInput">カクテル写真</label>
-                    <input type="file" id="imageInput" accept="image/*">
-                </div>
+            <div class="input-group">
+                <label for="imageInput">カクテル写真</label>
+                <input type="file" id="imageInput" accept="image/*">
+            </div>
 
-                <div class="form-group">
-                    <label>材料 (INGREDIENTS)</label>
-                    <div id="ingredientsList">
-                        <div class="ingredient-row">
-                            <input type="text" class="ingredient-name" placeholder="材料名（例: ジン）">
-                        </div>
-                    </div>
-                    <button type="button" id="addIngredientBtn" class="sub-btn">＋ 材料を追加</button>
-                </div>
-
-                <div class="form-group">
-                    <label for="methodInput">METHOD</label>
-                    <textarea id="methodInput" placeholder="作り方や技法を入力"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="tasteNoteInput">TASTE NOTE</label>
-                    <textarea id="tasteNoteInput" placeholder="味わいの特徴を入力"></textarea>
-                </div>
-            </section>
-
-            <!-- プレビュー・完成カード表示エリア -->
-            <section class="preview-section">
-                <h2>完成カード</h2>
-                
-                <!-- レシピカード本体（写真が途切れず全体表示される設計） -->
-                <div id="recipeCard" class="recipe-card">
-                    <div class="card-inner">
-                        <div id="cardBase" class="card-base">Gin base</div>
-                        <div id="cardName" class="card-name">カクテル名</div>
-                        
-                        <div class="card-image-container">
-                            <img id="cardImage" src="" alt="カクテル写真" style="display: none;">
-                            <div id="imagePlaceholder" class="placeholder-text">写真が選択されていません</div>
-                        </div>
-
-                        <div class="card-divider">- INGREDIENTS -</div>
-                        <div id="cardIngredients" class="card-ingredients">
-                            <!-- 動的挿入 -->
-                        </div>
-
-                        <div class="card-section-title">METHOD:</div>
-                        <div id="cardMethod" class="card-method">-</div>
-
-                        <div class="card-section-title">TASTE NOTE:</div>
-                        <div id="cardTaste" class="card-taste">-</div>
-
-                        <div class="card-footer">
-                            <div class="card-logo">DAISY</div>
-                            <div class="card-subtext">ORIGINAL COCKTAIL RECIPE</div>
-                        </div>
+            <div class="input-group">
+                <label>材料 (INGREDIENTS)</label>
+                <div id="ingredientsContainer">
+                    <div class="ingredient-row">
+                        <input type="text" class="ingredient-input" placeholder="材料名・分量">
                     </div>
                 </div>
+                <button type="button" id="addIngredientBtn" class="secondary-btn">＋ 材料を追加</button>
+            </div>
 
-                <button type="button" id="downloadBtn" class="primary-btn">画像を保存する</button>
-            </section>
-        </main>
+            <div class="input-group">
+                <label for="methodInput">METHOD</label>
+                <textarea id="methodInput" placeholder="作り方を入力"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="tasteNoteInput">TASTE NOTE</label>
+                <textarea id="tasteNoteInput" placeholder="味わいの特徴を入力"></textarea>
+            </div>
+        </div>
+
+        <!-- プレビュー・完成カードエリア -->
+        <div class="preview-area">
+            <h2>完成カード</h2>
+
+            <div id="recipeCard" class="recipe-card">
+                <div class="card-base" id="displayBase">Gin base</div>
+                <div class="card-title" id="displayName">カクテル名</div>
+
+                <!-- 写真枠：途切れないように全体表示対応 -->
+                <div class="card-image-container">
+                    <img id="displayImage" src="" alt="カクテル写真" style="display: none;">
+                    <div id="imagePlaceholder" class="placeholder-text">写真未選択</div>
+                </div>
+
+                <div class="card-divider">- INGREDIENTS -</div>
+                <div id="displayIngredients" class="card-ingredients">
+                    <!-- 動的挿入 -->
+                </div>
+
+                <div class="card-label">METHOD:</div>
+                <div class="card-text" id="displayMethod">-</div>
+
+                <div class="card-label">TASTE NOTE:</div>
+                <div class="card-text" id="displayTaste">-</div>
+
+                <div class="card-footer">
+                    <div class="footer-logo">DAISY</div>
+                    <div class="footer-sub">ORIGINAL COCKTAIL RECIPE</div>
+                </div>
+            </div>
+
+            <button type="button" id="downloadBtn" class="primary-btn">画像を保存する</button>
+        </div>
     </div>
 </body>
 </html>

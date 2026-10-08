@@ -1,99 +1,94 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // フォーム要素
     const baseInput = document.getElementById('baseInput');
     const cocktailNameInput = document.getElementById('cocktailNameInput');
     const imageInput = document.getElementById('imageInput');
     const methodInput = document.getElementById('methodInput');
     const tasteNoteInput = document.getElementById('tasteNoteInput');
-    const ingredientsList = document.getElementById('ingredientsList');
-    const addIngredientBtn = document.getElementById('addIngredientBtn');
-
-    // カード表示要素
-    const cardBase = document.getElementById('cardBase');
-    const cardName = document.getElementById('cardName');
-    const cardImage = document.getElementById('cardImage');
+    
+    const displayBase = document.getElementById('displayBase');
+    const displayName = document.getElementById('displayName');
+    const displayImage = document.getElementById('displayImage');
     const imagePlaceholder = document.getElementById('imagePlaceholder');
-    const cardIngredients = document.getElementById('cardIngredients');
-    const cardMethod = document.getElementById('cardMethod');
-    const cardTaste = document.getElementById('cardTaste');
+    const displayIngredients = document.getElementById('displayIngredients');
+    const displayMethod = document.getElementById('displayMethod');
+    const displayTaste = document.getElementById('displayTaste');
+    
+    const ingredientsContainer = document.getElementById('ingredientsContainer');
+    const addIngredientBtn = document.getElementById('addIngredientBtn');
     const recipeCard = document.getElementById('recipeCard');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    // リアルタイム反映：テキスト入力
+    // リアルタイムテキスト反映
     baseInput.addEventListener('input', (e) => {
-        cardBase.textContent = e.target.value || 'Gin base';
+        displayBase.textContent = e.target.value || 'Gin base';
     });
 
     cocktailNameInput.addEventListener('input', (e) => {
-        cardName.textContent = e.target.value || 'カクテル名';
+        displayName.textContent = e.target.value || 'カクテル名';
     });
 
     methodInput.addEventListener('input', (e) => {
-        cardMethod.textContent = e.target.value || '-';
+        displayMethod.textContent = e.target.value || '-';
     });
 
     tasteNoteInput.addEventListener('input', (e) => {
-        cardTaste.textContent = e.target.value || '-';
+        displayTaste.textContent = e.target.value || '-';
     });
 
     // 材料行の追加
     addIngredientBtn.addEventListener('click', () => {
         const row = document.createElement('div');
         row.className = 'ingredient-row';
-        row.innerHTML = `
-            <input type="text" class="ingredient-name" placeholder="材料名（例: ソーダ）">
-        `;
-        ingredientsList.appendChild(row);
-
+        row.innerHTML = `<input type="text" class="ingredient-input" placeholder="材料名・分量">`;
+        ingredientsContainer.appendChild(row);
         row.querySelector('input').addEventListener('input', updateIngredients);
         updateIngredients();
     });
 
-    // 材料のリアルタイム監視
-    ingredientsList.addEventListener('input', updateIngredients);
+    ingredientsContainer.addEventListener('input', updateIngredients);
 
     function updateIngredients() {
-        const inputs = ingredientsList.querySelectorAll('.ingredient-name');
-        cardIngredients.innerHTML = '';
+        const inputs = ingredientsContainer.querySelectorAll('.ingredient-input');
+        displayIngredients.innerHTML = '';
 
         inputs.forEach(input => {
             const val = input.value.trim();
             if (val) {
                 const item = document.createElement('div');
-                item.className = 'card-ingredient-item';
+                item.className = 'ingredient-item';
                 item.innerHTML = `<span>${val}</span>`;
-                cardIngredients.appendChild(item);
+                displayIngredients.appendChild(item);
             }
         });
 
-        if (cardIngredients.children.length === 0) {
-            cardIngredients.innerHTML = '<div style="color: #666; font-size: 0.85rem;">材料が未入力です</div>';
+        if (displayIngredients.children.length === 0) {
+            displayIngredients.innerHTML = '<div style="color: #666; font-size: 0.8rem;">材料が未入力です</div>';
         }
     }
-    updateIngredients(); // 初期実行
+    updateIngredients();
 
-    // 画像選択時の処理（トリミングなし・そのまま全体表示）
+    // 写真選択時：切り抜きなしでそのままカードに反映
     imageInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = (event) => {
-                cardImage.src = event.target.result;
-                cardImage.style.display = 'block';
+                displayImage.src = event.target.result;
+                displayImage.style.display = 'block';
                 imagePlaceholder.style.display = 'none';
             };
             reader.readAsDataURL(file);
         }
     });
 
-    // 画像として保存する処理 (html2canvas)
+    // 画像保存処理 (html2canvas)
     downloadBtn.addEventListener('click', async () => {
-        downloadBtn.textContent = '画像を作成中...';
+        downloadBtn.textContent = '作成中...';
         downloadBtn.disabled = true;
 
         try {
             const canvas = await html2canvas(recipeCard, {
-                scale: 2, // 高解像度化
+                scale: 2,
                 useCORS: true,
                 backgroundColor: '#2b2523'
             });
