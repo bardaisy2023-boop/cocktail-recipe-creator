@@ -1,166 +1,98 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bar DAISY - Cocktail Creator</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- Cropper.js (トリミング用CSS) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
-  <link rel="stylesheet" href="style.css?v=3">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar DAISY - カクテルレシピカード ジェネレーター</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- html2canvas (画像化ライブラリ) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <!-- メインスクリプト -->
+    <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo-container">
-        <img src="rogo.PNG" alt="Bar DAISY" class="shop-logo">
-      </div>
-      <h1>Cocktail Recipe Creator</h1>
-      <p>オリジナルのカクテルレシピを作成・保存できます</p>
-    </header>
+    <div class="app-container">
+        <header>
+            <h1>Bar DAISY</h1>
+            <p>オリジナルカクテル レシピカード作成</p>
+        </header>
 
-    <section class="form-section">
-      <h2>レシピを入力</h2>
-      
-      <div class="form-group">
-        <label>カクテル名</label>
-        <input type="text" id="cocktailName" placeholder="例: Midnight Blue">
-      </div>
+        <main>
+            <!-- 入力フォームエリア -->
+            <section class="form-section">
+                <div class="form-group">
+                    <label for="baseInput">ベース（例: Gin base）</label>
+                    <input type="text" id="baseInput" placeholder="Gin base">
+                </div>
 
-      <div class="form-group">
-        <label>ベース・種類</label>
-        <select id="baseType">
-          <option value="Gin base">ジンベース</option>
-          <option value="Vodka base">ウォッカベース</option>
-          <option value="Rum base">ラムベース</option>
-          <option value="Tequila base">テキーラベース</option>
-          <option value="Whisky base">ウイスキーベース</option>
-          <option value="Sake base">日本酒ベース</option>
-          <option value="Wine base">ワインベース</option>
-          <option value="Brandy base">ブランデーベース</option>
-          <option value="Liqueur base">リキュールベース</option>
-          <option value="Non-Alcoholic">ノンアルコール</option>
-          <option value="Other">その他</option>
-        </select>
-      </div>
+                <div class="form-group">
+                    <label for="cocktailNameInput">カクテル名</label>
+                    <input type="text" id="cocktailNameInput" placeholder="カクテル名を入力">
+                </div>
 
-      <div class="form-group">
-        <label>カクテル写真</label>
-        <input type="file" id="imageInput" accept="image/*">
-      </div>
+                <div class="form-group">
+                    <label for="imageInput">カクテル写真</label>
+                    <input type="file" id="imageInput" accept="image/*">
+                </div>
 
-      <div class="form-group">
-        <label>材料と分量</label>
-        <div id="ingredientsList">
-          <div class="ingredient-row">
-            <input type="text" class="ing-name" placeholder="材料 (例: ドライ・ジン)">
-            <input type="text" class="ing-amount" placeholder="分量 (例: 45ml)">
-          </div>
-        </div>
-        <button type="button" id="addIngBtn" class="btn-secondary">+ 材料を追加</button>
-      </div>
+                <div class="form-group">
+                    <label>材料 (INGREDIENTS)</label>
+                    <div id="ingredientsList">
+                        <div class="ingredient-row">
+                            <input type="text" class="ingredient-name" placeholder="材料名（例: ジン）">
+                        </div>
+                    </div>
+                    <button type="button" id="addIngredientBtn" class="sub-btn">＋ 材料を追加</button>
+                </div>
 
-      <div class="form-group">
-        <label>作り方</label>
-        <textarea id="method" rows="3" placeholder="例: 1. シェイクして注ぐ"></textarea>
-      </div>
+                <div class="form-group">
+                    <label for="methodInput">METHOD</label>
+                    <textarea id="methodInput" placeholder="作り方や技法を入力"></textarea>
+                </div>
 
-      <div class="form-group">
-        <label>味わい・特徴</label>
-        <input type="text" id="tasteNote" placeholder="例: 爽やかでやや辛口">
-      </div>
+                <div class="form-group">
+                    <label for="tasteNoteInput">TASTE NOTE</label>
+                    <textarea id="tasteNoteInput" placeholder="味わいの特徴を入力"></textarea>
+                </div>
+            </section>
 
-      <div class="form-group">
-        <label>ひとこと・メモ</label>
-        <textarea id="memo" rows="2" placeholder="例: おすすめの一杯"></textarea>
-      </div>
-    </section>
+            <!-- プレビュー・完成カード表示エリア -->
+            <section class="preview-section">
+                <h2>完成カード</h2>
+                
+                <!-- レシピカード本体（写真が途切れず全体表示される設計） -->
+                <div id="recipeCard" class="recipe-card">
+                    <div class="card-inner">
+                        <div id="cardBase" class="card-base">Gin base</div>
+                        <div id="cardName" class="card-name">カクテル名</div>
+                        
+                        <div class="card-image-container">
+                            <img id="cardImage" src="" alt="カクテル写真" style="display: none;">
+                            <div id="imagePlaceholder" class="placeholder-text">写真が選択されていません</div>
+                        </div>
 
-    <section class="preview-section">
-      <h2>完成カード</h2>
-      
-      <div class="size-selector">
-        <label>出力サイズ：</label>
-        <div class="size-btn-group">
-          <button type="button" class="size-btn active" data-size="feed">投稿用 (4:5)</button>
-          <button type="button" class="size-btn" data-size="story">ストーリーズ用 (9:16)</button>
-        </div>
-      </div>
+                        <div class="card-divider">- INGREDIENTS -</div>
+                        <div id="cardIngredients" class="card-ingredients">
+                            <!-- 動的挿入 -->
+                        </div>
 
-      <div id="recipeCard" class="recipe-card size-feed">
-        <div class="card-inner">
-          <div class="card-header">
-            <span class="card-base" id="cardBase">Gin base</span>
-            <h3 class="card-title" id="cardName">カクテル名</h3>
-          </div>
-          
-          <div id="cardImageContainer" class="card-image-container" style="display: none;">
-            <img id="cardImage" src="" alt="Cocktail Photo">
-          </div>
+                        <div class="card-section-title">METHOD:</div>
+                        <div id="cardMethod" class="card-method">-</div>
 
-          <div class="card-body">
-            <h4>― INGREDIENTS ―</h4>
-            <ul id="cardIngredients">
-              <li><span>材料名</span> <span>分量</span></li>
-            </ul>
+                        <div class="card-section-title">TASTE NOTE:</div>
+                        <div id="cardTaste" class="card-taste">-</div>
 
-            <div class="card-method">
-              <strong>METHOD:</strong>
-              <p id="cardMethod">-</p>
-            </div>
-            
-            <div class="card-taste">
-              <strong>TASTE NOTE:</strong> <span id="cardTaste">-</span>
-            </div>
+                        <div class="card-footer">
+                            <div class="card-logo">DAISY</div>
+                            <div class="card-subtext">ORIGINAL COCKTAIL RECIPE</div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="card-memo">
-              <p id="cardMemo"></p>
-            </div>
-          </div>
-
-          <div class="card-footer">
-            <img src="rogo.PNG" alt="Bar DAISY" class="card-footer-logo">
-            <span>ORIGINAL COCKTAIL RECIPE</span>
-          </div>
-        </div>
-      </div>
-
-      <button type="button" id="downloadBtn" class="btn-primary">画像を保存する</button>
-    </section>
-  </div>
-
-  <!-- 画像切り抜きモーダル -->
-  <div id="cropModal" class="modal" style="display: none;">
-    <div class="modal-content crop-modal-content">
-      <h3>写真を切り抜き</h3>
-      <p class="modal-instruction">枠を移動・拡大縮小して範囲を指定してください</p>
-      <div class="crop-container">
-        <img id="cropTargetImage" src="" alt="Crop Target">
-      </div>
-      <div class="crop-btn-group">
-        <button type="button" id="cancelCropBtn" class="btn-secondary">キャンセル</button>
-        <button type="button" id="applyCropBtn" class="btn-primary">この範囲で決定</button>
-      </div>
+                <button type="button" id="downloadBtn" class="primary-btn">画像を保存する</button>
+            </section>
+        </main>
     </div>
-  </div>
-
-  <!-- スマホ保存用モーダル -->
-  <div id="imageModal" class="modal" style="display: none;">
-    <div class="modal-content">
-      <span id="closeModal" class="modal-close">&times;</span>
-      <p class="modal-instruction">画像を長押しして保存してください</p>
-      <div id="modalImageContainer"></div>
-    </div>
-  </div>
-
-  <!-- ライブラリ読み込み -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-  <script src="app.js?v=3"></script>
 </body>
 </html>
