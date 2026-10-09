@@ -1,89 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const baseInput = document.getElementById('baseInput');
+    const numberInput = document.getElementById('numberInput');
     const cocktailNameInput = document.getElementById('cocktailNameInput');
     const imageInput = document.getElementById('imageInput');
-    const methodInput = document.getElementById('methodInput');
-    const tasteNoteInput = document.getElementById('tasteNoteInput');
     
-    const displayBase = document.getElementById('displayBase');
+    const displayNumber = document.getElementById('displayNumber');
     const displayName = document.getElementById('displayName');
     const displayImage = document.getElementById('displayImage');
     const imagePlaceholder = document.getElementById('imagePlaceholder');
-    const displayIngredients = document.getElementById('displayIngredients');
-    const displayMethod = document.getElementById('displayMethod');
-    const displayTaste = document.getElementById('displayTaste');
     
-    const ingredientsContainer = document.getElementById('ingredientsContainer');
-    const addIngredientBtn = document.getElementById('addIngredientBtn');
     const recipeCard = document.getElementById('recipeCard');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    // リアルタイムテキスト反映
-    baseInput.addEventListener('input', (e) => {
-        displayBase.textContent = e.target.value || 'Gin base';
+    // ナンバー（数字のみ入力で「No.」を自動付与）
+    numberInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        displayNumber.textContent = val ? `No.${val}` : 'No.90';
     });
 
+    // カクテル名
     cocktailNameInput.addEventListener('input', (e) => {
         displayName.textContent = e.target.value || 'カクテル名';
     });
 
-    methodInput.addEventListener('input', (e) => {
-        displayMethod.textContent = e.target.value || '-';
-    });
-
-    tasteNoteInput.addEventListener('input', (e) => {
-        displayTaste.textContent = e.target.value || '-';
-    });
-
-    // 材料行の追加
-    addIngredientBtn.addEventListener('click', () => {
-        const row = document.createElement('div');
-        row.className = 'ingredient-row';
-        row.innerHTML = `<input type="text" class="ingredient-input" placeholder="材料名・分量">`;
-        ingredientsContainer.appendChild(row);
-        row.querySelector('input').addEventListener('input', updateIngredients);
-        updateIngredients();
-    });
-
-    ingredientsContainer.addEventListener('input', updateIngredients);
-
-    function updateIngredients() {
-        const inputs = ingredientsContainer.querySelectorAll('.ingredient-input');
-        displayIngredients.innerHTML = '';
-
-        inputs.forEach(input => {
-            const val = input.value.trim();
-            if (val) {
-                const item = document.createElement('div');
-                item.className = 'ingredient-item';
-                item.innerHTML = `<span>${val}</span>`;
-                displayIngredients.appendChild(item);
-            }
-        });
-
-        if (displayIngredients.children.length === 0) {
-            displayIngredients.innerHTML = '<div style="color: #666; font-size: 0.8rem;">材料が未入力です</div>';
-        }
-    }
-    updateIngredients();
-
-    // 写真選択時：切り抜きなしでそのままカードに反映
-    imageInput.addEventListener('change', (e) => {
+    // 写真選択時：HEIC形式に対応して変換＆プレビュー表示
+    imageInput.addEventListener('change', async (e) => {
         const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                displayImage.src = event.target.result;
-                displayImage.style.display = 'block';
-                imagePlaceholder.style.display = 'none';
-            };
-            reader.readAsDataURL(file);
+        if (!file) return;
+
+        let imageFile = file;
+
+        // HEIC/HEIF形式の場合はJPEGに変換
+        if (file.type === 'image/heic' || file.type === 'image/HEIC' || file.name.toLowerCase().endsWith('.heic')) {
+            try {
+                const convertedBlob = await heic2any({
+                    blob: file,
+                    toType: 'image/jpeg',
+                    quality: 0.8
+                });
+                // 複数返る場合があるので配列の先頭を取得
+                imageFile = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+            } catch (err) {
+                console.error('HEIC変換エラー:', err);
+                alert('HEIC画像の変換に失敗しました。');
+                return;
+            }
         }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            displayImage.src = event.target.result;
+            displayImage.style.display = 'block';
+            imagePlaceholder.style.display = 'none';
+        };
+        reader.readAsDataURL(imageFile);
     });
 
     // 画像保存処理 (html2canvas)
     downloadBtn.addEventListener('click', async () => {
-        downloadBtn.textContent = '作成中...';
+        downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
 
         try {
@@ -94,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const imgDataUrl = canvas.toDataURL('image/png');
-            const filename = cocktailNameInput.value.trim() || 'cocktail_recipe';
+            const filename = cocktailNameInput.value.trim() || 'cocktail_card';
 
             const link = document.createElement('a');
             link.download = `${filename}.png`;

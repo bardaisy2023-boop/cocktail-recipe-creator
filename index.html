@@ -3,52 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bar DAISY カクテルレシピメーカー</title>
+    <title>Bar DAISY - カクテルカード</title>
     <link rel="stylesheet" href="style.css">
     <!-- html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <!-- heic2any (iPhoneのHEIC画像変換用ライブラリ) -->
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js" defer></script>
     <script src="app.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <h1>Bar DAISY</h1>
-        <p class="subtitle">オリジナルカクテル レシピカード作成</p>
+        <!-- ページ上部のロゴ画像 -->
+        <header class="top-header">
+            <img src="rogo.PNG" alt="Bar DAISY" class="top-logo" onerror="this.style.display='none';">
+            <p class="subtitle">オリジナルカクテルカード作成</p>
+        </header>
 
         <!-- 入力フォームエリア -->
         <div class="form-card">
             <div class="input-group">
-                <label for="baseInput">ベース</label>
-                <input type="text" id="baseInput" placeholder="例: Gin base">
+                <label for="numberInput">ナンバー（数字のみ）</label>
+                <input type="number" id="numberInput" placeholder="例: 90">
             </div>
 
             <div class="input-group">
                 <label for="cocktailNameInput">カクテル名</label>
-                <input type="text" id="cocktailNameInput" placeholder="例: カクテル名を入力">
+                <input type="text" id="cocktailNameInput" placeholder="カクテル名を入力">
             </div>
 
             <div class="input-group">
                 <label for="imageInput">カクテル写真</label>
-                <input type="file" id="imageInput" accept="image/*">
-            </div>
-
-            <div class="input-group">
-                <label>材料 (INGREDIENTS)</label>
-                <div id="ingredientsContainer">
-                    <div class="ingredient-row">
-                        <input type="text" class="ingredient-input" placeholder="材料名・分量">
-                    </div>
-                </div>
-                <button type="button" id="addIngredientBtn" class="secondary-btn">＋ 材料を追加</button>
-            </div>
-
-            <div class="input-group">
-                <label for="methodInput">METHOD</label>
-                <textarea id="methodInput" placeholder="作り方を入力"></textarea>
-            </div>
-
-            <div class="input-group">
-                <label for="tasteNoteInput">TASTE NOTE</label>
-                <textarea id="tasteNoteInput" placeholder="味わいの特徴を入力"></textarea>
+                <input type="file" id="imageInput" accept="image/*,.heic,.HEIC">
             </div>
         </div>
 
@@ -57,28 +42,17 @@
             <h2>完成カード</h2>
 
             <div id="recipeCard" class="recipe-card">
-                <div class="card-base" id="displayBase">Gin base</div>
+                <div class="card-number" id="displayNumber">No.90</div>
                 <div class="card-title" id="displayName">カクテル名</div>
 
-                <!-- 写真枠：途切れないように全体表示対応 -->
+                <!-- 写真表示エリア -->
                 <div class="card-image-container">
                     <img id="displayImage" src="" alt="カクテル写真" style="display: none;">
                     <div id="imagePlaceholder" class="placeholder-text">写真未選択</div>
                 </div>
 
-                <div class="card-divider">- INGREDIENTS -</div>
-                <div id="displayIngredients" class="card-ingredients">
-                    <!-- 動的挿入 -->
-                </div>
-
-                <div class="card-label">METHOD:</div>
-                <div class="card-text" id="displayMethod">-</div>
-
-                <div class="card-label">TASTE NOTE:</div>
-                <div class="card-text" id="displayTaste">-</div>
-
                 <div class="card-footer">
-                    <div class="footer-logo">DAISY</div>
+                    <img src="rogo.PNG" alt="Bar DAISY" class="footer-logo" onerror="this.style.display='none';">
                     <div class="footer-sub">ORIGINAL COCKTAIL RECIPE</div>
                 </div>
             </div>
