@@ -182,7 +182,7 @@ body {
 /* カクテル名 */
 .card-cocktail-name {
   font-size: 1.4rem;
-  color: #fbf1ef;
+  color: #ffffff;
   letter-spacing: 1px;
 }
 
@@ -253,18 +253,18 @@ body {
   opacity: 0.95;
 }
 
-/* 右下のデイジーイラスト（添付画像の配置に完全一致させるよう調整） */
+/* 右下のデイジーイラスト（スマホ画面でもはみ出さないようサイズと位置を最適化） */
 .daisy-bottom-icon {
   position: absolute;
-  right: -6px;
-  bottom: -16px;
-  width: 78px;
+  right: 2px;
+  bottom: -2px;
+  width: 48px;
   height: auto;
   object-fit: contain;
   z-index: 10;
   mix-blend-mode: normal;
   filter: brightness(2.5) drop-shadow(0 0 2px rgba(0,0,0,0.9));
-  transform: rotate(-15deg);
+  transform: rotate(-10deg);
 }
 
 /* 保存ボタン */
