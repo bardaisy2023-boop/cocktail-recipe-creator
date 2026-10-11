@@ -94,7 +94,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 30px 24px 24px 24px;
+  padding: 34px 26px 20px 26px; /* ゆとりのある元のパディングに戻しました */
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -130,7 +130,7 @@ body {
   font-size: 0.75rem;
   letter-spacing: 1.5px;
   color: #d4af37;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   padding: 0 4px;
   position: relative;
   z-index: 2;
@@ -139,7 +139,7 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -148,7 +148,7 @@ body {
 /* Your Own Original (筆記体) */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #fbf1ef;
   margin-bottom: -4px;
   letter-spacing: 1px;
@@ -157,11 +157,11 @@ body {
 /* COCKTAIL (大文字ゴールド) */
 .card-main-title {
   font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: normal;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   color: #d4af37;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   line-height: 1.1;
 }
 
@@ -169,8 +169,8 @@ body {
 .name-block {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  margin-bottom: 6px;
+  gap: 2px;
+  margin-bottom: 8px;
   position: relative;
   z-index: 2;
   width: 100%;
@@ -178,14 +178,14 @@ body {
 
 /* 読み方 */
 .card-kana {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: #fbf1ef;
   letter-spacing: 1px;
 }
 
 /* カクテル名 */
 .card-cocktail-name {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #fbf1ef;
   letter-spacing: 1px;
 }
@@ -204,24 +204,24 @@ body {
 
 /* サブタイトル */
 .card-subtext {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   margin-top: 1px;
 }
 
-/* 写真枠（テキスト量に応じて高さを柔軟に調整） */
+/* 写真枠 */
 .card-image-container {
   width: 100%;
-  flex: 1;
+  flex: 1.2;
   background: #111;
   border-radius: 0px;
   overflow: hidden;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 120px;
+  min-height: 160px;
   position: relative;
   z-index: 2;
 }
@@ -236,15 +236,15 @@ body {
 .placeholder-text {
   color: #666;
   font-size: 0.85rem;
-  padding: 30px;
+  padding: 40px;
 }
 
 /* フッターロゴ & デイジーイラストの配置エリア */
 .card-footer {
   margin-top: auto;
   width: 100%;
-  padding-top: 0px;
-  padding-bottom: 18px;
+  padding-top: 2px;
+  padding-bottom: 14px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -252,9 +252,9 @@ body {
   align-items: center;
 }
 
-/* 下部ロゴのサイズ調整 */
+/* 下部ロゴのサイズ */
 .footer-logo {
-  width: 78px;
+  width: 85px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
@@ -264,8 +264,8 @@ body {
 .daisy-bottom-icon {
   position: absolute;
   right: 6px;
-  bottom: 8px;
-  width: 48px;
+  bottom: 2px;
+  width: 55px;
   height: auto;
   object-fit: contain;
   z-index: 10;

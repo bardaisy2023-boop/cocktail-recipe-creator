@@ -146,22 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imageFile);
     });
 
-    // 画像保存処理（プレビュー画面と保存画像でレイアウトが一致するようにcanvas生成パラメータを最適化）
+    // 画像保存処理（サイズ制限を一切設けず、そのままの高画質フルサイズで生成）
     downloadBtn.addEventListener('click', async () => {
         downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
 
         try {
-            // 正確なアスペクト比と固定幅（ウィジェットの描画ズレを防ぐため明示的な寸法を指定）
             const canvas = await html2canvas(recipeCard, {
-                scale: 3, // 高画質化
+                scale: 3,
                 useCORS: true,
                 backgroundColor: null,
-                logging: false,
-                width: recipeCard.offsetWidth,
-                height: recipeCard.offsetHeight,
-                windowWidth: recipeCard.scrollWidth,
-                windowHeight: recipeCard.scrollHeight
+                logging: false
             });
 
             const imgDataUrl = canvas.toDataURL('image/png');
