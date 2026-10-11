@@ -87,14 +87,15 @@ body {
 }
 
 /* ==========================================================
-   完成カード本体 (4:5固定・写真スペース最大化)
+   完成カード本体 (4:5固定・フレーム内に美しく収まる設計)
    ========================================================== */
 .recipe-card {
   background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 22px 18px 10px 18px;
+  /* フレームの内側に要素が収まるよう、上下左右のパディングを最適化 */
+  padding: 28px 24px 20px 24px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -130,7 +131,7 @@ body {
   font-size: 0.7rem;
   letter-spacing: 1.5px;
   color: #d4af37;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   padding: 0 4px;
   position: relative;
   z-index: 2;
@@ -140,17 +141,17 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   text-align: center;
   position: relative;
   z-index: 2;
   flex-shrink: 0;
 }
 
-/* Your Own Original (さらに小さく調整) */
+/* Your Own Original (小さめに調整) */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #fbf1ef;
   margin-bottom: -3px;
   letter-spacing: 1px;
@@ -159,7 +160,7 @@ body {
 /* COCKTAIL */
 .card-main-title {
   font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: normal;
   letter-spacing: 3px;
   color: #d4af37;
@@ -173,8 +174,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 48px;
-  margin-bottom: 3px;
+  height: 46px;
+  margin-bottom: 4px;
   position: relative;
   z-index: 2;
   width: 100%;
@@ -191,7 +192,7 @@ body {
 
 /* カクテル名全体 */
 .card-cocktail-name {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #fbf1ef;
   letter-spacing: 1px;
   line-height: 1.1;
@@ -220,14 +221,14 @@ body {
   line-height: 1.1;
 }
 
-/* 写真枠（高さをさらに拡大し、潰れを完全に防止） */
+/* 写真枠（高さを最大限に確保し、写真が潰れないように設定） */
 .card-image-container {
   width: 100%;
   flex: 2;
   background: #111;
   border-radius: 0px;
   overflow: hidden;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -248,12 +249,12 @@ body {
   padding: 20px;
 }
 
-/* フッターロゴ & デイジーイラストの配置エリア（サイズを小さくし位置を下げてスペースを確保） */
+/* フッターロゴ & デイジーイラストの配置エリア（フレーム内側に収まるよう位置と余白を調整） */
 .card-footer {
   margin-top: auto;
   width: 100%;
-  padding-top: 0px;
-  padding-bottom: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -262,20 +263,20 @@ body {
   flex-shrink: 0;
 }
 
-/* 下部ロゴのサイズを小さく調整 */
+/* 下部ロゴのサイズ */
 .footer-logo {
-  width: 52px;
+  width: 50px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
 }
 
-/* 右下のデイジーイラストを小さくしてさらに位置を下げる */
+/* 右下のデイジーイラスト（フレームにかからないよう内側に配置） */
 .daisy-bottom-icon {
   position: absolute;
-  right: 4px;
-  bottom: -4px;
-  width: 34px;
+  right: 8px;
+  bottom: 2px;
+  width: 32px;
   height: auto;
   object-fit: contain;
   z-index: 10;
