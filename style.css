@@ -71,10 +71,10 @@ body {
   font-size: 0.95rem;
 }
 
-/* プレビューエリア */
+/* プレビューエリア（領域を広げてカードが見切れないように修正） */
 .preview-area {
   background: #2a2a2a;
-  padding: 20px;
+  padding: 24px 20px;
   border-radius: 12px;
   border: 1px solid #444;
   text-align: center;
@@ -94,7 +94,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 34px 26px 20px 26px;
+  padding: 34px 26px 24px 26px; /* 下部パディングを少し調整してロゴやデイジーのゆとりを確保 */
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -139,7 +139,7 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -204,18 +204,18 @@ body {
   margin-top: 1px;
 }
 
-/* 写真枠：写真を大きくし、切り抜き（クロップ）を防ぐためにcontainを採用 */
+/* 写真枠：切り抜きを防ぐ contain 設定とゆとりあるサイズ */
 .card-image-container {
   width: 100%;
-  flex: 1.3;
+  flex: 1.2;
   background: #111;
   border-radius: 0px;
   overflow: hidden;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 200px;
+  min-height: 180px;
   position: relative;
   z-index: 2;
 }
@@ -223,7 +223,7 @@ body {
 .card-image-container img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 切り抜かれずに全体が収まるように変更 */
+  object-fit: contain;
   display: block;
 }
 
@@ -237,8 +237,8 @@ body {
 .card-footer {
   margin-top: auto;
   width: 100%;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -283,4 +283,68 @@ body {
 
 .primary-btn:hover {
   background: #e6c55c;
+}
+
+/* ==========================================================
+   画像保存モーダルプレビュー（浮かび上がるポップアップ）
+   ========================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: #2a2a2a;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid #444;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.modal-content p {
+  color: #d4af37;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #444;
+  margin-bottom: 16px;
+  -webkit-touch-callout: default; /* iOSでの長押し保存を許可 */
+}
+
+.modal-close-btn {
+  background: #444;
+  color: #fff;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.modal-close-btn:hover {
+  background: #555;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
