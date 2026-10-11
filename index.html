@@ -3,49 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bar DAISY - カクテルカード</title>
-    
-    <!-- Google Fonts: M PLUS Rounded 1c & 筆記体フォント(Great Vibes) -->
+    <title>Bar DAISY - Original Cocktail Menu Generator</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
-
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-    <!-- heic2any -->
-    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js" defer></script>
-    <script src="app.js" defer></script>
 </head>
 <body>
+
     <div class="container">
-        <!-- ページ上部のロゴ画像 -->
+        <!-- 上部ヘッダー -->
         <header class="top-header">
-            <img src="rogo.PNG" alt="Bar DAISY" class="top-logo" onerror="this.style.display='none';">
-            <p class="subtitle">オリジナルカクテルカード作成</p>
+            <img src="logo.png" alt="Bar DAISY" class="top-logo">
+            <p class="subtitle">Original Cocktail Menu Generator</p>
         </header>
 
         <!-- 入力フォームエリア -->
         <div class="form-card">
             <div class="input-group">
-                <label for="numberInput">No.</label>
-                <input type="number" id="numberInput" placeholder="例: 1 ">
+                <label for="numberInput">ナンバー (例: 1 → No.001)</label>
+                <input type="number" id="numberInput" placeholder="例: 1" min="0">
             </div>
 
             <div class="input-group">
-                <label for="kanaInput">読み方</label>
-                <input type="text" id="kanaInput" placeholder="例: よみかた">
+                <label for="kanaInput">読み方 (例: スーアンコー)</label>
+                <input type="text" id="kanaInput" placeholder="例: スーアンコー">
             </div>
 
             <div class="input-group">
-                <label for="cocktailNameInput">カクテル名</label>
-                <input type="text" id="cocktailNameInput" placeholder="カクテル名を入力">
+                <label for="cocktailNameInput">カクテル名 (例: 四暗刻 / First Love)</label>
+                <input type="text" id="cocktailNameInput" placeholder="ここにカクテル名を入力">
             </div>
 
             <div class="input-group">
-                <label for="subtitleInput">サブタイトル</label>
-                <input type="text" id="subtitleInput" placeholder="例: あればサブタイトル">
+                <label for="subtitleInput">サブタイトル (例: 1番好きな手)</label>
+                <input type="text" id="subtitleInput" placeholder="例: 1番好きな手">
             </div>
 
             <div class="input-group">
@@ -57,10 +51,11 @@
         <!-- プレビュー・完成カードエリア -->
         <div class="preview-area">
             <h2>完成カード</h2>
-
-            <div id="recipeCard" class="recipe-card">
-                <!-- フレーム画像 -->
-                <img src="frame.png" alt="Frame" class="card-frame-image" onerror="this.style.display='none';">
+            
+            <!-- 生成されるレシピカード本体 -->
+            <div class="recipe-card" id="recipeCard">
+                <!-- フレーム画像 (mix-blend-mode: screen) -->
+                <img src="frame.png" alt="" class="card-frame-image">
 
                 <!-- 最上部の日付とナンバー -->
                 <div class="card-top-info">
@@ -68,34 +63,45 @@
                     <span id="displayNumber">No.000</span>
                 </div>
 
-                <!-- ヘッダータイトル部分 -->
+                <!-- ヘッダータイトル -->
                 <div class="card-header-area">
-                    <div class="card-sub-title">Your Own Original</div>
-                    <div class="card-main-title">COCKTAIL</div>
-                    
-                    <!-- 読み方・カクテル名・サブタイトル -->
-                    <div class="name-block">
-                        <div class="card-kana" id="displayKana" style="display: none;"></div>
-                        <div class="card-cocktail-name" id="displayName">ここにカクテル名</div>
-                        <div class="card-subtext" id="displaySubtext" style="display: none;"></div>
-                    </div>
+                    <p class="card-sub-title">Your Own Original</p>
+                    <h1 class="card-main-title">COCKTAIL</h1>
                 </div>
 
-                <!-- 写真表示エリア -->
+                <!-- 読み方・カクテル名・サブタイトルのまとめ -->
+                <div class="name-block">
+                    <div class="card-kana" id="displayKana" style="display: none;"></div>
+                    <div class="card-cocktail-name" id="displayName"><span class="font-en">ここにカクテル名</span></div>
+                    <div class="card-subtext" id="displaySubtext" style="display: none;"></div>
+                </div>
+
+                <!-- 写真プレビューエリア -->
                 <div class="card-image-container">
-                    <img id="displayImage" src="" alt="カクテル写真" style="display: none;">
-                    <div id="imagePlaceholder" class="placeholder-text">写真未選択</div>
+                    <span class="placeholder-text" id="imagePlaceholder">写真未選択</span>
+                    <img id="displayImage" src="" alt="Cocktail Photo" style="display: none;">
                 </div>
 
-                <!-- フッターロゴ & 右下のデイジーイラスト -->
+                <!-- フッター（ロゴ & デイジーイラスト） -->
                 <div class="card-footer">
-                    <img src="rogo.PNG" alt="Bar DAISY" class="footer-logo" onerror="this.style.display='none';">
-                    <img src="daisy-icon.png" alt="Daisy" class="daisy-bottom-icon" onerror="this.style.display='none';">
+                    <img src="logo.png" alt="Bar DAISY" class="footer-logo">
+                    <img src="daisy.png" alt="" class="daisy-bottom-icon">
                 </div>
             </div>
 
-            <button type="button" id="downloadBtn" class="primary-btn">画像を保存する</button>
+            <!-- 保存ボタン -->
+            <button class="primary-btn" id="downloadBtn">画像を保存する</button>
         </div>
     </div>
+
+    <!-- スマホ確認用バージョン表記 -->
+    <div class="app-version">Ver 1.0</div>
+
+    <!-- HEIC変換ライブラリ -->
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <!-- html2canvasライブラリ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Custom JS -->
+    <script src="app.js"></script>
 </body>
 </html>

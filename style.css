@@ -94,7 +94,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 34px 26px 20px 26px; /* ゆとりのある元のパディングに戻しました */
+  padding: 34px 26px 20px 26px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -354,4 +354,16 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* ==========================================================
+   スマホ確認用バージョン表記（ページ最下部・中央）
+   ========================================================== */
+.app-version {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
