@@ -182,7 +182,7 @@ body {
 /* カクテル名 */
 .card-cocktail-name {
   font-size: 1.4rem;
-  color: #fbf1ef;
+  color: #ffffff;
   letter-spacing: 1px;
 }
 
@@ -204,10 +204,10 @@ body {
   margin-top: 1px;
 }
 
-/* 写真枠 */
+/* 写真枠：写真を大きくし、切り抜き（クロップ）を防ぐためにcontainを採用 */
 .card-image-container {
   width: 100%;
-  flex: 1;
+  flex: 1.3;
   background: #111;
   border-radius: 0px;
   overflow: hidden;
@@ -215,7 +215,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 160px;
+  min-height: 200px;
   position: relative;
   z-index: 2;
 }
@@ -223,7 +223,7 @@ body {
 .card-image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* 切り抜かれずに全体が収まるように変更 */
   display: block;
 }
 
@@ -253,7 +253,7 @@ body {
   opacity: 0.95;
 }
 
-/* 右下のデイジーイラスト（スマホ画面でもはみ出さないようサイズと位置を最適化） */
+/* 右下のデイジーイラスト */
 .daisy-bottom-icon {
   position: absolute;
   right: 2px;
@@ -269,7 +269,7 @@ body {
 
 /* 保存ボタン */
 .primary-btn {
-  background: #fbf1ef;
+  background: #d4af37;
   color: #1a1a1a;
   border: none;
   width: 100%;

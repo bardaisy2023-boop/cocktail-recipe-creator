@@ -146,8 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imageFile);
     });
 
-    // 画像保存処理（スマホ長押し保存用のプレビューポップアップ対応）
+    // 画像保存処理（スマホ長押し保存用のポップアップ対応を強化）
     downloadBtn.addEventListener('click', async () => {
+        // iOSでのポップアップブロック対策として事前にタブを開いておく
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        let win = null;
+        if (isMobile) {
+            win = window.open('', '_blank');
+        }
+
         downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
 
@@ -162,13 +169,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const imgDataUrl = canvas.toDataURL('image/png');
             const filename = cocktailNameInput.value.trim() || 'cocktail_card';
 
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // スマホ（iPhone等）の場合は別ウィンドウ/タブで画像を開き、長押し保存できるようにする
-                const win = window.open();
-                if (win) {
-                    win.document.write(`
+            if (isMobile && win) {
+                win.document.write(`
+                    <html>
+                        <head><title>${filename}</title></head>
+                        <body style="background:#1a1a1a; color:#fff; text-align:center; padding:20px; font-family:sans-serif; -webkit-touch-callout:default;">
+                            <p style="margin-bottom:15px; font-size:14px; color:#d4af37;">画像を長押しして「写真に保存」してください</p>
+                            <img src="${imgDataUrl}" style="max-width:100%; height:auto; border:1px solid #d4af37; border-radius:4px;" alt="${filename}">
+                        </body>
+                    </html>
+                `);
+                win.document.close();
+            } else if (isMobile) {
+                const newWin = window.open();
+                if (newWin) {
+                    newWin.document.write(`
                         <html>
                             <head><title>${filename}</title></head>
                             <body style="background:#1a1a1a; color:#fff; text-align:center; padding:20px; font-family:sans-serif; -webkit-touch-callout:default;">
@@ -177,12 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </body>
                         </html>
                     `);
-                    win.document.close();
-                } else {
-                    const link = document.createElement('a');
-                    link.download = `${filename}.png`;
-                    link.href = imgDataUrl;
-                    link.click();
+                    newWin.document.close();
                 }
             } else {
                 const link = document.createElement('a');
@@ -193,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             console.error('画像保存エラー:', err);
             alert('画像の生成に失敗しました。');
+            if (win) win.close();
         } finally {
             downloadBtn.textContent = '画像を保存する';
             downloadBtn.disabled = false;
