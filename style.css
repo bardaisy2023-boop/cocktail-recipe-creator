@@ -182,7 +182,7 @@ body {
 /* カクテル名 */
 .card-cocktail-name {
   font-size: 1.4rem;
-  color: #ffffff;
+  color: #fbf1ef;
   letter-spacing: 1px;
 }
 
@@ -269,7 +269,7 @@ body {
 
 /* 保存ボタン */
 .primary-btn {
-  background: #d4af37;
+  background: #fbf1ef;
   color: #1a1a1a;
   border: none;
   width: 100%;
