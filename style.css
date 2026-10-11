@@ -87,15 +87,14 @@ body {
 }
 
 /* ==========================================================
-   完成カード本体 (4:5固定・フレーム内に美しく収まる設計)
+   完成カード本体 (4:5固定・写真スペース最大化)
    ========================================================== */
 .recipe-card {
   background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  /* フレームの内側に要素が収まるよう、上下左右のパディングを最適化 */
-  padding: 28px 24px 20px 24px;
+  padding: 24px 20px 14px 20px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -131,7 +130,7 @@ body {
   font-size: 0.7rem;
   letter-spacing: 1.5px;
   color: #d4af37;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   padding: 0 4px;
   position: relative;
   z-index: 2;
@@ -141,28 +140,28 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   text-align: center;
   position: relative;
   z-index: 2;
   flex-shrink: 0;
 }
 
-/* Your Own Original (小さめに調整) */
+/* Your Own Original (さらに小さく調整) */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #fbf1ef;
-  margin-bottom: -3px;
+  margin-bottom: -2px;
   letter-spacing: 1px;
 }
 
 /* COCKTAIL */
 .card-main-title {
   font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: normal;
-  letter-spacing: 3px;
+  letter-spacing: 2.5px;
   color: #d4af37;
   margin-bottom: 2px;
   line-height: 1.1;
@@ -174,25 +173,25 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 46px;
-  margin-bottom: 4px;
+  height: 40px;
+  margin-bottom: 2px;
   position: relative;
   z-index: 2;
   width: 100%;
   flex-shrink: 0;
 }
 
-/* 読み方 */
+/* 読み方 (さらに縮小) */
 .card-kana {
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   color: #fbf1ef;
   letter-spacing: 1px;
   line-height: 1.1;
 }
 
-/* カクテル名全体 */
+/* カクテル名全体 (さらに縮小) */
 .card-cocktail-name {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: #fbf1ef;
   letter-spacing: 1px;
   line-height: 1.1;
@@ -213,22 +212,22 @@ body {
   color: #fbf1ef;
 }
 
-/* サブタイトル */
+/* サブタイトル (さらに縮小) */
 .card-subtext {
-  font-size: 0.7rem;
+  font-size: 0.62rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1.1;
 }
 
-/* 写真枠（高さを最大限に確保し、写真が潰れないように設定） */
+/* 写真枠（高さを最大限に確保） */
 .card-image-container {
   width: 100%;
-  flex: 2;
+  flex: 2.5;
   background: #111;
   border-radius: 0px;
   overflow: hidden;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -249,12 +248,12 @@ body {
   padding: 20px;
 }
 
-/* フッターロゴ & デイジーイラストの配置エリア（フレーム内側に収まるよう位置と余白を調整） */
+/* フッターロゴ & デイジーイラストの配置エリア（位置を下げてサイズもコンパクトに） */
 .card-footer {
   margin-top: auto;
   width: 100%;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -263,20 +262,20 @@ body {
   flex-shrink: 0;
 }
 
-/* 下部ロゴのサイズ */
+/* 下部ロゴのサイズを小さく調整 */
 .footer-logo {
-  width: 50px;
+  width: 42px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
 }
 
-/* 右下のデイジーイラスト（フレームにかからないよう内側に配置） */
+/* 右下のデイジーイラストをさらに小さくして位置を下げる */
 .daisy-bottom-icon {
   position: absolute;
-  right: 8px;
-  bottom: 2px;
-  width: 32px;
+  right: 10px;
+  bottom: -6px;
+  width: 28px;
   height: auto;
   object-fit: contain;
   z-index: 10;
