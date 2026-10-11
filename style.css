@@ -235,12 +235,12 @@ body {
   padding: 40px;
 }
 
-/* フッターロゴ & デイジーイラストの配置エリア（さらに上に引き上げ） */
+/* フッターロゴ & デイジーイラストの配置エリア */
 .card-footer {
   margin-top: auto;
   width: 100%;
   padding-top: 0px;
-  padding-bottom: 28px; /* 下部余白をさらに増やしてロゴをしっかり上に配置 */
+  padding-bottom: 28px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -256,11 +256,11 @@ body {
   opacity: 0.95;
 }
 
-/* 右下のデイジーイラスト（さらに上に配置） */
+/* 右下のデイジーイラスト */
 .daisy-bottom-icon {
   position: absolute;
   right: 6px;
-  bottom: 14px; /* 下枠から十分に離すように調整 */
+  bottom: 14px;
   width: 50px;
   height: auto;
   object-fit: contain;

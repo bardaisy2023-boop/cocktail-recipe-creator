@@ -146,17 +146,22 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imageFile);
     });
 
-    // 画像保存処理（画面中央に浮かび上がるモーダルプレビュー表示）
+    // 画像保存処理（プレビュー画面と保存画像でレイアウトが一致するようにcanvas生成パラメータを最適化）
     downloadBtn.addEventListener('click', async () => {
         downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
 
         try {
+            // 正確なアスペクト比と固定幅（ウィジェットの描画ズレを防ぐため明示的な寸法を指定）
             const canvas = await html2canvas(recipeCard, {
-                scale: 2,
+                scale: 3, // 高画質化
                 useCORS: true,
                 backgroundColor: null,
-                logging: false
+                logging: false,
+                width: recipeCard.offsetWidth,
+                height: recipeCard.offsetHeight,
+                windowWidth: recipeCard.scrollWidth,
+                windowHeight: recipeCard.scrollHeight
             });
 
             const imgDataUrl = canvas.toDataURL('image/png');
@@ -165,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
             if (isMobile) {
-                // スマホの場合は画面中央に浮かび上がるモーダル（ポップアップ）を表示
                 const overlay = document.createElement('div');
                 overlay.className = 'modal-overlay';
                 
@@ -193,14 +197,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 overlay.appendChild(content);
                 document.body.appendChild(overlay);
 
-                // 背景タップでも閉じられるようにする
                 overlay.addEventListener('click', (e) => {
                     if (e.target === overlay) {
                         document.body.removeChild(overlay);
                     }
                 });
             } else {
-                // PCの場合は通常通りダウンロード
                 const link = document.createElement('a');
                 link.download = `${filename}.png`;
                 link.href = imgDataUrl;
