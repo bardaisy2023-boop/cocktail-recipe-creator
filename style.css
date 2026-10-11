@@ -52,10 +52,6 @@ body {
   margin-bottom: 16px;
 }
 
-.input-group:last-child {
-  margin-bottom: 0;
-}
-
 .input-group label {
   display: block;
   font-size: 0.85rem;
@@ -94,84 +90,181 @@ body {
    完成カード本体
    ========================================================== */
 .recipe-card {
-  background-color: #2b2523;
-  border: 1px solid #d4af37;
-  border-radius: 12px;
-  padding: 25px 20px;
+  background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
+  border-radius: 0px;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  padding: 34px 26px 20px 26px;
   color: #fff;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  margin: 0 auto 20px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* ナンバー：おしゃれなセリフ体＆イタリック（斜体）に変更 */
-.card-number {
-  font-family: "Didot", "Bodoni MT", "Times New Roman", "Baskerville", serif;
-  font-size: 1.05rem;
-  font-style: italic;
-  letter-spacing: 3px;
+/* フレーム画像 */
+.card-frame-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: screen;
+  opacity: 0.98;
+  filter: drop-shadow(0 0 1px #fbf1ef) sepia(100%) hue-rotate(330deg) saturate(30%) brightness(1.05);
+}
+
+/* 最上部の日付とナンバー */
+.card-top-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
   color: #d4af37;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  padding: 0 4px;
+  position: relative;
+  z-index: 2;
 }
 
-.card-title {
-  font-size: 1.4rem;
-  font-weight: bold;
+/* ヘッダータイトルエリア */
+.card-header-area {
+  width: 100%;
+  margin-bottom: 12px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Your Own Original (筆記体) */
+.card-sub-title {
+  font-family: "Great Vibes", cursive;
+  font-size: 1.3rem;
+  color: #fbf1ef;
+  margin-bottom: -4px;
   letter-spacing: 1px;
-  color: #fff;
-  margin-bottom: 16px;
 }
 
-/* 写真枠：途切れないように全体を表示 */
+/* COCKTAIL (大文字ゴールド) */
+.card-main-title {
+  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
+  font-size: 1.7rem;
+  font-weight: normal;
+  letter-spacing: 4px;
+  color: #d4af37;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+
+/* 読み方・カクテル名・サブタイトルのまとまり */
+.name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* 読み方 */
+.card-kana {
+  font-size: 0.75rem;
+  color: #fbf1ef;
+  letter-spacing: 1px;
+}
+
+/* カクテル名 */
+.card-cocktail-name {
+  font-size: 1.4rem;
+  color: #fbf1ef;
+  letter-spacing: 1px;
+}
+
+.card-cocktail-name .font-ja {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 700;
+}
+.card-cocktail-name .font-en {
+  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+/* サブタイトル */
+.card-subtext {
+  font-size: 0.8rem;
+  color: #fbf1ef;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
+/* 写真枠 */
 .card-image-container {
   width: 100%;
+  flex: 1;
   background: #111;
-  border-radius: 6px;
+  border-radius: 0px;
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 160px;
-  max-height: 300px;
+  position: relative;
+  z-index: 2;
 }
 
 .card-image-container img {
   width: 100%;
-  height: auto;
-  max-height: 300px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
 .placeholder-text {
-  color: #555;
+  color: #666;
   font-size: 0.85rem;
-  padding: 30px;
+  padding: 40px;
 }
 
-/* カード下部フッター・ロゴ */
+/* フッターロゴ & デイジーイラスト */
 .card-footer {
   margin-top: auto;
-  border-top: 1px solid #443;
-  padding-top: 12px;
   width: 100%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer-logo {
-  width: 120px;
+  width: 95px;
   height: auto;
   object-fit: contain;
-  margin-bottom: 4px;
+  opacity: 0.95;
 }
 
-.footer-sub {
-  font-size: 0.65rem;
-  letter-spacing: 1.5px;
-  color: #888;
+/* 右下のデイジーイラスト（添付画像の配置に完全一致させるよう調整） */
+.daisy-bottom-icon {
+  position: absolute;
+  right: -6px;
+  bottom: -16px;
+  width: 78px;
+  height: auto;
+  object-fit: contain;
+  z-index: 10;
+  mix-blend-mode: normal;
+  filter: brightness(2.5) drop-shadow(0 0 2px rgba(0,0,0,0.9));
+  transform: rotate(-15deg);
 }
 
 /* 保存ボタン */

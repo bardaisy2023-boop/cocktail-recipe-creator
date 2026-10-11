@@ -1,35 +1,127 @@
 document.addEventListener('DOMContentLoaded', () => {
     const numberInput = document.getElementById('numberInput');
+    const kanaInput = document.getElementById('kanaInput');
     const cocktailNameInput = document.getElementById('cocktailNameInput');
+    const subtitleInput = document.getElementById('subtitleInput');
     const imageInput = document.getElementById('imageInput');
     
+    const displayDate = document.getElementById('displayDate');
     const displayNumber = document.getElementById('displayNumber');
+    const displayKana = document.getElementById('displayKana');
     const displayName = document.getElementById('displayName');
+    const displaySubtext = document.getElementById('displaySubtext');
     const displayImage = document.getElementById('displayImage');
     const imagePlaceholder = document.getElementById('imagePlaceholder');
     
     const recipeCard = document.getElementById('recipeCard');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    // ナンバー（数字のみ入力で「No.」を自動付与）
+    // --- 当日の日付を自動取得してカードに反映 ---
+    function setTodayDate() {
+        const today = new Date();
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const m = months[today.getMonth()];
+        const d = today.getDate();
+        const y = today.getFullYear();
+        displayDate.textContent = `${m}.${d}.${y}`;
+    }
+    setTodayDate();
+
+    // ナンバー（初期値をNo.000に、入力された数字を3桁ゼロ埋めに）
     numberInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
-        displayNumber.textContent = val ? `No.${val}` : 'No.90';
+        if (!val) {
+            displayNumber.textContent = 'No.000';
+        } else {
+            const paddedNum = String(val).padStart(3, '0');
+            displayNumber.textContent = `No.${paddedNum}`;
+        }
     });
 
-    // カクテル名
+    // 読み方（入力時のみ表示）
+    kanaInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        if (val) {
+            displayKana.textContent = val;
+            displayKana.style.display = 'block';
+        } else {
+            displayKana.textContent = '';
+            displayKana.style.display = 'none';
+        }
+    });
+
+    // サブタイトル（入力時のみ表示）
+    subtitleInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        if (val) {
+            displaySubtext.textContent = val;
+            displaySubtext.style.display = 'block';
+        } else {
+            displaySubtext.textContent = '';
+            displaySubtext.style.display = 'none';
+        }
+    });
+
+    // 日本語判定
+    function isJapaneseChar(char) {
+        const pattern = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\u3400-\u4DBF]/;
+        return pattern.test(char);
+    }
+
+    // カクテル名フォント切り分け
+    function formatCocktailName(text) {
+        if (!text) return 'ここにカクテル名';
+
+        let html = '';
+        let currentType = null;
+        let buffer = '';
+
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            const isJa = isJapaneseChar(char);
+            const type = (isJa || (char >= '\uFF00' && char <= '\uffef')) ? 'ja' : 'en';
+
+            if (currentType === null) {
+                currentType = type;
+                buffer += char;
+            } else if (currentType === type) {
+                buffer += char;
+            } else {
+                html += `<span class="font-${currentType}">${escapeHtml(buffer)}</span>`;
+                currentType = type;
+                buffer = char;
+            }
+        }
+        if (buffer) {
+            html += `<span class="font-${currentType}">${escapeHtml(buffer)}</span>`;
+        }
+
+        return html;
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&'`<>"]/g, (match) => ({
+            '&': '&amp;',
+            "'": '&#x27;',
+            '`': '&#x60;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+        }[match]));
+    }
+
     cocktailNameInput.addEventListener('input', (e) => {
-        displayName.textContent = e.target.value || 'カクテル名';
+        const val = e.target.value;
+        displayName.innerHTML = formatCocktailName(val);
     });
 
-    // 写真選択時：HEIC形式に対応して変換＆プレビュー表示
+    // 写真選択 (HEIC対応)
     imageInput.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
         let imageFile = file;
 
-        // HEIC/HEIF形式の場合はJPEGに変換
         if (file.type === 'image/heic' || file.type === 'image/HEIC' || file.name.toLowerCase().endsWith('.heic')) {
             try {
                 const convertedBlob = await heic2any({
@@ -37,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     toType: 'image/jpeg',
                     quality: 0.8
                 });
-                // 複数返る場合があるので配列の先頭を取得
                 imageFile = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
             } catch (err) {
                 console.error('HEIC変換エラー:', err);
@@ -55,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imageFile);
     });
 
-    // 画像保存処理 (html2canvas)
+    // 画像保存処理（スマホ長押し保存対応）
     downloadBtn.addEventListener('click', async () => {
         downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
@@ -64,16 +155,40 @@ document.addEventListener('DOMContentLoaded', () => {
             const canvas = await html2canvas(recipeCard, {
                 scale: 2,
                 useCORS: true,
-                backgroundColor: '#2b2523'
+                backgroundColor: null,
+                logging: false
             });
 
             const imgDataUrl = canvas.toDataURL('image/png');
             const filename = cocktailNameInput.value.trim() || 'cocktail_card';
 
-            const link = document.createElement('a');
-            link.download = `${filename}.png`;
-            link.href = imgDataUrl;
-            link.click();
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                const win = window.open();
+                if (win) {
+                    win.document.write(`
+                        <html>
+                            <head><title>${filename}</title></head>
+                            <body style="background:#1a1a1a; color:#fff; text-align:center; padding:20px; font-family:sans-serif; -webkit-touch-callout:default;">
+                                <p style="margin-bottom:15px; font-size:14px; color:#d4af37;">画像を長押しして「写真に保存」してください</p>
+                                <img src="${imgDataUrl}" style="max-width:100%; height:auto; border:1px solid #d4af37; border-radius:4px;" alt="${filename}">
+                            </body>
+                        </html>
+                    `);
+                    win.document.close();
+                } else {
+                    const link = document.createElement('a');
+                    link.download = `${filename}.png`;
+                    link.href = imgDataUrl;
+                    link.click();
+                }
+            } else {
+                const link = document.createElement('a');
+                link.download = `${filename}.png`;
+                link.href = imgDataUrl;
+                link.click();
+            }
         } catch (err) {
             console.error('画像保存エラー:', err);
             alert('画像の生成に失敗しました。');
