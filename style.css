@@ -93,7 +93,8 @@ body {
   background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
   border-radius: 0px;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  /* aspect-ratioの制限を解除し、内容量に応じて縦幅が自然に伸びるように変更 */
+  min-height: 520px;
   padding: 34px 26px 20px 26px;
   color: #fff;
   text-align: center;
@@ -190,14 +191,14 @@ body {
   letter-spacing: 1px;
 }
 
-/* 日本語部分（丸ゴシック体 & 太字 & サブタイトルと同じカラー） */
+/* 日本語部分（丸ゴシック体 & 太字） */
 .card-cocktail-name .font-ja {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: 700;
   color: #fbf1ef;
 }
 
-/* 英語部分（Didot系イタリック & サブタイトルと同じカラー） */
+/* 英語部分（Didot系イタリック） */
 .card-cocktail-name .font-en {
   font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
   font-style: italic;
@@ -216,7 +217,7 @@ body {
 /* 写真枠 */
 .card-image-container {
   width: 100%;
-  flex: 1.2;
+  height: 220px;
   background: #111;
   border-radius: 0px;
   overflow: hidden;
@@ -224,9 +225,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 160px;
   position: relative;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .card-image-container img {
