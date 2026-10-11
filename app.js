@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imageFile);
     });
 
-    // 画像保存処理（スマホ長押し保存対応）
+    // 画像保存処理（スマホ長押し保存用のプレビューポップアップ対応）
     downloadBtn.addEventListener('click', async () => {
         downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
@@ -165,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
             if (isMobile) {
+                // スマホ（iPhone等）の場合は別ウィンドウ/タブで画像を開き、長押し保存できるようにする
                 const win = window.open();
                 if (win) {
                     win.document.write(`
