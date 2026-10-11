@@ -87,14 +87,14 @@ body {
 }
 
 /* ==========================================================
-   完成カード本体 (4:5固定・テキスト縮小＆写真スペース拡大)
+   完成カード本体 (4:5固定・写真スペース最大化)
    ========================================================== */
 .recipe-card {
   background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
   border-radius: 0px;
   width: 100%;
-  aspect-ratio: 4 / 5; /* Instagram 4:5比率固定 */
-  padding: 26px 20px 14px 20px;
+  aspect-ratio: 4 / 5;
+  padding: 24px 20px 12px 20px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -147,7 +147,7 @@ body {
   flex-shrink: 0;
 }
 
-/* Your Own Original (筆記体フォントサイズ縮小) */
+/* Your Own Original (筆記体) */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
   font-size: 1.05rem;
@@ -156,7 +156,7 @@ body {
   letter-spacing: 1px;
 }
 
-/* COCKTAIL (フォントサイズ縮小) */
+/* COCKTAIL (大文字ゴールド) */
 .card-main-title {
   font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
   font-size: 1.3rem;
@@ -167,13 +167,13 @@ body {
   line-height: 1.1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり（高さをコンパクトにして写真スペースを創出） */
+/* 読み方・カクテル名・サブタイトルのまとまり */
 .name-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 52px;
+  height: 50px;
   margin-bottom: 4px;
   position: relative;
   z-index: 2;
@@ -181,7 +181,7 @@ body {
   flex-shrink: 0;
 }
 
-/* 読み方 (サイズ縮小) */
+/* 読み方 */
 .card-kana {
   font-size: 0.65rem;
   color: #fbf1ef;
@@ -189,7 +189,7 @@ body {
   line-height: 1.1;
 }
 
-/* カクテル名全体 (サイズ縮小) */
+/* カクテル名全体 */
 .card-cocktail-name {
   font-size: 1.15rem;
   color: #fbf1ef;
@@ -212,7 +212,7 @@ body {
   color: #fbf1ef;
 }
 
-/* サブタイトル (サイズ縮小) */
+/* サブタイトル */
 .card-subtext {
   font-size: 0.7rem;
   color: #fbf1ef;
@@ -220,10 +220,10 @@ body {
   line-height: 1.1;
 }
 
-/* 写真枠（枠を大幅に拡大し、アスペクト比を保って綺麗に表示） */
+/* 写真枠（高さを十分に確保し、写真の比率が潰れないように設定） */
 .card-image-container {
   width: 100%;
-  flex: 1.6;
+  flex: 1.8;
   background: #111;
   border-radius: 0px;
   overflow: hidden;
@@ -238,7 +238,7 @@ body {
 .card-image-container img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 変形させずオリジナルの写真比率を維持 */
+  object-fit: contain;
   display: block;
 }
 
@@ -248,12 +248,12 @@ body {
   padding: 20px;
 }
 
-/* フッターロゴ & デイジーイラストの配置エリア */
+/* フッターロゴ & デイジーイラストの配置エリア（位置を下げてサイズをコンパクトに） */
 .card-footer {
   margin-top: auto;
   width: 100%;
-  padding-top: 0px;
-  padding-bottom: 8px;
+  padding-top: 2px;
+  padding-bottom: 6px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -262,20 +262,20 @@ body {
   flex-shrink: 0;
 }
 
-/* 下部ロゴのサイズ */
+/* 下部ロゴのサイズを小さめに調整 */
 .footer-logo {
-  width: 72px;
+  width: 65px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
 }
 
-/* 右下のデイジーイラスト */
+/* 右下のデイジーイラストを小さめにして少し下げる */
 .daisy-bottom-icon {
   position: absolute;
-  right: 4px;
-  bottom: 0px;
-  width: 46px;
+  right: 6px;
+  bottom: -2px;
+  width: 40px;
   height: auto;
   object-fit: contain;
   z-index: 10;
