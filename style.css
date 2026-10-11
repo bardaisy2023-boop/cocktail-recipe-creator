@@ -94,7 +94,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 34px 26px 12px 26px;
+  padding: 30px 24px 24px 24px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -130,7 +130,7 @@ body {
   font-size: 0.75rem;
   letter-spacing: 1.5px;
   color: #d4af37;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   padding: 0 4px;
   position: relative;
   z-index: 2;
@@ -139,7 +139,7 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -148,7 +148,7 @@ body {
 /* Your Own Original (筆記体) */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #fbf1ef;
   margin-bottom: -4px;
   letter-spacing: 1px;
@@ -157,11 +157,11 @@ body {
 /* COCKTAIL (大文字ゴールド) */
 .card-main-title {
   font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: normal;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   color: #d4af37;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   line-height: 1.1;
 }
 
@@ -169,19 +169,23 @@ body {
 .name-block {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
 /* 読み方 */
 .card-kana {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #fbf1ef;
   letter-spacing: 1px;
 }
 
 /* カクテル名 */
 .card-cocktail-name {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #fbf1ef;
   letter-spacing: 1px;
 }
@@ -200,16 +204,16 @@ body {
 
 /* サブタイトル */
 .card-subtext {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   margin-top: 1px;
 }
 
-/* 写真枠 */
+/* 写真枠（テキスト量に応じて高さを柔軟に調整） */
 .card-image-container {
   width: 100%;
-  flex: 1.2;
+  flex: 1;
   background: #111;
   border-radius: 0px;
   overflow: hidden;
@@ -217,7 +221,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 180px;
+  min-height: 120px;
   position: relative;
   z-index: 2;
 }
@@ -232,7 +236,7 @@ body {
 .placeholder-text {
   color: #666;
   font-size: 0.85rem;
-  padding: 40px;
+  padding: 30px;
 }
 
 /* フッターロゴ & デイジーイラストの配置エリア */
@@ -240,7 +244,7 @@ body {
   margin-top: auto;
   width: 100%;
   padding-top: 0px;
-  padding-bottom: 28px;
+  padding-bottom: 18px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -250,7 +254,7 @@ body {
 
 /* 下部ロゴのサイズ調整 */
 .footer-logo {
-  width: 80px;
+  width: 78px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
@@ -260,8 +264,8 @@ body {
 .daisy-bottom-icon {
   position: absolute;
   right: 6px;
-  bottom: 14px;
-  width: 50px;
+  bottom: 8px;
+  width: 48px;
   height: auto;
   object-fit: contain;
   z-index: 10;
