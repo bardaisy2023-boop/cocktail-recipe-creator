@@ -94,7 +94,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 34px 26px 16px 26px;
+  padding: 34px 26px 12px 26px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -213,7 +213,7 @@ body {
   background: #111;
   border-radius: 0px;
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,12 +235,12 @@ body {
   padding: 40px;
 }
 
-/* フッターロゴ & デイジーイラストの配置エリア（上方向へ引き上げ） */
+/* フッターロゴ & デイジーイラストの配置エリア（さらに上に引き上げ） */
 .card-footer {
   margin-top: auto;
   width: 100%;
-  padding-top: 2px;
-  padding-bottom: 22px; /* 下部余白をさらに広げてロゴを上に持ち上げ */
+  padding-top: 0px;
+  padding-bottom: 28px; /* 下部余白をさらに増やしてロゴをしっかり上に配置 */
   position: relative;
   z-index: 2;
   display: flex;
@@ -250,18 +250,18 @@ body {
 
 /* 下部ロゴのサイズ調整 */
 .footer-logo {
-  width: 82px;
+  width: 80px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
 }
 
-/* 右下のデイジーイラスト（ロゴに合わせてさらに上へ配置調整） */
+/* 右下のデイジーイラスト（さらに上に配置） */
 .daisy-bottom-icon {
   position: absolute;
   right: 6px;
-  bottom: 8px; /* 下枠からしっかり離すように調整 */
-  width: 52px;
+  bottom: 14px; /* 下枠から十分に離すように調整 */
+  width: 50px;
   height: auto;
   object-fit: contain;
   z-index: 10;
