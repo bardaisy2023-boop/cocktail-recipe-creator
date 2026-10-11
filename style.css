@@ -183,18 +183,21 @@ body {
   letter-spacing: 1px;
 }
 
-/* カクテル名 */
+/* カクテル名全体 */
 .card-cocktail-name {
   font-size: 1.4rem;
   color: #fbf1ef;
   letter-spacing: 1px;
 }
 
+/* 日本語部分（丸ゴシック体 & 太字 & サブタイトルと同じカラー） */
 .card-cocktail-name .font-ja {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: 700;
   color: #fbf1ef;
 }
+
+/* 英語部分（Didot系イタリック & サブタイトルと同じカラー） */
 .card-cocktail-name .font-en {
   font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
   font-style: italic;
