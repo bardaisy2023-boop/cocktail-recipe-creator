@@ -71,7 +71,7 @@ body {
   font-size: 0.95rem;
 }
 
-/* プレビューエリア（領域を広げてカードが見切れないように修正） */
+/* プレビューエリア */
 .preview-area {
   background: #2a2a2a;
   padding: 24px 20px;
@@ -94,7 +94,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 34px 26px 24px 26px; /* 下部パディングを少し調整してロゴやデイジーのゆとりを確保 */
+  padding: 34px 26px 28px 26px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -179,21 +179,23 @@ body {
   letter-spacing: 1px;
 }
 
-/* カクテル名 */
+/* カクテル名（カラーを #fbf1ef に統一） */
 .card-cocktail-name {
   font-size: 1.4rem;
-  color: #ffffff;
+  color: #fbf1ef;
   letter-spacing: 1px;
 }
 
 .card-cocktail-name .font-ja {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: 700;
+  color: #fbf1ef;
 }
 .card-cocktail-name .font-en {
   font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
   font-style: italic;
   letter-spacing: 1px;
+  color: #fbf1ef;
 }
 
 /* サブタイトル */
@@ -204,7 +206,7 @@ body {
   margin-top: 1px;
 }
 
-/* 写真枠：切り抜きを防ぐ contain 設定とゆとりあるサイズ */
+/* 写真枠 */
 .card-image-container {
   width: 100%;
   flex: 1.2;
@@ -233,12 +235,12 @@ body {
   padding: 40px;
 }
 
-/* フッターロゴ & デイジーイラスト */
+/* フッターロゴ & デイジーイラストの配置エリア */
 .card-footer {
   margin-top: auto;
   width: 100%;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -246,8 +248,9 @@ body {
   align-items: center;
 }
 
+/* 下部ロゴのサイズ調整 */
 .footer-logo {
-  width: 95px;
+  width: 88px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
@@ -256,9 +259,9 @@ body {
 /* 右下のデイジーイラスト */
 .daisy-bottom-icon {
   position: absolute;
-  right: 2px;
-  bottom: -2px;
-  width: 48px;
+  right: -2px;
+  bottom: -6px;
+  width: 58px;
   height: auto;
   object-fit: contain;
   z-index: 10;
@@ -286,7 +289,7 @@ body {
 }
 
 /* ==========================================================
-   画像保存モーダルプレビュー（浮かび上がるポップアップ）
+   画像保存モーダルプレビュー
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -326,7 +329,7 @@ body {
   border-radius: 6px;
   border: 1px solid #444;
   margin-bottom: 16px;
-  -webkit-touch-callout: default; /* iOSでの長押し保存を許可 */
+  -webkit-touch-callout: default;
 }
 
 .modal-close-btn {
