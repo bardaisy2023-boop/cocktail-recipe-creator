@@ -94,7 +94,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 24px 20px 12px 20px;
+  padding: 22px 18px 10px 18px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -147,19 +147,19 @@ body {
   flex-shrink: 0;
 }
 
-/* Your Own Original (筆記体) */
+/* Your Own Original (さらに小さく調整) */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   color: #fbf1ef;
   margin-bottom: -3px;
   letter-spacing: 1px;
 }
 
-/* COCKTAIL (大文字ゴールド) */
+/* COCKTAIL */
 .card-main-title {
   font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: normal;
   letter-spacing: 3px;
   color: #d4af37;
@@ -173,8 +173,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  margin-bottom: 4px;
+  height: 48px;
+  margin-bottom: 3px;
   position: relative;
   z-index: 2;
   width: 100%;
@@ -191,7 +191,7 @@ body {
 
 /* カクテル名全体 */
 .card-cocktail-name {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: #fbf1ef;
   letter-spacing: 1px;
   line-height: 1.1;
@@ -220,14 +220,14 @@ body {
   line-height: 1.1;
 }
 
-/* 写真枠（高さを十分に確保し、写真の比率が潰れないように設定） */
+/* 写真枠（高さをさらに拡大し、潰れを完全に防止） */
 .card-image-container {
   width: 100%;
-  flex: 1.8;
+  flex: 2;
   background: #111;
   border-radius: 0px;
   overflow: hidden;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -248,12 +248,12 @@ body {
   padding: 20px;
 }
 
-/* フッターロゴ & デイジーイラストの配置エリア（位置を下げてサイズをコンパクトに） */
+/* フッターロゴ & デイジーイラストの配置エリア（サイズを小さくし位置を下げてスペースを確保） */
 .card-footer {
   margin-top: auto;
   width: 100%;
-  padding-top: 2px;
-  padding-bottom: 6px;
+  padding-top: 0px;
+  padding-bottom: 4px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -262,20 +262,20 @@ body {
   flex-shrink: 0;
 }
 
-/* 下部ロゴのサイズを小さめに調整 */
+/* 下部ロゴのサイズを小さく調整 */
 .footer-logo {
-  width: 65px;
+  width: 52px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
 }
 
-/* 右下のデイジーイラストを小さめにして少し下げる */
+/* 右下のデイジーイラストを小さくしてさらに位置を下げる */
 .daisy-bottom-icon {
   position: absolute;
-  right: 6px;
-  bottom: -2px;
-  width: 40px;
+  right: 4px;
+  bottom: -4px;
+  width: 34px;
   height: auto;
   object-fit: contain;
   z-index: 10;
