@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar DAISY - Original Cocktail Menu Generator</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- 上部ヘッダー -->
+        <header class="top-header">
+            <img src="rogo.PNG" alt="Bar DAISY" class="top-logo">
+            <p class="subtitle">Original Cocktail Menu Generator</p>
+        </header>
+
+        <!-- 入力フォームエリア -->
+        <div class="form-card">
+            <div class="input-group">
+                <label for="numberInput">ナンバー</label>
+                <input type="number" id="numberInput" placeholder="" min="0">
+            </div>
+
+            <div class="input-group">
+                <label for="kanaInput">読み方</label>
+                <input type="text" id="kanaInput" placeholder="">
+            </div>
+
+            <div class="input-group">
+                <label for="cocktailNameInput">カクテル名</label>
+                <input type="text" id="cocktailNameInput" placeholder="">
+            </div>
+
+            <div class="input-group">
+                <label for="subtitleInput">サブタイトル</label>
+                <input type="text" id="subtitleInput" placeholder="">
+            </div>
+
+            <div class="input-group">
+                <label for="imageInput">カクテル写真</label>
+                <input type="file" id="imageInput" accept="image/*,.heic,.HEIC">
+            </div>
+        </div>
+
+        <!-- プレビュー・完成カードエリア -->
+        <div class="preview-area">
+            <h2>完成カード</h2>
+            
+            <!-- 生成されるレシピカード本体 -->
+            <div class="recipe-card" id="recipeCard">
+                <!-- フレーム画像 -->
+                <img src="frame.png" alt="" class="card-frame-image">
+
+                <!-- 最上部の日付とナンバー -->
+                <div class="card-top-info">
+                    <span id="displayDate">Oct.11.2026</span>
+                    <span id="displayNumber">No.000</span>
+                </div>
+
+                <!-- ヘッダータイトル -->
+                <div class="card-header-area">
+                    <p class="card-sub-title">Your Own Original</p>
+                    <h1 class="card-main-title">COCKTAIL</h1>
+                </div>
+
+                <!-- 読み方・カクテル名・サブタイトルのまとめ -->
+                <div class="name-block">
+                    <div class="card-kana" id="displayKana" style="display: none;"></div>
+                    <div class="card-cocktail-name" id="displayName"><span class="font-en">ここにカクテル名</span></div>
+                    <div class="card-subtext" id="displaySubtext" style="display: none;"></div>
+                </div>
+
+                <!-- 写真プレビューエリア -->
+                <div class="card-image-container">
+                    <span class="placeholder-text" id="imagePlaceholder">写真未選択</span>
+                    <img id="displayImage" src="" alt="Cocktail Photo" style="display: none;">
+                </div>
+
+                <!-- フッター（ロゴ & デイジーイラスト） -->
+                <div class="card-footer">
+                    <img src="rogo.PNG" alt="Bar DAISY" class="footer-logo">
+                    <img src="daisy-icon.png" alt="" class="daisy-bottom-icon">
+                </div>
+            </div>
+
+            <!-- 保存ボタン -->
+            <button class="primary-btn" id="downloadBtn">画像を保存する</button>
+        </div>
+    </div>
+
+    <!-- スマホ確認用バージョン表記 -->
+    <div class="app-version">Ver 1.14</div>
+
+    <!-- HEIC変換ライブラリ -->
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <!-- html2canvasライブラリ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>
