@@ -169,14 +169,14 @@ body {
   line-height: 1.1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり（近すぎず離れすぎない、最適な間隔に調整） */
+/* 読み方・カクテル名・サブタイトルのまとまり（間隔を少し広げてゆたかな余白に） */
 .name-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3px;
-  height: 44px;
+  gap: 5px;
+  height: 52px;
   margin-bottom: 6px;
   position: relative;
   z-index: 2;
