@@ -89,19 +89,20 @@ body {
 }
 
 /* ==========================================================
-   完成カード本体 (完全固定サイズ・縦伸び根絶設計)
+   完成カード本体 (4:5固定・洗練された構造設計)
    ========================================================== */
 .recipe-card {
   background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
   border-radius: 0px;
   width: 100%;
-  max-width: 400px;
-  height: 500px; /* 縦横比 4:5 (幅400pxに対し高さ500px) を完全に固定 */
-  padding: 16px 14px 12px 14px;
+  aspect-ratio: 4 / 5;
+  padding: 18px 16px 12px 16px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   margin: 0 auto 20px auto;
+  display: flex;
+  flex-direction: column;
   position: relative;
   overflow: hidden;
 }
@@ -127,28 +128,30 @@ body {
   display: flex;
   justify-content: space-between;
   font-family: "Playfair Display", serif;
-  font-size: 10px;
+  font-size: 0.48rem;
   letter-spacing: 1px;
   color: #d4af37;
   margin-bottom: 2px;
   padding: 0 6px;
   position: relative;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
+  margin-bottom: 2px;
   text-align: center;
   position: relative;
   z-index: 2;
-  margin-bottom: 2px;
+  flex-shrink: 0;
 }
 
 /* Your Own Original */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 12px;
+  font-size: 0.58rem;
   color: #fbf1ef;
   margin-bottom: -2px;
   letter-spacing: 0.8px;
@@ -157,42 +160,43 @@ body {
 /* COCKTAIL */
 .card-main-title {
   font-family: "Playfair Display", serif;
-  font-size: 15px;
+  font-size: 0.78rem;
   font-weight: normal;
   letter-spacing: 1.8px;
   color: #d4af37;
   line-height: 1.1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり */
+/* 読み方・カクテル名・サブタイトルのまとまり（間隔の最適化） */
 .name-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3px;
-  height: 44px;
+  gap: 2px;
+  margin-top: 2px;
   margin-bottom: 6px;
   position: relative;
   z-index: 2;
   width: 100%;
+  flex-shrink: 0;
 }
 
 /* 読み方 */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 8px;
+  font-size: 0.4rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 /* カクテル名全体 */
 .card-cocktail-name {
-  font-size: 14px;
+  font-size: 0.72rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 /* 日本語部分 */
@@ -213,19 +217,20 @@ body {
 /* サブタイトル */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 8px;
+  font-size: 0.4rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
-  line-height: 1;
+  line-height: 1.1;
 }
 
-/* 写真枠（高さを完全固定ピクセルにし、縦伸びを根絶） */
+/* 写真枠（余計な固定高さを排除し、カード中央にジャストフィット） */
 .card-image-container {
   width: 100%;
-  height: 220px;
+  flex: 1;
+  min-height: 0;
   background: transparent;
   overflow: hidden;
-  margin-bottom: 4px;
+  margin-bottom: 24px; /* 下部フッターエリアとの余白確保 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -243,7 +248,7 @@ body {
 .placeholder-text {
   font-family: "Noto Sans JP", sans-serif;
   color: #666;
-  font-size: 14px;
+  font-size: 0.8rem;
   padding: 20px;
 }
 
@@ -251,8 +256,8 @@ body {
 .card-author {
   position: absolute;
   left: 28px;
-  bottom: 20px;
-  font-size: 9px;
+  bottom: 16px;
+  font-size: 0.42rem;
   color: #fbf1ef;
   opacity: 0.9;
   z-index: 10;
@@ -271,13 +276,14 @@ body {
 /* フッターロゴ & デイジーイラストの配置エリア */
 .card-footer {
   position: absolute;
-  bottom: 10px;
+  bottom: 12px;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
+  pointer-events: none;
 }
 
 /* 下部ロゴのサイズ */
@@ -291,7 +297,7 @@ body {
 /* 右下のデイジーイラスト */
 .daisy-bottom-icon {
   position: absolute;
-  right: 14px;
+  right: 12px;
   bottom: 0px;
   width: 22px;
   height: auto;
@@ -387,9 +393,7 @@ body {
   to { opacity: 1; }
 }
 
-/* ==========================================================
-   スマホ確認用バージョン表記（ページ最下部・中央）
-   ========================================================== */
+/* スマホ確認用バージョン表記 */
 .app-version {
   font-family: "Noto Sans JP", sans-serif;
   text-align: center;
