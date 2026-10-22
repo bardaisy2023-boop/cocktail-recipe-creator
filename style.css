@@ -226,10 +226,10 @@ body {
   min-height: 14px;
 }
 
-/* 写真枠 */
+/* 写真枠（高さを固定し、潰れを防止） */
 .card-image-container {
   width: 100%;
-  flex: 3;
+  height: 220px;
   background: transparent;
   border-radius: 0px;
   overflow: hidden;
@@ -239,6 +239,7 @@ body {
   align-items: center;
   position: relative;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .card-image-container img {

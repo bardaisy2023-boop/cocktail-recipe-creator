@@ -40,28 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 読み方（入力時のみ表示）
+    // 読み方（未入力でも高さを維持するため空文字を設定）
     kanaInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
-        if (val) {
-            displayKana.textContent = val;
-            displayKana.style.display = 'block';
-        } else {
-            displayKana.textContent = '';
-            displayKana.style.display = 'none';
-        }
+        displayKana.textContent = val;
     });
 
-    // サブタイトル（入力時のみ表示）
+    // サブタイトル（未入力でも高さを維持するため空文字を設定）
     subtitleInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
-        if (val) {
-            displaySubtext.textContent = val;
-            displaySubtext.style.display = 'block';
-        } else {
-            displaySubtext.textContent = '';
-            displaySubtext.style.display = 'none';
-        }
+        displaySubtext.textContent = val;
     });
 
     // 作成者（入力された場合のみ「by: ○○○」を表示）
