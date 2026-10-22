@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // カクテル名フォント切り分け
     function formatCocktailName(text) {
-        if (!text) return 'ここにカクテル名';
+        if (!text) return '<span class="font-en">ここにカクテル名</span>';
 
         let html = '';
         let currentType = null;
