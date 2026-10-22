@@ -123,7 +123,7 @@ body {
   filter: drop-shadow(0 0 1px #fbf1ef) sepia(100%) hue-rotate(330deg) saturate(30%) brightness(1.05);
 }
 
-/* 最上部の日付とナンバー (Playfair Display 適用) */
+/* 最上部の日付とナンバー */
 .card-top-info {
   width: 100%;
   display: flex;
@@ -149,7 +149,7 @@ body {
   flex-shrink: 0;
 }
 
-/* Your Own Original (ここだけ Great Vibes 筆記体) */
+/* Your Own Original */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
   font-size: 0.75rem;
@@ -158,7 +158,7 @@ body {
   letter-spacing: 1px;
 }
 
-/* COCKTAIL (Playfair Display 適用) */
+/* COCKTAIL */
 .card-main-title {
   font-family: "Playfair Display", serif;
   font-size: 1.05rem;
@@ -183,7 +183,7 @@ body {
   flex-shrink: 0;
 }
 
-/* 読み方 (Noto Sans JP) */
+/* 読み方 */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
   font-size: 0.58rem;
@@ -200,14 +200,14 @@ body {
   line-height: 1.1;
 }
 
-/* 日本語部分（Noto Sans JP 太字） */
+/* 日本語部分 */
 .card-cocktail-name .font-ja {
   font-family: "Noto Sans JP", sans-serif;
   font-weight: 700;
   color: #fbf1ef;
 }
 
-/* 英語部分（Playfair Display イタリック） */
+/* 英語部分 */
 .card-cocktail-name .font-en {
   font-family: "Playfair Display", serif;
   font-style: italic;
@@ -215,7 +215,7 @@ body {
   color: #fbf1ef;
 }
 
-/* サブタイトル (Noto Sans JP) */
+/* サブタイトル */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
   font-size: 0.6rem;
@@ -253,11 +253,11 @@ body {
   padding: 20px;
 }
 
-/* 左下の作成者表示 (ロゴ画像と同じぐらいの高さ: bottom: 12px に調整) */
+/* 左下の作成者表示 (枠線の内側に納まるよう上に持ち上げ調整) */
 .card-author {
   position: absolute;
-  left: 12px;
-  bottom: 12px;
+  left: 20px;
+  bottom: 24px;
   font-family: "Playfair Display", serif;
   font-size: 0.48rem;
   letter-spacing: 0.8px;

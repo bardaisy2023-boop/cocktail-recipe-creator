@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const numberInput = document.getElementById('numberInput');
     const kanaInput = document.getElementById('kanaInput');
@@ -65,11 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 作成者（入力された場合のみ「Created by: ○○○」を表示）
+    // 作成者（入力された場合のみ「by: ○○○」を表示）
     authorInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
         if (val) {
-            displayAuthor.textContent = `Created by: ${val}`;
+            displayAuthor.textContent = `by: ${val}`;
             displayAuthor.style.display = 'block';
         } else {
             displayAuthor.textContent = '';
@@ -172,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 useCORS: true,
                 backgroundColor: null,
                 logging: false,
-                // フォントのレンダリング崩れを防ぐための調整
                 windowWidth: recipeCard.scrollWidth,
                 windowHeight: recipeCard.scrollHeight
             });
