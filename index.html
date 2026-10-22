@@ -87,8 +87,10 @@
                     <img id="displayImage" src="" alt="Cocktail Photo" style="display: none;">
                 </div>
 
-                <!-- 左下の作成者表示 -->
-                <div class="card-author" id="displayAuthor" style="display: none;"></div>
+                <!-- 左下の作成者表示（英字と日本語でフォントを分離） -->
+                <div class="card-author" id="displayAuthor" style="display: none;">
+                    <span class="author-prefix">by: </span><span class="author-name" id="displayNameText"></span>
+                </div>
 
                 <!-- フッター（ロゴ & デイジーイラスト） -->
                 <div class="card-footer">
@@ -103,7 +105,7 @@
     </div>
 
     <!-- スマホ確認用バージョン表記 -->
-    <div class="app-version">Ver 2.12</div>
+    <div class="app-version">Ver 2.13</div>
 
     <!-- HEIC変換ライブラリ -->
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>

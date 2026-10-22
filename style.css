@@ -96,7 +96,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 20px 16px 12px 16px;
+  padding: 16px 14px 10px 14px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -129,10 +129,10 @@ body {
   display: flex;
   justify-content: space-between;
   font-family: "Playfair Display", serif;
-  font-size: 0.5rem;
+  font-size: 0.48rem;
   letter-spacing: 1px;
   color: #d4af37;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   padding: 0 6px;
   position: relative;
   z-index: 2;
@@ -142,7 +142,7 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -152,7 +152,7 @@ body {
 /* Your Own Original */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   color: #fbf1ef;
   margin-bottom: -3px;
   letter-spacing: 0.8px;
@@ -161,9 +161,9 @@ body {
 /* COCKTAIL */
 .card-main-title {
   font-family: "Playfair Display", serif;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: normal;
-  letter-spacing: 2px;
+  letter-spacing: 1.8px;
   color: #d4af37;
   margin-bottom: 1px;
   line-height: 1.1;
@@ -173,10 +173,10 @@ body {
 .name-block {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 44px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   position: relative;
   z-index: 2;
   width: 100%;
@@ -186,17 +186,17 @@ body {
 /* 読み方 */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.44rem;
+  font-size: 0.42rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
 }
 
-/* カクテル名全体（サイズを調整して大きく感じないように） */
+/* カクテル名全体 */
 .card-cocktail-name {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: #fbf1ef;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   line-height: 1;
 }
 
@@ -211,20 +211,20 @@ body {
 .card-cocktail-name .font-en {
   font-family: "Playfair Display", serif;
   font-style: italic;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   color: #fbf1ef;
 }
 
 /* サブタイトル */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.44rem;
+  font-size: 0.42rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
 }
 
-/* 写真枠（プレビューと保存後で比率が狂わないよう固定管理） */
+/* 写真枠 */
 .card-image-container {
   width: 100%;
   flex: 1;
@@ -232,7 +232,7 @@ body {
   background: transparent;
   border-radius: 0px;
   overflow: hidden;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -254,17 +254,25 @@ body {
   padding: 20px;
 }
 
-/* 左下の作成者表示（"by" をもう少し右に配置：leftを26pxに調整） */
+/* 左下の作成者表示（フォント分離による美しい調整） */
 .card-author {
   position: absolute;
-  left: 26px;
-  bottom: 22px;
-  font-family: "Playfair Display", serif;
-  font-size: 0.46rem;
-  letter-spacing: 0.3px;
+  left: 28px;
+  bottom: 20px;
+  font-size: 0.44rem;
   color: #fbf1ef;
   opacity: 0.9;
   z-index: 10;
+}
+
+.card-author .author-prefix {
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.5px;
+}
+
+.card-author .author-name {
+  font-family: "Noto Sans JP", sans-serif;
+  letter-spacing: 0px;
 }
 
 /* フッターロゴ & デイジーイラストの配置エリア */
@@ -283,7 +291,7 @@ body {
 
 /* 下部ロゴのサイズ */
 .footer-logo {
-  width: 38px;
+  width: 36px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
@@ -294,7 +302,7 @@ body {
   position: absolute;
   right: 8px;
   bottom: -2px;
-  width: 24px;
+  width: 22px;
   height: auto;
   object-fit: contain;
   z-index: 10;

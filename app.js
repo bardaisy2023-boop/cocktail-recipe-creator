@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayName = document.getElementById('displayName');
     const displaySubtext = document.getElementById('displaySubtext');
     const displayAuthor = document.getElementById('displayAuthor');
+    const displayNameText = document.getElementById('displayNameText');
     const displayImage = document.getElementById('displayImage');
     const imagePlaceholder = document.getElementById('imagePlaceholder');
     
@@ -50,14 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
         displaySubtext.textContent = e.target.value;
     });
 
-    // 作成者（入力された場合のみ「by: ○○○」を表示）
+    // 作成者（入力された場合のみ「by: ○○○」を表示、名前部分はNoto Sans JPを適用）
     authorInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
         if (val) {
-            displayAuthor.textContent = `by: ${val}`;
+            displayNameText.textContent = val;
             displayAuthor.style.display = 'block';
         } else {
-            displayAuthor.textContent = '';
+            displayNameText.textContent = '';
             displayAuthor.style.display = 'none';
         }
     });
