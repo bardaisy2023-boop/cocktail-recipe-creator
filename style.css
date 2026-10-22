@@ -169,7 +169,7 @@ body {
   line-height: 1.1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり (高さを完全固定し、未入力でもレイアウト崩れを防止) */
+/* 読み方・カクテル名・サブタイトルのまとまり */
 .name-block {
   display: flex;
   flex-direction: column;
@@ -183,7 +183,7 @@ body {
   flex-shrink: 0;
 }
 
-/* 読み方（未入力時も高さを確保） */
+/* 読み方 */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
   font-size: 0.52rem;
@@ -216,7 +216,7 @@ body {
   color: #fbf1ef;
 }
 
-/* サブタイトル（未入力時も高さを確保） */
+/* サブタイトル */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
   font-size: 0.52rem;
@@ -226,7 +226,7 @@ body {
   min-height: 14px;
 }
 
-/* 写真枠（潰れないようアスペクト比を維持して収める） */
+/* 写真枠（Flexibleに美しく収まる設定） */
 .card-image-container {
   width: 100%;
   flex: 3;
