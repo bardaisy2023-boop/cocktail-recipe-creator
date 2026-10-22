@@ -96,7 +96,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 18px 14px 10px 14px;
+  padding: 16px 14px 10px 14px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -142,7 +142,7 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -152,7 +152,7 @@ body {
 /* Your Own Original */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 0.56rem;
+  font-size: 0.54rem;
   color: #fbf1ef;
   margin-bottom: -2px;
   letter-spacing: 0.8px;
@@ -161,23 +161,23 @@ body {
 /* COCKTAIL */
 .card-main-title {
   font-family: "Playfair Display", serif;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: normal;
   letter-spacing: 1.8px;
   color: #d4af37;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
   line-height: 1.1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり（間隔のつまり具合を調整し干渉を防止） */
+/* 読み方・カクテル名・サブタイトルのまとまり（カクテル名を中心に上下をぐっと近づける） */
 .name-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2px;
-  height: 38px;
-  margin-bottom: 4px;
+  gap: 1px;
+  height: 40px;
+  margin-bottom: 6px;
   position: relative;
   z-index: 2;
   width: 100%;
@@ -187,7 +187,7 @@ body {
 /* 読み方 */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.4rem;
+  font-size: 0.38rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
@@ -195,10 +195,10 @@ body {
 
 /* カクテル名全体 */
 .card-cocktail-name {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 /* 日本語部分 */
@@ -219,13 +219,13 @@ body {
 /* サブタイトル */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.4rem;
+  font-size: 0.38rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
 }
 
-/* 写真枠（縦の伸びを抑え、自然な比率を保持） */
+/* 写真枠（スペースを最優先確保し、縦潰れを防止） */
 .card-image-container {
   width: 100%;
   flex: 1;
