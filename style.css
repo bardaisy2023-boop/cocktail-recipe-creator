@@ -89,14 +89,14 @@ body {
 }
 
 /* ==========================================================
-   完成カード本体 (4:5固定・パーフェクトバランス調整)
+   完成カード本体 (4:5固定・プレビューと保存後の完全一致調整)
    ========================================================== */
 .recipe-card {
   background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 16px 14px 10px 14px;
+  padding: 16px 14px 12px 14px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -132,7 +132,7 @@ body {
   font-size: 0.48rem;
   letter-spacing: 1px;
   color: #d4af37;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
   padding: 0 6px;
   position: relative;
   z-index: 2;
@@ -169,14 +169,14 @@ body {
   line-height: 1.1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり（間隔を少し広げてゆたかな余白に） */
+/* 読み方・カクテル名・サブタイトルのまとまり（程よい余地を確保） */
 .name-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  height: 52px;
+  gap: 4px;
+  height: 46px;
   margin-bottom: 6px;
   position: relative;
   z-index: 2;
@@ -225,20 +225,20 @@ body {
   line-height: 1;
 }
 
-/* 写真枠 */
+/* 写真枠（高さを固定し、潰れや比率の変化を完全に防止） */
 .card-image-container {
   width: 100%;
-  flex: 1;
-  min-height: 0;
+  height: 215px;
   background: transparent;
   border-radius: 0px;
   overflow: hidden;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .card-image-container img {
@@ -259,7 +259,7 @@ body {
 .card-author {
   position: absolute;
   left: 28px;
-  bottom: 18px;
+  bottom: 20px;
   font-size: 0.42rem;
   color: #fbf1ef;
   opacity: 0.9;
