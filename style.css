@@ -96,7 +96,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 22px 18px 12px 18px;
+  padding: 20px 16px 12px 16px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -129,8 +129,8 @@ body {
   display: flex;
   justify-content: space-between;
   font-family: "Playfair Display", serif;
-  font-size: 0.52rem;
-  letter-spacing: 1.2px;
+  font-size: 0.5rem;
+  letter-spacing: 1px;
   color: #d4af37;
   margin-bottom: 2px;
   padding: 0 6px;
@@ -152,7 +152,7 @@ body {
 /* Your Own Original */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: #fbf1ef;
   margin-bottom: -2px;
   letter-spacing: 1px;
@@ -161,21 +161,21 @@ body {
 /* COCKTAIL */
 .card-main-title {
   font-family: "Playfair Display", serif;
-  font-size: 1.0rem;
+  font-size: 0.95rem;
   font-weight: normal;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   color: #d4af37;
   margin-bottom: 2px;
   line-height: 1.1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり */
+/* 読み方・カクテル名・サブタイトルのまとまり (上下の行間バランスを均等化) */
 .name-block {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  height: 48px;
+  height: 52px;
   margin-bottom: 4px;
   position: relative;
   z-index: 2;
@@ -186,19 +186,18 @@ body {
 /* 読み方 */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.5rem;
+  font-size: 0.48rem;
   color: #fbf1ef;
-  letter-spacing: 1px;
-  line-height: 1.1;
-  min-height: 13px;
+  letter-spacing: 0.5px;
+  line-height: 1;
 }
 
 /* カクテル名全体 */
 .card-cocktail-name {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: #fbf1ef;
-  letter-spacing: 1px;
-  line-height: 1.1;
+  letter-spacing: 0.8px;
+  line-height: 1;
 }
 
 /* 日本語部分 */
@@ -212,24 +211,24 @@ body {
 .card-cocktail-name .font-en {
   font-family: "Playfair Display", serif;
   font-style: italic;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   color: #fbf1ef;
 }
 
 /* サブタイトル */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.5rem;
+  font-size: 0.48rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
-  line-height: 1.1;
-  min-height: 13px;
+  line-height: 1;
 }
 
-/* 写真枠（画像の縦長・横長による潰れを完全に防ぐ） */
+/* 写真枠（画像のスペースを最優先し、潰れを防ぐ） */
 .card-image-container {
   width: 100%;
-  height: 230px;
+  flex: 1;
+  min-height: 0;
   background: transparent;
   border-radius: 0px;
   overflow: hidden;
@@ -239,7 +238,6 @@ body {
   align-items: center;
   position: relative;
   z-index: 2;
-  flex-shrink: 0;
 }
 
 .card-image-container img {
@@ -256,14 +254,14 @@ body {
   padding: 20px;
 }
 
-/* 左下の作成者表示 */
+/* 左下の作成者表示 (文字間隔を調整し自然に) */
 .card-author {
   position: absolute;
   left: 18px;
-  bottom: 20px;
+  bottom: 22px;
   font-family: "Playfair Display", serif;
-  font-size: 0.48rem;
-  letter-spacing: 0.8px;
+  font-size: 0.46rem;
+  letter-spacing: 0.3px;
   color: #fbf1ef;
   opacity: 0.9;
   z-index: 10;
@@ -285,7 +283,7 @@ body {
 
 /* 下部ロゴのサイズ */
 .footer-logo {
-  width: 40px;
+  width: 38px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
@@ -296,7 +294,7 @@ body {
   position: absolute;
   right: 8px;
   bottom: -2px;
-  width: 26px;
+  width: 24px;
   height: auto;
   object-fit: contain;
   z-index: 10;
