@@ -121,12 +121,12 @@ body {
   filter: drop-shadow(0 0 1px #fbf1ef) sepia(100%) hue-rotate(330deg) saturate(30%) brightness(1.05);
 }
 
-/* 最上部の日付とナンバー (フォントサイズを0.6remに縮小) */
+/* 最上部の日付とナンバー (フォント指定を強固にして崩れを防止) */
 .card-top-info {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
+  font-family: "Didot", "Bodoni MT", "Times New Roman", "Times", serif;
   font-size: 0.6rem;
   letter-spacing: 1.2px;
   color: #d4af37;
@@ -260,6 +260,19 @@ body {
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+}
+
+/* 左下の作成者表示 */
+.card-author {
+  position: absolute;
+  left: 6px;
+  bottom: 0px;
+  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.8px;
+  color: #fbf1ef;
+  opacity: 0.85;
+  z-index: 10;
 }
 
 /* 下部ロゴのサイズ */

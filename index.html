@@ -42,6 +42,12 @@
                 <input type="text" id="subtitleInput" placeholder="">
             </div>
 
+            <!-- サブタイトルの下に追加 -->
+            <div class="input-group">
+                <label for="authorInput">作成者</label>
+                <input type="text" id="authorInput" placeholder="">
+            </div>
+
             <div class="input-group">
                 <label for="imageInput">カクテル写真</label>
                 <input type="file" id="imageInput" accept="image/*,.heic,.HEIC">
@@ -82,8 +88,9 @@
                     <img id="displayImage" src="" alt="Cocktail Photo" style="display: none;">
                 </div>
 
-                <!-- フッター（ロゴ & デイジーイラスト） -->
+                <!-- フッター（ロゴ & デイジーイラスト & 作成者） -->
                 <div class="card-footer">
+                    <div class="card-author" id="displayAuthor" style="display: none;"></div>
                     <img src="rogo.PNG" alt="Bar DAISY" class="footer-logo">
                     <img src="daisy-icon.png" alt="" class="daisy-bottom-icon">
                 </div>
@@ -95,7 +102,7 @@
     </div>
 
     <!-- スマホ確認用バージョン表記 -->
-    <div class="app-version">Ver 2.00</div>
+    <div class="app-version">Ver 2.01</div>
 
     <!-- HEIC変換ライブラリ -->
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>

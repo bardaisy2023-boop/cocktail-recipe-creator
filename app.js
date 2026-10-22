@@ -1,8 +1,10 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const numberInput = document.getElementById('numberInput');
     const kanaInput = document.getElementById('kanaInput');
     const cocktailNameInput = document.getElementById('cocktailNameInput');
     const subtitleInput = document.getElementById('subtitleInput');
+    const authorInput = document.getElementById('authorInput');
     const imageInput = document.getElementById('imageInput');
     
     const displayDate = document.getElementById('displayDate');
@@ -10,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayKana = document.getElementById('displayKana');
     const displayName = document.getElementById('displayName');
     const displaySubtext = document.getElementById('displaySubtext');
+    const displayAuthor = document.getElementById('displayAuthor');
     const displayImage = document.getElementById('displayImage');
     const imagePlaceholder = document.getElementById('imagePlaceholder');
     
@@ -59,6 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             displaySubtext.textContent = '';
             displaySubtext.style.display = 'none';
+        }
+    });
+
+    // 作成者（入力された場合のみ「Created by: ○○○」を表示）
+    authorInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        if (val) {
+            displayAuthor.textContent = `Created by: ${val}`;
+            displayAuthor.style.display = 'block';
+        } else {
+            displayAuthor.textContent = '';
+            displayAuthor.style.display = 'none';
         }
     });
 
@@ -156,7 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 scale: 3,
                 useCORS: true,
                 backgroundColor: null,
-                logging: false
+                logging: false,
+                // フォントのレンダリング崩れを防ぐための調整
+                windowWidth: recipeCard.scrollWidth,
+                windowHeight: recipeCard.scrollHeight
             });
 
             const imgDataUrl = canvas.toDataURL('image/png');
