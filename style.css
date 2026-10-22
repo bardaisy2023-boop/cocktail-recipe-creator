@@ -89,7 +89,7 @@ body {
 }
 
 /* ==========================================================
-   完成カード本体 (4:5固定・プレビューと保存後の完全一致調整)
+   完成カード本体 (4:5固定・完全一致調整)
    ========================================================== */
 .recipe-card {
   background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
@@ -142,7 +142,7 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 2px;
+  margin-bottom: 0px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -165,19 +165,19 @@ body {
   font-weight: normal;
   letter-spacing: 1.8px;
   color: #d4af37;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   line-height: 1.1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり（程よい余地を確保） */
+/* 読み方・カクテル名・サブタイトルのまとまり（タイトル直下に配置し、美しい間隔を保持） */
 .name-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4px;
-  height: 46px;
-  margin-bottom: 6px;
+  gap: 3px;
+  height: 42px;
+  margin-bottom: 4px;
   position: relative;
   z-index: 2;
   width: 100%;
