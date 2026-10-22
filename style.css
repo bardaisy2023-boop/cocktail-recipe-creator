@@ -121,7 +121,7 @@ body {
   filter: drop-shadow(0 0 1px #fbf1ef) sepia(100%) hue-rotate(330deg) saturate(30%) brightness(1.05);
 }
 
-/* 最上部の日付とナンバー (フォント指定を強固にして崩れを防止) */
+/* 最上部の日付とナンバー */
 .card-top-info {
   width: 100%;
   display: flex;
@@ -220,7 +220,7 @@ body {
   line-height: 1.1;
 }
 
-/* 写真枠（背景同化を防ぎ写真エリアの比率を最大化） */
+/* 写真枠 */
 .card-image-container {
   width: 100%;
   flex: 3;
@@ -248,6 +248,19 @@ body {
   padding: 20px;
 }
 
+/* 左下の作成者表示 */
+.card-author {
+  position: absolute;
+  left: 12px;
+  bottom: 8px;
+  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.8px;
+  color: #fbf1ef;
+  opacity: 0.9;
+  z-index: 10;
+}
+
 /* フッターロゴ & デイジーイラストの配置エリア */
 .card-footer {
   margin-top: auto;
@@ -262,19 +275,6 @@ body {
   flex-shrink: 0;
 }
 
-/* 左下の作成者表示 */
-.card-author {
-  position: absolute;
-  left: 6px;
-  bottom: 0px;
-  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.8px;
-  color: #fbf1ef;
-  opacity: 0.85;
-  z-index: 10;
-}
-
 /* 下部ロゴのサイズ */
 .footer-logo {
   width: 40px;
@@ -283,7 +283,7 @@ body {
   opacity: 0.95;
 }
 
-/* 右下のデイジーイラスト（フレーム内に収まる絶妙な位置に配置） */
+/* 右下のデイジーイラスト */
 .daisy-bottom-icon {
   position: absolute;
   right: 8px;
