@@ -96,7 +96,7 @@ body {
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 24px 20px 14px 20px;
+  padding: 22px 18px 12px 18px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -152,7 +152,7 @@ body {
 /* Your Own Original */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: #fbf1ef;
   margin-bottom: -2px;
   letter-spacing: 1px;
@@ -161,7 +161,7 @@ body {
 /* COCKTAIL */
 .card-main-title {
   font-family: "Playfair Display", serif;
-  font-size: 1.05rem;
+  font-size: 1.0rem;
   font-weight: normal;
   letter-spacing: 2.5px;
   color: #d4af37;
@@ -186,16 +186,16 @@ body {
 /* 読み方 */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.52rem;
+  font-size: 0.5rem;
   color: #fbf1ef;
   letter-spacing: 1px;
   line-height: 1.1;
-  min-height: 14px;
+  min-height: 13px;
 }
 
 /* カクテル名全体 */
 .card-cocktail-name {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: #fbf1ef;
   letter-spacing: 1px;
   line-height: 1.1;
@@ -219,17 +219,17 @@ body {
 /* サブタイトル */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.52rem;
+  font-size: 0.5rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1.1;
-  min-height: 14px;
+  min-height: 13px;
 }
 
-/* 写真枠（Flexibleに美しく収まる設定） */
+/* 写真枠（画像の縦長・横長による潰れを完全に防ぐ） */
 .card-image-container {
   width: 100%;
-  flex: 3;
+  height: 230px;
   background: transparent;
   border-radius: 0px;
   overflow: hidden;
@@ -239,6 +239,7 @@ body {
   align-items: center;
   position: relative;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .card-image-container img {
@@ -258,8 +259,8 @@ body {
 /* 左下の作成者表示 */
 .card-author {
   position: absolute;
-  left: 20px;
-  bottom: 24px;
+  left: 18px;
+  bottom: 20px;
   font-family: "Playfair Display", serif;
   font-size: 0.48rem;
   letter-spacing: 0.8px;

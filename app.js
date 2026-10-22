@@ -40,16 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 読み方（未入力でも高さを維持するため空文字を設定）
+    // 読み方のリアルタイム反映
     kanaInput.addEventListener('input', (e) => {
-        const val = e.target.value.trim();
-        displayKana.textContent = val;
+        displayKana.textContent = e.target.value;
     });
 
-    // サブタイトル（未入力でも高さを維持するため空文字を設定）
+    // サブタイトルのリアルタイム反映
     subtitleInput.addEventListener('input', (e) => {
-        const val = e.target.value.trim();
-        displaySubtext.textContent = val;
+        displaySubtext.textContent = e.target.value;
     });
 
     // 作成者（入力された場合のみ「by: ○○○」を表示）
@@ -148,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imageFile);
     });
 
-    // 画像保存処理（サイズ制限を一切設けず、そのままの高画質フルサイズで生成）
+    // 画像保存処理
     downloadBtn.addEventListener('click', async () => {
         downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
