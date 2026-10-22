@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setTodayDate();
 
-    // ナンバー（初期値をNo.000に、入力された数字を3桁ゼロ埋めに）
+    // ナンバー
     numberInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
         if (!val) {
@@ -41,17 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 読み方のリアルタイム反映
+    // 読み方
     kanaInput.addEventListener('input', (e) => {
         displayKana.textContent = e.target.value;
     });
 
-    // サブタイトルのリアルタイム反映
+    // サブタイトル
     subtitleInput.addEventListener('input', (e) => {
         displaySubtext.textContent = e.target.value;
     });
 
-    // 作成者（入力された場合のみ「by: ○○○」を表示、名前部分はNoto Sans JPを適用）
+    // 作成者
     authorInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
         if (val) {
@@ -147,19 +147,24 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imageFile);
     });
 
-    // 画像保存処理
+    // 画像保存処理（幅400px・高さ500pxの4:5比率を完全に指定してキャプチャ）
     downloadBtn.addEventListener('click', async () => {
         downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
 
         try {
+            const fixedWidth = 400;
+            const fixedHeight = 500;
+
             const canvas = await html2canvas(recipeCard, {
                 scale: 3,
                 useCORS: true,
                 backgroundColor: null,
                 logging: false,
-                windowWidth: recipeCard.scrollWidth,
-                windowHeight: recipeCard.scrollHeight
+                width: fixedWidth,
+                height: fixedHeight,
+                windowWidth: fixedWidth,
+                windowHeight: fixedHeight
             });
 
             const imgDataUrl = canvas.toDataURL('image/png');

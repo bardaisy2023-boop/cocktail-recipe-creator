@@ -57,7 +57,7 @@
         <div class="preview-area">
             <h2>完成カード</h2>
             
-            <!-- 生成されるレシピカード本体 -->
+            <!-- 生成されるレシピカード本体（完全固定サイズ設計） -->
             <div class="recipe-card" id="recipeCard">
                 <!-- フレーム画像 -->
                 <img src="frame.png" alt="" class="card-frame-image">
@@ -81,13 +81,13 @@
                     <div class="card-subtext" id="displaySubtext"></div>
                 </div>
 
-                <!-- 写真プレビューエリア -->
+                <!-- 写真プレビューエリア（高さ・幅を完全固定） -->
                 <div class="card-image-container">
                     <span class="placeholder-text" id="imagePlaceholder">写真未選択</span>
                     <img id="displayImage" src="" alt="Cocktail Photo" style="display: none;">
                 </div>
 
-                <!-- 左下の作成者表示（英字と日本語でフォントを分離） -->
+                <!-- 左下の作成者表示 -->
                 <div class="card-author" id="displayAuthor" style="display: none;">
                     <span class="author-prefix">by: </span><span class="author-name" id="displayNameText"></span>
                 </div>
@@ -105,7 +105,7 @@
     </div>
 
     <!-- スマホ確認用バージョン表記 -->
-    <div class="app-version">Ver 2.19</div>
+    <div class="app-version">Ver 2.20</div>
 
     <!-- HEIC変換ライブラリ -->
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
