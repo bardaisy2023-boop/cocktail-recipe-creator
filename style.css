@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: #1a1a1a;
   color: #f5f5f5;
   padding: 20px;
@@ -34,6 +34,7 @@ body {
 }
 
 .subtitle {
+  font-family: "Playfair Display", serif;
   font-size: 0.85rem;
   color: #aaa;
   letter-spacing: 1px;
@@ -69,6 +70,7 @@ body {
   border-radius: 6px;
   color: #fff;
   font-size: 0.95rem;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 /* プレビューエリア */
@@ -121,13 +123,13 @@ body {
   filter: drop-shadow(0 0 1px #fbf1ef) sepia(100%) hue-rotate(330deg) saturate(30%) brightness(1.05);
 }
 
-/* 最上部の日付とナンバー */
+/* 最上部の日付とナンバー (Playfair Display 適用) */
 .card-top-info {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-family: "Didot", "Bodoni MT", "Times New Roman", "Times", serif;
-  font-size: 0.6rem;
+  font-family: "Playfair Display", serif;
+  font-size: 0.52rem;
   letter-spacing: 1.2px;
   color: #d4af37;
   margin-bottom: 2px;
@@ -147,7 +149,7 @@ body {
   flex-shrink: 0;
 }
 
-/* Your Own Original */
+/* Your Own Original (ここだけ Great Vibes 筆記体) */
 .card-sub-title {
   font-family: "Great Vibes", cursive;
   font-size: 0.75rem;
@@ -156,9 +158,9 @@ body {
   letter-spacing: 1px;
 }
 
-/* COCKTAIL */
+/* COCKTAIL (Playfair Display 適用) */
 .card-main-title {
-  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.05rem;
   font-weight: normal;
   letter-spacing: 2.5px;
@@ -181,8 +183,9 @@ body {
   flex-shrink: 0;
 }
 
-/* 読み方 */
+/* 読み方 (Noto Sans JP) */
 .card-kana {
+  font-family: "Noto Sans JP", sans-serif;
   font-size: 0.58rem;
   color: #fbf1ef;
   letter-spacing: 1px;
@@ -197,23 +200,24 @@ body {
   line-height: 1.1;
 }
 
-/* 日本語部分（丸ゴシック体 & 太字） */
+/* 日本語部分（Noto Sans JP 太字） */
 .card-cocktail-name .font-ja {
-  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-weight: 700;
   color: #fbf1ef;
 }
 
-/* 英語部分（Didot系イタリック） */
+/* 英語部分（Playfair Display イタリック） */
 .card-cocktail-name .font-en {
-  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
+  font-family: "Playfair Display", serif;
   font-style: italic;
   letter-spacing: 1px;
   color: #fbf1ef;
 }
 
-/* サブタイトル */
+/* サブタイトル (Noto Sans JP) */
 .card-subtext {
+  font-family: "Noto Sans JP", sans-serif;
   font-size: 0.6rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
@@ -243,18 +247,19 @@ body {
 }
 
 .placeholder-text {
+  font-family: "Noto Sans JP", sans-serif;
   color: #666;
   font-size: 0.8rem;
   padding: 20px;
 }
 
-/* 左下の作成者表示 */
+/* 左下の作成者表示 (ロゴ画像と同じぐらいの高さ: bottom: 12px に調整) */
 .card-author {
   position: absolute;
   left: 12px;
-  bottom: 8px;
-  font-family: "Didot", "Bodoni MT", "Times New Roman", serif;
-  font-size: 0.55rem;
+  bottom: 12px;
+  font-family: "Playfair Display", serif;
+  font-size: 0.48rem;
   letter-spacing: 0.8px;
   color: #fbf1ef;
   opacity: 0.9;
@@ -299,6 +304,7 @@ body {
 
 /* 保存ボタン */
 .primary-btn {
+  font-family: "Noto Sans JP", sans-serif;
   background: #d4af37;
   color: #1a1a1a;
   border: none;
@@ -345,6 +351,7 @@ body {
 }
 
 .modal-content p {
+  font-family: "Noto Sans JP", sans-serif;
   color: #d4af37;
   font-size: 0.9rem;
   margin-bottom: 12px;
@@ -360,6 +367,7 @@ body {
 }
 
 .modal-close-btn {
+  font-family: "Noto Sans JP", sans-serif;
   background: #444;
   color: #fff;
   border: none;
@@ -383,6 +391,7 @@ body {
    スマホ確認用バージョン表記（ページ最下部・中央）
    ========================================================== */
 .app-version {
+  font-family: "Noto Sans JP", sans-serif;
   text-align: center;
   font-size: 0.75rem;
   color: #666;
