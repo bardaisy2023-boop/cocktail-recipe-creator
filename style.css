@@ -1,334 +1,5 @@
 /* ==========================================================
-   Base Styles
-   ========================================================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #1a1a1a;
-  color: #f5f5f5;
-  padding: 20px;
-  line-height: 1.5;
-}
-
-.container {
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-/* 上部ヘッダー・ロゴ */
-.top-header {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.top-logo {
-  width: 140px;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 6px;
-}
-
-.subtitle {
-  font-family: "Playfair Display", serif;
-  font-size: 0.85rem;
-  color: #aaa;
-  letter-spacing: 1px;
-}
-
-/* フォームカード */
-.form-card {
-  background: #2a2a2a;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 24px;
-  border: 1px solid #444;
-}
-
-.input-group {
-  margin-bottom: 16px;
-}
-
-.input-group label {
-  display: block;
-  font-size: 0.85rem;
-  color: #ccc;
-  margin-bottom: 6px;
-}
-
-.input-group input[type="text"],
-.input-group input[type="number"],
-.input-group input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  background: #1f1f1f;
-  border: 1px solid #444;
-  border-radius: 6px;
-  color: #fff;
-  font-size: 0.95rem;
-  font-family: "Noto Sans JP", sans-serif;
-}
-
-/* プレビューエリア */
-.preview-area {
-  background: #2a2a2a;
-  padding: 24px 20px;
-  border-radius: 12px;
-  border: 1px solid #444;
-  text-align: center;
-}
-
-.preview-area h2 {
-  font-size: 1rem;
-  color: #ccc;
-  margin-bottom: 16px;
-}
-
-/* ==========================================================
-   完成カード本体 (完全デザイン画像一致仕様)
-   ========================================================== */
-.recipe-card {
-  background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
-  border-radius: 0px;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  padding: 22px 20px 16px 20px;
-  color: #fff;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  margin: 0 auto 20px auto;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-/* フレーム画像 */
-.card-frame-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  pointer-events: none;
-  z-index: 5;
-  mix-blend-mode: screen;
-  opacity: 0.98;
-  filter: drop-shadow(0 0 1px #fbf1ef) sepia(100%) hue-rotate(330deg) saturate(30%) brightness(1.05);
-}
-
-/* 最上部の日付とナンバー */
-.card-top-info {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  font-family: "Questrial", sans-serif;
-  font-size: 0.52rem;
-  letter-spacing: 0.5px;
-  color: #d4af37;
-  margin-bottom: 6px;
-  padding: 0 10px;
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0;
-}
-
-/* ヘッダータイトルエリア */
-.card-header-area {
-  width: 100%;
-  margin-bottom: 6px;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0;
-}
-
-/* Your Own Original */
-.card-sub-title {
-  font-family: "New Icon Script", "Great Vibes", cursive;
-  font-size: 0.68rem;
-  color: #fbf1ef;
-  margin-bottom: -4px;
-  letter-spacing: 0.5px;
-}
-
-/* COCKTAIL */
-.card-main-title {
-  font-family: "New Icon", "Playfair Display", serif;
-  font-size: 1.62rem;
-  font-weight: normal;
-  letter-spacing: 2px;
-  color: #d4af37;
-  line-height: 1;
-}
-
-/* 読み方・カクテル名・サブタイトルのまとまり */
-.name-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  margin-top: 4px;
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  flex-shrink: 0;
-}
-
-/* 読み方 */
-.card-kana {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.56rem;
-  color: #fbf1ef;
-  letter-spacing: 0.5px;
-  line-height: 1;
-}
-
-/* カクテル名全体 */
-.card-cocktail-name {
-  font-size: 1.08rem;
-  color: #fbf1ef;
-  letter-spacing: 0.5px;
-  line-height: 1.1;
-}
-
-/* 日本語部分 */
-.card-cocktail-name .font-ja {
-  font-family: "Noto Sans JP", sans-serif;
-  font-weight: 700;
-  color: #fbf1ef;
-}
-
-/* 英語部分 */
-.card-cocktail-name .font-en {
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  letter-spacing: 0.5px;
-  color: #fbf1ef;
-}
-
-/* サブタイトル */
-.card-subtext {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.56rem;
-  color: #fbf1ef;
-  letter-spacing: 0.5px;
-  line-height: 1;
-}
-
-/* 写真枠 */
-.card-image-container {
-  width: 100%;
-  flex: 1;
-  min-height: 0;
-  background: transparent;
-  overflow: hidden;
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-}
-
-.card-image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.placeholder-text {
-  font-family: "Noto Sans JP", sans-serif;
-  color: #666;
-  font-size: 0.8rem;
-  padding: 20px;
-}
-
-/* 左下の作成者表示 */
-.card-author {
-  position: absolute;
-  left: 28px;
-  bottom: 18px;
-  font-size: 0.49rem;
-  color: #fbf1ef;
-  opacity: 0.9;
-  z-index: 10;
-}
-
-.card-author .author-prefix {
-  font-family: "Questrial", sans-serif;
-  letter-spacing: 0.5px;
-}
-
-.card-author .author-name {
-  font-family: "Noto Sans JP", sans-serif;
-  letter-spacing: 0px;
-}
-
-/* フッターロゴ & デイジーイラストの配置エリア */
-.card-footer {
-  position: absolute;
-  bottom: 12px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* 下部ロゴのサイズ */
-.footer-logo {
-  width: 38px;
-  height: auto;
-  object-fit: contain;
-  opacity: 0.95;
-}
-
-/* 右下のデイジーイラスト */
-.daisy-bottom-icon {
-  position: absolute;
-  right: 14px;
-  bottom: -2px;
-  width: 26px;
-  height: auto;
-  object-fit: contain;
-  z-index: 10;
-  mix-blend-mode: normal;
-  filter: brightness(2.5) drop-shadow(0 0 2px rgba(0,0,0,0.9));
-  transform: rotate(-10deg);
-}
-
-/* 保存ボタン */
-.primary-btn {
-  font-family: "Noto Sans JP", sans-serif;
-  background: #d4af37;
-  color: #1a1a1a;
-  border: none;
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.primary-btn:hover {
-  background: #e6c55c;
-}
-
-/* ==========================================================
-   画像保存モーダルプレビュー (はみ出し・余白完全防止)
+   画像保存モーダルプレビュー (余白・はみ出し完全追放)
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -341,16 +12,16 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  padding: 20px;
+  padding: 16px;
   animation: fadeIn 0.2s ease-out;
 }
 
 .modal-content {
   background: #2a2a2a;
-  padding: 20px;
+  padding: 16px;
   border-radius: 12px;
   text-align: center;
-  max-width: 380px;
+  max-width: 400px;
   width: 100%;
   border: 1px solid #444;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
@@ -362,21 +33,22 @@ body {
 .modal-content p {
   font-family: "Noto Sans JP", sans-serif;
   color: #d4af37;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-bottom: 12px;
+  width: 100%;
 }
 
 .modal-image {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: auto !important;
   aspect-ratio: 4 / 5;
   object-fit: contain;
   border-radius: 0px;
-  border: 1px solid #444;
-  margin-bottom: 16px;
-  -webkit-touch-callout: default;
+  border: none;
+  margin: 0 auto 16px auto;
   display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  -webkit-touch-callout: default;
 }
 
 .modal-close-btn {
@@ -385,7 +57,7 @@ body {
   color: #fff;
   border: none;
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border-radius: 6px;
   font-size: 0.95rem;
   cursor: pointer;
@@ -398,15 +70,4 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-/* スマホ確認用バージョン表記 */
-.app-version {
-  font-family: "Noto Sans JP", sans-serif;
-  text-align: center;
-  font-size: 0.75rem;
-  color: #666;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
 }
