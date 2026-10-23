@@ -22,9 +22,13 @@
 
         <!-- 入力フォームエリア -->
         <div class="form-card">
+            <!-- 日付（見た目の左寄せとネイティブピッカーを完全両立） -->
             <div class="input-group">
                 <label for="dateInput">日付</label>
-                <input type="date" id="dateInput">
+                <div class="date-input-wrapper">
+                    <input type="text" id="dateTextDisplay" readonly>
+                    <input type="date" id="dateInput">
+                </div>
             </div>
 
             <div class="input-group">
@@ -110,7 +114,7 @@
     </div>
 
     <!-- スマホ確認用バージョン表記 -->
-    <div class="app-version">Ver 3.03</div>
+    <div class="app-version">Ver 3.00</div>
 
     <!-- HEIC変換ライブラリ -->
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
