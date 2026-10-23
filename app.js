@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const dateInput = document.getElementById('dateInput');
+    const dateTextDisplay = document.getElementById('dateTextDisplay');
     const numberInput = document.getElementById('numberInput');
     const kanaInput = document.getElementById('kanaInput');
     const cocktailNameInput = document.getElementById('cocktailNameInput');
@@ -20,13 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const recipeCard = document.getElementById('recipeCard');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    // --- 日付をフォーマットしてカードに反映する関数 ---
+    // --- 日付をフォーマットしてカードと表示用ボックスに反映する関数 ---
     function updateCardDate(dateObj) {
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         const m = months[dateObj.getMonth()];
         const d = dateObj.getDate();
         const y = dateObj.getFullYear();
+        
+        // カード側（Oct.23.2026 形式）
         displayDate.textContent = `${m}.${d}.${y}`;
+        
+        // フォーム側見た目（2026/10/23 形式で完全左寄せ表示）
+        if (dateTextDisplay) {
+            const yyyy = dateObj.getFullYear();
+            const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const dd = String(dateObj.getDate()).padStart(2, '0');
+            dateTextDisplay.value = `${yyyy}/${mm}/${dd}`;
+        }
     }
 
     // --- 初期化時に当日の日付をセット ---
