@@ -43,12 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 読み方
     kanaInput.addEventListener('input', (e) => {
-        displayKana.textContent = e.target.value;
+        displayKana.textContent = e.target.value || '読み方';
     });
 
     // サブタイトル
     subtitleInput.addEventListener('input', (e) => {
-        displaySubtext.textContent = e.target.value;
+        displaySubtext.textContent = e.target.value || 'あればサブタイトル';
     });
 
     // 作成者
@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
             displayNameText.textContent = val;
             displayAuthor.style.display = 'block';
         } else {
-            displayNameText.textContent = '';
-            displayAuthor.style.display = 'none';
+            displayNameText.textContent = '作成者名';
+            displayAuthor.style.display = 'block';
         }
     });
 
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // カクテル名フォント切り分け
     function formatCocktailName(text) {
-        if (!text) return '<span class="font-en">ここにカクテル名</span>';
+        if (!text) return '<span class="font-ja">ここにカクテル名</span>';
 
         let html = '';
         let currentType = null;
@@ -147,24 +147,24 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imageFile);
     });
 
-    // 画像保存処理（幅400px・高さ500pxの4:5比率を完全に指定してキャプチャ）
+    // 画像保存処理（画面上の比率をそのまま固定して生成）
     downloadBtn.addEventListener('click', async () => {
         downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
 
         try {
-            const fixedWidth = 400;
-            const fixedHeight = 500;
+            const cardWidth = recipeCard.offsetWidth;
+            const cardHeight = recipeCard.offsetHeight;
 
             const canvas = await html2canvas(recipeCard, {
                 scale: 3,
                 useCORS: true,
                 backgroundColor: null,
                 logging: false,
-                width: fixedWidth,
-                height: fixedHeight,
-                windowWidth: fixedWidth,
-                windowHeight: fixedHeight
+                width: cardWidth,
+                height: cardHeight,
+                windowWidth: cardWidth,
+                windowHeight: cardHeight
             });
 
             const imgDataUrl = canvas.toDataURL('image/png');

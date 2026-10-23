@@ -89,14 +89,14 @@ body {
 }
 
 /* ==========================================================
-   完成カード本体 (4:5固定・洗練された構造設計)
+   完成カード本体 (完全デザイン画像一致仕様)
    ========================================================== */
 .recipe-card {
   background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 18px 16px 12px 16px;
+  padding: 22px 20px 16px 20px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -122,17 +122,17 @@ body {
   filter: drop-shadow(0 0 1px #fbf1ef) sepia(100%) hue-rotate(330deg) saturate(30%) brightness(1.05);
 }
 
-/* 最上部の日付とナンバー */
+/* 最上部の日付とナンバー (Questrial: 20.9px 相当の比率) */
 .card-top-info {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-family: "Playfair Display", serif;
-  font-size: 0.48rem;
-  letter-spacing: 1px;
+  font-family: "Questrial", sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.5px;
   color: #d4af37;
-  margin-bottom: 2px;
-  padding: 0 6px;
+  margin-bottom: 6px;
+  padding: 0 10px;
   position: relative;
   z-index: 2;
   flex-shrink: 0;
@@ -141,62 +141,62 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
   text-align: center;
   position: relative;
   z-index: 2;
   flex-shrink: 0;
 }
 
-/* Your Own Original */
+/* Your Own Original (New Icon Script / Great Vibes: 26.9px 相当の比率) */
 .card-sub-title {
-  font-family: "Great Vibes", cursive;
-  font-size: 0.58rem;
+  font-family: "New Icon Script", "Great Vibes", cursive;
+  font-size: 0.68rem;
   color: #fbf1ef;
-  margin-bottom: -2px;
-  letter-spacing: 0.8px;
+  margin-bottom: -4px;
+  letter-spacing: 0.5px;
 }
 
-/* COCKTAIL */
+/* COCKTAIL (New Icon / Playfair Display: 64.8px 相当の比率) */
 .card-main-title {
-  font-family: "Playfair Display", serif;
-  font-size: 0.78rem;
+  font-family: "New Icon", "Playfair Display", serif;
+  font-size: 1.62rem;
   font-weight: normal;
-  letter-spacing: 1.8px;
+  letter-spacing: 2px;
   color: #d4af37;
-  line-height: 1.1;
+  line-height: 1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり（間隔の最適化） */
+/* 読み方・カクテル名・サブタイトルのまとまり */
 .name-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2px;
-  margin-top: 2px;
-  margin-bottom: 6px;
+  gap: 3px;
+  margin-top: 4px;
+  margin-bottom: 8px;
   position: relative;
   z-index: 2;
   width: 100%;
   flex-shrink: 0;
 }
 
-/* 読み方 */
+/* 読み方 (Noto Sans JP: 22.6px 相当の比率) */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.4rem;
+  font-size: 0.56rem;
+  color: #fbf1ef;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+/* カクテル名全体 (Noto Sans JP: 43px 相当の比率) */
+.card-cocktail-name {
+  font-size: 1.08rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1.1;
-}
-
-/* カクテル名全体 */
-.card-cocktail-name {
-  font-size: 0.72rem;
-  color: #fbf1ef;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
 }
 
 /* 日本語部分 */
@@ -214,23 +214,23 @@ body {
   color: #fbf1ef;
 }
 
-/* サブタイトル */
+/* サブタイトル (Noto Sans JP: 22.6px 相当の比率) */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.4rem;
+  font-size: 0.56rem;
   color: #fbf1ef;
   letter-spacing: 0.5px;
-  line-height: 1.1;
+  line-height: 1;
 }
 
-/* 写真枠（余計な固定高さを排除し、カード中央にジャストフィット） */
+/* 写真枠 */
 .card-image-container {
   width: 100%;
   flex: 1;
   min-height: 0;
   background: transparent;
   overflow: hidden;
-  margin-bottom: 24px; /* 下部フッターエリアとの余白確保 */
+  margin-bottom: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -241,7 +241,7 @@ body {
 .card-image-container img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
@@ -252,19 +252,19 @@ body {
   padding: 20px;
 }
 
-/* 左下の作成者表示 */
+/* 左下の作成者表示 (Questrial: 19.6px 相当の比率) */
 .card-author {
   position: absolute;
   left: 28px;
-  bottom: 16px;
-  font-size: 0.42rem;
+  bottom: 18px;
+  font-size: 0.49rem;
   color: #fbf1ef;
   opacity: 0.9;
   z-index: 10;
 }
 
 .card-author .author-prefix {
-  font-family: "Playfair Display", serif;
+  font-family: "Questrial", sans-serif;
   letter-spacing: 0.5px;
 }
 
@@ -288,7 +288,7 @@ body {
 
 /* 下部ロゴのサイズ */
 .footer-logo {
-  width: 34px;
+  width: 38px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
@@ -297,9 +297,9 @@ body {
 /* 右下のデイジーイラスト */
 .daisy-bottom-icon {
   position: absolute;
-  right: 12px;
-  bottom: 0px;
-  width: 22px;
+  right: 14px;
+  bottom: -2px;
+  width: 26px;
   height: auto;
   object-fit: contain;
   z-index: 10;
@@ -328,7 +328,7 @@ body {
 }
 
 /* ==========================================================
-   画像保存モーダルプレビュー
+   画像保存モーダルプレビュー (ボタン押下後の表示一致)
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -350,7 +350,7 @@ body {
   padding: 20px;
   border-radius: 12px;
   text-align: center;
-  max-width: 400px;
+  max-width: 420px;
   width: 100%;
   border: 1px solid #444;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
@@ -366,7 +366,9 @@ body {
 .modal-image {
   width: 100%;
   height: auto;
-  border-radius: 6px;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  border-radius: 0px;
   border: 1px solid #444;
   margin-bottom: 16px;
   -webkit-touch-callout: default;

@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+JP:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+JP:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Questrial&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -57,14 +57,14 @@
         <div class="preview-area">
             <h2>完成カード</h2>
             
-            <!-- 生成されるレシピカード本体（完全固定サイズ設計） -->
+            <!-- 生成されるレシピカード本体 -->
             <div class="recipe-card" id="recipeCard">
                 <!-- フレーム画像 -->
                 <img src="frame.png" alt="" class="card-frame-image">
 
                 <!-- 最上部の日付とナンバー -->
                 <div class="card-top-info">
-                    <span id="displayDate">Oct.23.2026</span>
+                    <span id="displayDate">Oct.9.2026</span>
                     <span id="displayNumber">No.000</span>
                 </div>
 
@@ -76,12 +76,12 @@
 
                 <!-- 読み方・カクテル名・サブタイトルのまとめ -->
                 <div class="name-block">
-                    <div class="card-kana" id="displayKana"></div>
-                    <div class="card-cocktail-name" id="displayName"><span class="font-en">ここにカクテル名</span></div>
-                    <div class="card-subtext" id="displaySubtext"></div>
+                    <div class="card-kana" id="displayKana">読み方</div>
+                    <div class="card-cocktail-name" id="displayName"><span class="font-ja">ここにカクテル名</span></div>
+                    <div class="card-subtext" id="displaySubtext">あればサブタイトル</div>
                 </div>
 
-                <!-- 写真プレビューエリア（高さ・幅を完全固定） -->
+                <!-- 写真プレビューエリア -->
                 <div class="card-image-container">
                     <span class="placeholder-text" id="imagePlaceholder">写真未選択</span>
                     <img id="displayImage" src="" alt="Cocktail Photo" style="display: none;">
@@ -89,7 +89,7 @@
 
                 <!-- 左下の作成者表示 -->
                 <div class="card-author" id="displayAuthor" style="display: none;">
-                    <span class="author-prefix">by: </span><span class="author-name" id="displayNameText"></span>
+                    <span class="author-prefix">by: </span><span class="author-name" id="displayNameText">作成者名</span>
                 </div>
 
                 <!-- フッター（ロゴ & デイジーイラスト） -->
@@ -105,7 +105,7 @@
     </div>
 
     <!-- スマホ確認用バージョン表記 -->
-    <div class="app-version">Ver 2.21</div>
+    <div class="app-version">Ver 2.30</div>
 
     <!-- HEIC変換ライブラリ -->
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
