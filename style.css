@@ -61,11 +61,14 @@ body {
   margin-bottom: 6px;
 }
 
-/* テキスト・数値・ファイル入力欄 */
+/* すべての入力欄のデザインを完全統一（iOS Safari対策含む） */
 .input-group input[type="text"],
 .input-group input[type="number"],
+.input-group input[type="date"],
 .input-group input[type="file"] {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: 10px;
   background: #1f1f1f;
   border: 1px solid #444;
@@ -74,24 +77,11 @@ body {
   font-size: 0.95rem;
   font-family: "Noto Sans JP", sans-serif;
   text-align: left;
-  appearance: none;
+  line-height: 1.25;
+  box-sizing: border-box;
   -webkit-appearance: none;
-}
-
-/* 日付入力欄（中央揃えを強制解除して左寄せに固定） */
-.input-group input[type="date"] {
-  width: 100%;
-  padding: 10px;
-  background: #1f1f1f;
-  border: 1px solid #444;
-  border-radius: 6px;
-  color: #fff;
-  font-size: 0.95rem;
-  font-family: "Noto Sans JP", sans-serif;
-  text-align: left !important;
-  direction: ltr;
   appearance: none;
-  -webkit-appearance: none;
+  overflow: hidden;
 }
 
 /* プレビューエリア */
