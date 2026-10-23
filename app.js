@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('dateInput');
     const numberInput = document.getElementById('numberInput');
     const kanaInput = document.getElementById('kanaInput');
     const cocktailNameInput = document.getElementById('cocktailNameInput');
@@ -19,16 +20,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const recipeCard = document.getElementById('recipeCard');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    // --- 当日の日付を自動取得してカードに反映 ---
-    function setTodayDate() {
-        const today = new Date();
+    // --- 日付をフォーマットしてカードに反映する関数 ---
+    function updateCardDate(dateObj) {
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const m = months[today.getMonth()];
-        const d = today.getDate();
-        const y = today.getFullYear();
+        const m = months[dateObj.getMonth()];
+        const d = dateObj.getDate();
+        const y = dateObj.getFullYear();
         displayDate.textContent = `${m}.${d}.${y}`;
     }
-    setTodayDate();
+
+    // --- 初期化時に当日の日付をセット ---
+    const today = new Date();
+    if (dateInput) {
+        // YYYY-MM-DD形式に変換してinputの初期値に設定
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        dateInput.value = `${yyyy}-${mm}-${dd}`;
+    }
+    updateCardDate(today);
+
+    // --- 日付変更時のイベントリスナー ---
+    if (dateInput) {
+        dateInput.addEventListener('change', (e) => {
+            const val = e.target.value;
+            if (val) {
+                const parts = val.split('-');
+                const selectedDate = new Date(parts[0], parts[1] - 1, parts[2]);
+                updateCardDate(selectedDate);
+            }
+        });
+    }
 
     // ナンバー
     if (numberInput) {
