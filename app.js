@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 初期化時に当日の日付をセット ---
     const today = new Date();
     if (dateInput) {
-        // YYYY-MM-DD形式に変換してinputの初期値に設定
         const yyyy = today.getFullYear();
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const dd = String(today.getDate()).padStart(2, '0');
@@ -68,14 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 読み方
     if (kanaInput) {
         kanaInput.addEventListener('input', (e) => {
-            displayKana.textContent = e.target.value || '読み方';
+            displayKana.textContent = e.target.value;
         });
     }
 
     // サブタイトル
     if (subtitleInput) {
         subtitleInput.addEventListener('input', (e) => {
-            displaySubtext.textContent = e.target.value || 'あればサブタイトル';
+            displaySubtext.textContent = e.target.value;
         });
     }
 
@@ -101,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // カクテル名フォント切り分け
     function formatCocktailName(text) {
-        if (!text) return '<span class="font-ja">ここにカクテル名</span>';
+        if (!text) return '';
 
         let html = '';
         let currentType = null;
