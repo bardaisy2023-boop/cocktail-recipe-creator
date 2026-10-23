@@ -122,7 +122,7 @@ body {
   filter: drop-shadow(0 0 1px #fbf1ef) sepia(100%) hue-rotate(330deg) saturate(30%) brightness(1.05);
 }
 
-/* 最上部の日付とナンバー (Questrial: 20.9px 相当の比率) */
+/* 最上部の日付とナンバー */
 .card-top-info {
   width: 100%;
   display: flex;
@@ -148,7 +148,7 @@ body {
   flex-shrink: 0;
 }
 
-/* Your Own Original (New Icon Script / Great Vibes: 26.9px 相当の比率) */
+/* Your Own Original */
 .card-sub-title {
   font-family: "New Icon Script", "Great Vibes", cursive;
   font-size: 0.68rem;
@@ -157,7 +157,7 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* COCKTAIL (New Icon / Playfair Display: 64.8px 相当の比率) */
+/* COCKTAIL */
 .card-main-title {
   font-family: "New Icon", "Playfair Display", serif;
   font-size: 1.62rem;
@@ -182,7 +182,7 @@ body {
   flex-shrink: 0;
 }
 
-/* 読み方 (Noto Sans JP: 22.6px 相当の比率) */
+/* 読み方 */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
   font-size: 0.56rem;
@@ -191,7 +191,7 @@ body {
   line-height: 1;
 }
 
-/* カクテル名全体 (Noto Sans JP: 43px 相当の比率) */
+/* カクテル名全体 */
 .card-cocktail-name {
   font-size: 1.08rem;
   color: #fbf1ef;
@@ -214,7 +214,7 @@ body {
   color: #fbf1ef;
 }
 
-/* サブタイトル (Noto Sans JP: 22.6px 相当の比率) */
+/* サブタイトル */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
   font-size: 0.56rem;
@@ -252,7 +252,7 @@ body {
   padding: 20px;
 }
 
-/* 左下の作成者表示 (Questrial: 19.6px 相当の比率) */
+/* 左下の作成者表示 */
 .card-author {
   position: absolute;
   left: 28px;
@@ -328,7 +328,7 @@ body {
 }
 
 /* ==========================================================
-   画像保存モーダルプレビュー (ボタン押下後の表示一致)
+   画像保存モーダルプレビュー (はみ出し・余白完全防止)
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -350,10 +350,13 @@ body {
   padding: 20px;
   border-radius: 12px;
   text-align: center;
-  max-width: 420px;
+  max-width: 380px;
   width: 100%;
   border: 1px solid #444;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-content p {
@@ -365,6 +368,7 @@ body {
 
 .modal-image {
   width: 100%;
+  max-width: 100%;
   height: auto;
   aspect-ratio: 4 / 5;
   object-fit: contain;
@@ -372,6 +376,7 @@ body {
   border: 1px solid #444;
   margin-bottom: 16px;
   -webkit-touch-callout: default;
+  display: block;
 }
 
 .modal-close-btn {

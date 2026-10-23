@@ -147,14 +147,14 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imageFile);
     });
 
-    // 画像保存処理（画面上の比率をそのまま固定して生成）
+    // 画像保存処理（正確なピクセルサイズを指定して描画崩れを防ぐ）
     downloadBtn.addEventListener('click', async () => {
         downloadBtn.textContent = '画像を作成中...';
         downloadBtn.disabled = true;
 
         try {
-            const cardWidth = recipeCard.offsetWidth;
-            const cardHeight = recipeCard.offsetHeight;
+            const cardWidth = recipeCard.clientWidth;
+            const cardHeight = recipeCard.clientHeight;
 
             const canvas = await html2canvas(recipeCard, {
                 scale: 3,
