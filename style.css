@@ -33,7 +33,7 @@ body {
   margin-bottom: 6px;
 }
 
-/* 上部サブタイトルはご指定により New Icon Script に変更 */
+/* 上部サブタイトル */
 .subtitle {
   font-family: "New Icon Script", "Great Vibes", cursive;
   font-size: 1.1rem;
@@ -61,10 +61,9 @@ body {
   margin-bottom: 6px;
 }
 
-/* すべての入力欄のデザインを完全統一 */
+/* テキスト・数値・ファイル入力欄 */
 .input-group input[type="text"],
 .input-group input[type="number"],
-.input-group input[type="date"],
 .input-group input[type="file"] {
   width: 100%;
   padding: 10px;
@@ -75,6 +74,22 @@ body {
   font-size: 0.95rem;
   font-family: "Noto Sans JP", sans-serif;
   text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* 日付入力欄（中央揃えを強制解除して左寄せに固定） */
+.input-group input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  background: #1f1f1f;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: "Noto Sans JP", sans-serif;
+  text-align: left !important;
+  direction: ltr;
   appearance: none;
   -webkit-appearance: none;
 }
@@ -212,7 +227,7 @@ body {
   color: #fbf1ef;
 }
 
-/* 英語部分（Playfair Display から Questrial に変更） */
+/* 英語部分 */
 .card-cocktail-name .font-en {
   font-family: "Questrial", sans-serif;
   font-style: normal;
