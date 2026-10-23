@@ -31,37 +31,45 @@ document.addEventListener('DOMContentLoaded', () => {
     setTodayDate();
 
     // ナンバー
-    numberInput.addEventListener('input', (e) => {
-        const val = e.target.value.trim();
-        if (!val) {
-            displayNumber.textContent = 'No.000';
-        } else {
-            const paddedNum = String(val).padStart(3, '0');
-            displayNumber.textContent = `No.${paddedNum}`;
-        }
-    });
+    if (numberInput) {
+        numberInput.addEventListener('input', (e) => {
+            const val = e.target.value.trim();
+            if (!val) {
+                displayNumber.textContent = 'No.000';
+            } else {
+                const paddedNum = String(val).padStart(3, '0');
+                displayNumber.textContent = `No.${paddedNum}`;
+            }
+        });
+    }
 
     // 読み方
-    kanaInput.addEventListener('input', (e) => {
-        displayKana.textContent = e.target.value || '読み方';
-    });
+    if (kanaInput) {
+        kanaInput.addEventListener('input', (e) => {
+            displayKana.textContent = e.target.value || '読み方';
+        });
+    }
 
     // サブタイトル
-    subtitleInput.addEventListener('input', (e) => {
-        displaySubtext.textContent = e.target.value || 'あればサブタイトル';
-    });
+    if (subtitleInput) {
+        subtitleInput.addEventListener('input', (e) => {
+            displaySubtext.textContent = e.target.value || 'あればサブタイトル';
+        });
+    }
 
     // 作成者
-    authorInput.addEventListener('input', (e) => {
-        const val = e.target.value.trim();
-        if (val) {
-            displayNameText.textContent = val;
-            displayAuthor.style.display = 'block';
-        } else {
-            displayNameText.textContent = '作成者名';
-            displayAuthor.style.display = 'block';
-        }
-    });
+    if (authorInput) {
+        authorInput.addEventListener('input', (e) => {
+            const val = e.target.value.trim();
+            if (val) {
+                displayNameText.textContent = val;
+                displayAuthor.style.display = 'block';
+            } else {
+                displayNameText.textContent = '作成者名';
+                displayAuthor.style.display = 'block';
+            }
+        });
+    }
 
     // 日本語判定
     function isJapaneseChar(char) {
@@ -111,113 +119,113 @@ document.addEventListener('DOMContentLoaded', () => {
         }[match]));
     }
 
-    cocktailNameInput.addEventListener('input', (e) => {
-        const val = e.target.value;
-        displayName.innerHTML = formatCocktailName(val);
-    });
+    if (cocktailNameInput) {
+        cocktailNameInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            displayName.innerHTML = formatCocktailName(val);
+        });
+    }
 
     // 写真選択 (HEIC対応)
-    imageInput.addEventListener('change', async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
+    if (imageInput) {
+        imageInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
 
-        let imageFile = file;
+            let imageFile = file;
 
-        if (file.type === 'image/heic' || file.type === 'image/HEIC' || file.name.toLowerCase().endsWith('.heic')) {
+            if (file.type === 'image/heic' || file.type === 'image/HEIC' || file.name.toLowerCase().endsWith('.heic')) {
+                try {
+                    const convertedBlob = await heic2any({
+                        blob: file,
+                        toType: 'image/jpeg',
+                        quality: 0.8
+                    });
+                    imageFile = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+                } catch (err) {
+                    console.error('HEIC変換エラー:', err);
+                    alert('HEIC画像の変換に失敗しました。');
+                    return;
+                }
+            }
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                displayImage.src = event.target.result;
+                displayImage.style.display = 'block';
+                imagePlaceholder.style.display = 'none';
+            };
+            reader.readAsDataURL(imageFile);
+        });
+    }
+
+    // 画像保存処理
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', async () => {
+            downloadBtn.textContent = '画像を作成中...';
+            downloadBtn.disabled = true;
+
             try {
-                const convertedBlob = await heic2any({
-                    blob: file,
-                    toType: 'image/jpeg',
-                    quality: 0.8
+                const canvas = await html2canvas(recipeCard, {
+                    scale: 3,
+                    useCORS: true,
+                    backgroundColor: null,
+                    logging: false,
+                    scrollX: 0,
+                    scrollY: 0
                 });
-                imageFile = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
-            } catch (err) {
-                console.error('HEIC変換エラー:', err);
-                alert('HEIC画像の変換に失敗しました。');
-                return;
-            }
-        }
 
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            displayImage.src = event.target.result;
-            displayImage.style.display = 'block';
-            imagePlaceholder.style.display = 'none';
-        };
-        reader.readAsDataURL(imageFile);
-    });
+                const imgDataUrl = canvas.toDataURL('image/png');
+                const filename = cocktailNameInput.value.trim() || 'cocktail_card';
 
-    // 画像保存処理（モーダル内プレビューをカード実寸比にピッタリ固定）
-    downloadBtn.addEventListener('click', async () => {
-        downloadBtn.textContent = '画像を作成中...';
-        downloadBtn.disabled = true;
-
-        try {
-            const rect = recipeCard.getBoundingClientRect();
-            const cardWidth = Math.round(rect.width);
-            const cardHeight = Math.round(rect.height);
-
-            const canvas = await html2canvas(recipeCard, {
-                scale: 3,
-                useCORS: true,
-                backgroundColor: null,
-                logging: false,
-                width: cardWidth,
-                height: cardHeight,
-                windowWidth: cardWidth,
-                windowHeight: cardHeight
-            });
-
-            const imgDataUrl = canvas.toDataURL('image/png');
-            const filename = cocktailNameInput.value.trim() || 'cocktail_card';
-
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                const overlay = document.createElement('div');
-                overlay.className = 'modal-overlay';
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
                 
-                const content = document.createElement('div');
-                content.className = 'modal-content';
-                
-                const msg = document.createElement('p');
-                msg.textContent = '画像を長押しして「写真に保存」してください';
-                
-                const img = document.createElement('img');
-                img.src = imgDataUrl;
-                img.alt = filename;
-                img.className = 'modal-image';
-                
-                const closeBtn = document.createElement('button');
-                closeBtn.textContent = '閉じる';
-                closeBtn.className = 'modal-close-btn';
-                closeBtn.addEventListener('click', () => {
-                    document.body.removeChild(overlay);
-                });
-                
-                content.appendChild(msg);
-                content.appendChild(img);
-                content.appendChild(closeBtn);
-                overlay.appendChild(content);
-                document.body.appendChild(overlay);
-
-                overlay.addEventListener('click', (e) => {
-                    if (e.target === overlay) {
+                if (isMobile) {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'modal-overlay';
+                    
+                    const content = document.createElement('div');
+                    content.className = 'modal-content';
+                    
+                    const msg = document.createElement('p');
+                    msg.textContent = '画像を長押しして「写真に保存」してください';
+                    
+                    const img = document.createElement('img');
+                    img.src = imgDataUrl;
+                    img.alt = filename;
+                    img.className = 'modal-image';
+                    
+                    const closeBtn = document.createElement('button');
+                    closeBtn.textContent = '閉じる';
+                    closeBtn.className = 'modal-close-btn';
+                    closeBtn.addEventListener('click', () => {
                         document.body.removeChild(overlay);
-                    }
-                });
-            } else {
-                const link = document.createElement('a');
-                link.download = `${filename}.png`;
-                link.href = imgDataUrl;
-                link.click();
+                    });
+                    
+                    content.appendChild(msg);
+                    content.appendChild(img);
+                    content.appendChild(closeBtn);
+                    overlay.appendChild(content);
+                    document.body.appendChild(overlay);
+
+                    overlay.addEventListener('click', (e) => {
+                        if (e.target === overlay) {
+                            document.body.removeChild(overlay);
+                        }
+                    });
+                } else {
+                    const link = document.createElement('a');
+                    link.download = `${filename}.png`;
+                    link.href = imgDataUrl;
+                    link.click();
+                }
+            } catch (err) {
+                console.error('画像保存エラー:', err);
+                alert('画像の生成に失敗しました。');
+            } finally {
+                downloadBtn.textContent = '画像を保存する';
+                downloadBtn.disabled = false;
             }
-        } catch (err) {
-            console.error('画像保存エラー:', err);
-            alert('画像の生成に失敗しました。');
-        } finally {
-            downloadBtn.textContent = '画像を保存する';
-            downloadBtn.disabled = false;
-        }
-    });
+        });
+    }
 });
