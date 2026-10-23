@@ -33,11 +33,12 @@ body {
   margin-bottom: 6px;
 }
 
+/* 上部サブタイトルはご指定により New Icon Script に変更 */
 .subtitle {
-  font-family: "Playfair Display", serif;
-  font-size: 0.85rem;
-  color: #aaa;
-  letter-spacing: 1px;
+  font-family: "New Icon Script", "Great Vibes", cursive;
+  font-size: 1.1rem;
+  color: #d4af37;
+  letter-spacing: 0.5px;
 }
 
 /* フォームカード */
@@ -60,6 +61,7 @@ body {
   margin-bottom: 6px;
 }
 
+/* すべての入力欄のデザインを完全統一 */
 .input-group input[type="text"],
 .input-group input[type="number"],
 .input-group input[type="date"],
@@ -72,6 +74,9 @@ body {
   color: #fff;
   font-size: 0.95rem;
   font-family: "Noto Sans JP", sans-serif;
+  text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 /* プレビューエリア */
@@ -207,10 +212,10 @@ body {
   color: #fbf1ef;
 }
 
-/* 英語部分 */
+/* 英語部分（Playfair Display から Questrial に変更） */
 .card-cocktail-name .font-en {
-  font-family: "Playfair Display", serif;
-  font-style: italic;
+  font-family: "Questrial", sans-serif;
+  font-style: normal;
   letter-spacing: 0.5px;
   color: #fbf1ef;
 }
