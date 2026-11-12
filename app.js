@@ -196,17 +196,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理（縦横比4:5を厳密に固定してキャプチャ）
+    // 画像保存処理（縦伸びを完全防止する厳密な4:5比率指定）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
             downloadBtn.disabled = true;
 
             try {
-                const rect = recipeCard.getBoundingClientRect();
-                const width = Math.round(rect.width);
-                // 4:5の比率（高さ = 幅 × 1.25）を強制適用して縦伸びを完全防止
-                const height = Math.round(width * 1.25);
+                const width = recipeCard.offsetWidth;
+                const exactHeight = Math.round(width * 1.25);
 
                 const canvas = await html2canvas(recipeCard, {
                     scale: 3,
@@ -214,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     backgroundColor: null,
                     logging: false,
                     width: width,
-                    height: height,
+                    height: exactHeight,
                     windowWidth: document.documentElement.clientWidth,
                     x: 0,
                     y: 0,
