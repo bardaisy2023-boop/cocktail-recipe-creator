@@ -372,7 +372,7 @@ body {
 }
 
 /* ==========================================================
-   画像保存モーダルプレビュー（修正版：適切なサイズと中央配置）
+   画像保存モーダルプレビュー（修正版：プレビューと同じ大きさと完全中央配置）
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -385,24 +385,22 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  padding: 12px;
-  animation: fadeIn 0.2s ease-out;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .modal-content {
   background: #2a2a2a;
-  padding: 16px 12px;
+  padding: 16px;
   border-radius: 12px;
   text-align: center;
-  width: 95%;
-  max-width: 380px;
+  width: 100%;
+  max-width: 420px;
   border: 1px solid #444;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto;
 }
 
 .modal-content p {
@@ -416,10 +414,10 @@ body {
 
 .modal-image {
   width: 100% !important;
-  max-width: 330px !important;
+  max-width: 100% !important;
   height: auto !important;
   display: block;
-  margin: 0 auto 16px auto !important;
+  margin-bottom: 16px;
   border-radius: 0px;
   border: none;
   -webkit-touch-callout: default;
