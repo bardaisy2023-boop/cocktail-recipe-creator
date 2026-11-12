@@ -205,7 +205,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 52px; /* 高さを完全に固定してブレを防止 */
+  height: 52px;
   margin-top: 2px;
   margin-bottom: 6px;
   position: relative;
@@ -221,7 +221,7 @@ body {
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
-  height: 14px; /* 1行分の高さを固定 */
+  height: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,7 +233,7 @@ body {
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1.1;
-  height: 24px; /* 1行分の高さを固定 */
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,13 +261,13 @@ body {
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
-  height: 14px; /* 1行分の高さを固定 */
+  height: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 写真枠（常に一定の領域を維持） */
+/* 写真枠 */
 .card-image-container {
   width: 100%;
   flex: 1;
@@ -372,7 +372,7 @@ body {
 }
 
 /* ==========================================================
-   画像保存モーダルプレビュー
+   画像保存モーダルプレビュー（修正版：適切なサイズと中央配置）
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -385,22 +385,24 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  padding: 16px;
+  padding: 12px;
   animation: fadeIn 0.2s ease-out;
 }
 
 .modal-content {
   background: #2a2a2a;
-  padding: 16px;
+  padding: 16px 12px;
   border-radius: 12px;
   text-align: center;
-  width: 100%;
-  max-width: 360px;
+  width: 95%;
+  max-width: 380px;
   border: 1px solid #444;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .modal-content p {
@@ -409,15 +411,17 @@ body {
   font-size: 0.85rem;
   margin-bottom: 12px;
   width: 100%;
+  text-align: center;
 }
 
 .modal-image {
   width: 100% !important;
+  max-width: 330px !important;
   height: auto !important;
   display: block;
+  margin: 0 auto 16px auto !important;
   border-radius: 0px;
   border: none;
-  margin-bottom: 16px;
   -webkit-touch-callout: default;
 }
 
