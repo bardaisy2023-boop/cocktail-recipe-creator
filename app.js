@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const recipeCard = document.getElementById('recipeCard');
     const downloadBtn = document.getElementById('downloadBtn');
 
+    // --- 初期状態で空の項目に「&nbsp;（空白）」を入れて高さを保つ ---
+    displayKana.innerHTML = '&nbsp;';
+    displayName.innerHTML = '&nbsp;';
+    displaySubtext.innerHTML = '&nbsp;';
+
     // --- 日付をフォーマットしてカードと表示用ボックスに反映する関数 ---
     function updateCardDate(dateObj) {
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -28,10 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const d = dateObj.getDate();
         const y = dateObj.getFullYear();
         
-        // カード側（Oct.23.2026 形式）
         displayDate.textContent = `${m}.${d}.${y}`;
         
-        // フォーム側見た目（2026/10/23 形式で完全左寄せ表示）
         if (dateTextDisplay) {
             const yyyy = dateObj.getFullYear();
             const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
@@ -78,14 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // 読み方
     if (kanaInput) {
         kanaInput.addEventListener('input', (e) => {
-            displayKana.textContent = e.target.value;
+            const val = e.target.value;
+            displayKana.innerHTML = val.trim() ? escapeHtml(val) : '&nbsp;';
         });
     }
 
     // サブタイトル
     if (subtitleInput) {
         subtitleInput.addEventListener('input', (e) => {
-            displaySubtext.textContent = e.target.value;
+            const val = e.target.value;
+            displaySubtext.innerHTML = val.trim() ? escapeHtml(val) : '&nbsp;';
         });
     }
 
@@ -111,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // カクテル名フォント切り分け
     function formatCocktailName(text) {
-        if (!text) return '';
+        if (!text || !text.trim()) return '&nbsp;';
 
         let html = '';
         let currentType = null;
@@ -191,14 +196,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理（縦横比のズレを防止するため実寸を明示指定）
+    // 画像保存処理
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
             downloadBtn.disabled = true;
 
             try {
-                // 画面上の実際の幅と高さを取得
                 const rect = recipeCard.getBoundingClientRect();
                 const width = Math.round(rect.width);
                 const height = Math.round(rect.height);
