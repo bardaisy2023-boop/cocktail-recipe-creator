@@ -191,20 +191,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理
+    // 画像保存処理（縦横比のズレを防止するため実寸を明示指定）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
             downloadBtn.disabled = true;
 
             try {
+                // 画面上の実際の幅と高さを取得
+                const rect = recipeCard.getBoundingClientRect();
+                const width = Math.round(rect.width);
+                const height = Math.round(rect.height);
+
                 const canvas = await html2canvas(recipeCard, {
                     scale: 3,
                     useCORS: true,
                     backgroundColor: null,
                     logging: false,
+                    width: width,
+                    height: height,
                     scrollX: 0,
-                    scrollY: 0
+                    scrollY: -window.scrollY
                 });
 
                 const imgDataUrl = canvas.toDataURL('image/png');
