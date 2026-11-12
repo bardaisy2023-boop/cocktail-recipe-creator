@@ -121,20 +121,17 @@ body {
 }
 
 /* ==========================================================
-   完成カード本体 (完全デザイン画像一致仕様)
+   完成カード本体 (完全絶対配置による絶対比率保持構造)
    ========================================================== */
 .recipe-card {
   background: linear-gradient(180deg, #4d4442 0%, #312b2a 45%, #181616 100%);
   border-radius: 0px;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 22px 20px 16px 20px;
   color: #fff;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   margin: 0 auto 20px auto;
-  display: flex;
-  flex-direction: column;
   position: relative;
   overflow: hidden;
 }
@@ -154,70 +151,85 @@ body {
   filter: drop-shadow(0 0 1px #fbf1ef) sepia(100%) hue-rotate(330deg) saturate(30%) brightness(1.05);
 }
 
-/* 最上部の日付とナンバー */
+/* 最上部の日付とナンバー (絶対配置) */
 .card-top-info {
-  width: 100%;
+  position: absolute;
+  top: 4.5%;
+  left: 5%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   font-family: "Questrial", sans-serif;
-  font-size: 0.52rem;
+  font-size: 2.3vw;
   letter-spacing: 0.5px;
   color: #d4af37;
-  margin-bottom: 6px;
-  padding: 0 10px;
-  position: relative;
   z-index: 2;
-  flex-shrink: 0;
 }
 
-/* ヘッダータイトルエリア */
+@media (min-width: 480px) {
+  .card-top-info {
+    font-size: 11px;
+  }
+}
+
+/* ヘッダータイトルエリア (絶対配置) */
 .card-header-area {
+  position: absolute;
+  top: 8.5%;
+  left: 0;
   width: 100%;
-  margin-bottom: 4px;
   text-align: center;
-  position: relative;
   z-index: 2;
-  flex-shrink: 0;
 }
 
 /* Your Own Original */
 .card-sub-title {
   font-family: "New Icon Script", "Great Vibes", cursive;
-  font-size: 0.68rem;
+  font-size: 3vw;
   color: #fbf1ef;
-  margin-bottom: -4px;
+  margin-bottom: -2px;
   letter-spacing: 0.5px;
+}
+
+@media (min-width: 480px) {
+  .card-sub-title {
+    font-size: 14.5px;
+  }
 }
 
 /* COCKTAIL */
 .card-main-title {
   font-family: "New Icon", "Playfair Display", serif;
-  font-size: 1.62rem;
+  font-size: 7.2vw;
   font-weight: normal;
   letter-spacing: 2px;
   color: #d4af37;
   line-height: 1;
 }
 
-/* --- 読み方・カクテル名・サブタイトルの領域を完全に固定化 --- */
+@media (min-width: 480px) {
+  .card-main-title {
+    font-size: 34.5px;
+  }
+}
+
+/* 読み方・カクテル名・サブタイトルのまとめ (絶対配置) */
 .name-block {
+  position: absolute;
+  top: 24.5%;
+  left: 5%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 52px;
-  margin-top: 2px;
-  margin-bottom: 6px;
-  position: relative;
   z-index: 2;
-  width: 100%;
-  flex-shrink: 0;
 }
 
 /* 読み方 */
 .card-kana {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.56rem;
+  font-size: 2.5vw;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
@@ -227,16 +239,28 @@ body {
   justify-content: center;
 }
 
+@media (min-width: 480px) {
+  .card-kana {
+    font-size: 12px;
+  }
+}
+
 /* カクテル名全体 */
 .card-cocktail-name {
-  font-size: 1.08rem;
+  font-size: 4.8vw;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1.1;
-  height: 24px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 480px) {
+  .card-cocktail-name {
+    font-size: 23px;
+  }
 }
 
 /* 日本語部分 */
@@ -257,7 +281,7 @@ body {
 /* サブタイトル */
 .card-subtext {
   font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.56rem;
+  font-size: 2.5vw;
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
@@ -267,18 +291,24 @@ body {
   justify-content: center;
 }
 
-/* 写真枠 */
+@media (min-width: 480px) {
+  .card-subtext {
+    font-size: 12px;
+  }
+}
+
+/* 写真枠 (絶対配置で比率を完全固定) */
 .card-image-container {
-  width: 100%;
-  flex: 1;
-  min-height: 0;
+  position: absolute;
+  top: 36%;
+  left: 6.5%;
+  width: 87%;
+  height: 54.5%;
   background: transparent;
   overflow: hidden;
-  margin-bottom: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   z-index: 2;
 }
 
@@ -293,18 +323,23 @@ body {
   font-family: "Noto Sans JP", sans-serif;
   color: #666;
   font-size: 0.8rem;
-  padding: 20px;
 }
 
-/* 左下の作成者表示 */
+/* 左下の作成者表示 (絶対配置) */
 .card-author {
   position: absolute;
-  left: 28px;
-  bottom: 18px;
-  font-size: 0.49rem;
+  left: 8%;
+  bottom: 4%;
+  font-size: 2.2vw;
   color: #fbf1ef;
   opacity: 0.9;
   z-index: 10;
+}
+
+@media (min-width: 480px) {
+  .card-author {
+    font-size: 10.5px;
+  }
 }
 
 .card-author .author-prefix {
@@ -317,10 +352,10 @@ body {
   letter-spacing: 0px;
 }
 
-/* フッターロゴ & デイジーイラストの配置エリア */
+/* フッターロゴ & デイジーイラストの配置エリア (絶対配置) */
 .card-footer {
   position: absolute;
-  bottom: 12px;
+  bottom: 3%;
   left: 0;
   width: 100%;
   display: flex;
@@ -341,8 +376,8 @@ body {
 /* 右下のデイジーイラスト */
 .daisy-bottom-icon {
   position: absolute;
-  right: 14px;
-  bottom: -2px;
+  right: 6%;
+  bottom: 0px;
   width: 26px;
   height: auto;
   object-fit: contain;
@@ -372,7 +407,7 @@ body {
 }
 
 /* ==========================================================
-   画像保存モーダルプレビュー（縦横比固定修正版）
+   画像保存モーダルプレビュー
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -414,9 +449,9 @@ body {
 
 .modal-image {
   width: 100% !important;
-  aspect-ratio: 4 / 5 !important; /* プレビューと同じ4:5の比率を強制固定 */
+  aspect-ratio: 4 / 5 !important;
   height: auto !important;
-  object-fit: contain !important; /* 伸びや歪みを完全に防止 */
+  object-fit: contain !important;
   display: block;
   margin-bottom: 16px;
   border-radius: 0px;

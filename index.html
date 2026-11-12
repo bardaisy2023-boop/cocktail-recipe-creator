@@ -22,7 +22,7 @@
 
         <!-- 入力フォームエリア -->
         <div class="form-card">
-            <!-- 日付（見た目の左寄せとネイティブピッカーを完全両立） -->
+            <!-- 日付 -->
             <div class="input-group">
                 <label for="dateInput">日付</label>
                 <div class="date-input-wrapper">
@@ -66,18 +66,18 @@
         <div class="preview-area">
             <h2>完成カード</h2>
             
-            <!-- 生成されるレシピカード本体 -->
+            <!-- 生成されるレシピカード本体（完全絶対配置による絶対比率保持構造） -->
             <div class="recipe-card" id="recipeCard">
                 <!-- フレーム画像 -->
                 <img src="frame.png" alt="" class="card-frame-image">
 
                 <!-- 最上部の日付とナンバー -->
                 <div class="card-top-info">
-                    <span id="displayDate">Oct.23.2026</span>
+                    <span id="displayDate">Nov.13.2026</span>
                     <span id="displayNumber">No.000</span>
                 </div>
 
-                <!-- ヘッダータイトル -->
+                <!-- ヘッダータイトルエリア -->
                 <div class="card-header-area">
                     <p class="card-sub-title">Your Own Original</p>
                     <h1 class="card-main-title">COCKTAIL</h1>
@@ -85,9 +85,9 @@
 
                 <!-- 読み方・カクテル名・サブタイトルのまとめ -->
                 <div class="name-block">
-                    <div class="card-kana" id="displayKana"></div>
-                    <div class="card-cocktail-name" id="displayName"></div>
-                    <div class="card-subtext" id="displaySubtext"></div>
+                    <div class="card-kana" id="displayKana">&nbsp;</div>
+                    <div class="card-cocktail-name" id="displayName">&nbsp;</div>
+                    <div class="card-subtext" id="displaySubtext">&nbsp;</div>
                 </div>
 
                 <!-- 写真プレビューエリア -->
@@ -97,8 +97,8 @@
                 </div>
 
                 <!-- 左下の作成者表示 -->
-                <div class="card-author" id="displayAuthor" style="display: none;">
-                    <span class="author-prefix">by: </span><span class="author-name" id="displayNameText">作成者名</span>
+                <div class="card-author" id="displayAuthor">
+                    <span class="author-prefix">by: </span><span class="author-name" id="displayNameText">master</span>
                 </div>
 
                 <!-- フッター（ロゴ & デイジーイラスト） -->
@@ -114,7 +114,7 @@
     </div>
 
     <!-- スマホ確認用バージョン表記 -->
-    <div class="app-version">Ver 4.08</div>
+    <div class="app-version">Ver 5.00</div>
 
     <!-- HEIC変換ライブラリ -->
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>

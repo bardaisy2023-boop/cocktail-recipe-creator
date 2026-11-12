@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const recipeCard = document.getElementById('recipeCard');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    // 初期状態で空の項目に「&nbsp;（空白）」を入れて高さを保つ
+    // 初期状態で空の項目に空白を入れて高さを保つ
     displayKana.innerHTML = '&nbsp;';
     displayName.innerHTML = '&nbsp;';
     displaySubtext.innerHTML = '&nbsp;';
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayNameText.textContent = val;
                 displayAuthor.style.display = 'block';
             } else {
-                displayNameText.textContent = '作成者名';
+                displayNameText.textContent = 'master';
                 displayAuthor.style.display = 'block';
             }
         });
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理（縦伸びを完全防止する厳密な4:5比率指定）
+    // 画像保存処理（絶対比率固定による完全一致キャプチャ）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
