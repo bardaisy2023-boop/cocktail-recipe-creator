@@ -82,7 +82,7 @@ body {
   appearance: none;
 }
 
-/* --- 日付ピッカーのオーバーレイ構造（左寄せ＆タップ操作を両立） --- */
+/* --- 日付ピッカーのオーバーレイ構造 --- */
 .date-input-wrapper {
   position: relative;
   width: 100%;
@@ -90,7 +90,7 @@ body {
 
 .date-input-wrapper input[type="text"] {
   width: 100%;
-  pointer-events: none; /* タップを透過させて下のinputに届かせる */
+  pointer-events: none;
 }
 
 .date-input-wrapper input[type="date"] {
@@ -99,7 +99,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0; /* 完全透明にして見えなくする */
+  opacity: 0;
   cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
@@ -173,7 +173,7 @@ body {
 /* ヘッダータイトルエリア */
 .card-header-area {
   width: 100%;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -199,15 +199,15 @@ body {
   line-height: 1;
 }
 
-/* 読み方・カクテル名・サブタイトルのまとまり */
+/* --- 読み方・カクテル名・サブタイトルの領域を完全に固定化 --- */
 .name-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3px;
-  margin-top: 4px;
-  margin-bottom: 8px;
+  height: 52px; /* 高さを完全に固定してブレを防止 */
+  margin-top: 2px;
+  margin-bottom: 6px;
   position: relative;
   z-index: 2;
   width: 100%;
@@ -221,6 +221,10 @@ body {
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
+  height: 14px; /* 1行分の高さを固定 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* カクテル名全体 */
@@ -229,6 +233,10 @@ body {
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1.1;
+  height: 24px; /* 1行分の高さを固定 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 日本語部分 */
@@ -253,9 +261,13 @@ body {
   color: #fbf1ef;
   letter-spacing: 0.5px;
   line-height: 1;
+  height: 14px; /* 1行分の高さを固定 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 写真枠 */
+/* 写真枠（常に一定の領域を維持） */
 .card-image-container {
   width: 100%;
   flex: 1;
