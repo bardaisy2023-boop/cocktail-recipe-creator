@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const recipeCard = document.getElementById('recipeCard');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    // --- 初期状態で空の項目に「&nbsp;（空白）」を入れて高さを保つ ---
+    // 初期状態で空の項目に「&nbsp;（空白）」を入れて高さを保つ
     displayKana.innerHTML = '&nbsp;';
     displayName.innerHTML = '&nbsp;';
     displaySubtext.innerHTML = '&nbsp;';
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理
+    // 画像保存処理（左側のズレや余分な空白を完全排除）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
@@ -214,8 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     logging: false,
                     width: width,
                     height: height,
+                    windowWidth: document.documentElement.clientWidth,
+                    x: 0,
+                    y: 0,
                     scrollX: 0,
-                    scrollY: -window.scrollY
+                    scrollY: 0
                 });
 
                 const imgDataUrl = canvas.toDataURL('image/png');
