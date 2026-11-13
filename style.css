@@ -267,15 +267,12 @@ body {
   justify-content: center;
 }
 
-/* 写真枠（background-size: cover による縦横比完全維持） */
+/* 写真枠（高画質imgを絶対配置で歪みゼロ切り抜き） */
 .card-image-container {
   width: 100%;
   flex: 1;
   min-height: 0;
   background-color: transparent;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   overflow: hidden;
   margin-bottom: 24px;
   display: flex;
@@ -283,6 +280,16 @@ body {
   align-items: center;
   position: relative;
   z-index: 2;
+}
+
+.card-image-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: none;
+  max-height: none;
+  display: block;
 }
 
 .placeholder-text {

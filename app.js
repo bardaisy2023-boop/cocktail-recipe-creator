@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayAuthor = document.getElementById('displayAuthor');
     const displayNameText = document.getElementById('displayNameText');
     const cardImageContainer = document.getElementById('cardImageContainer');
+    const displayImage = document.getElementById('displayImage');
     const imagePlaceholder = document.getElementById('imagePlaceholder');
     
     const recipeCard = document.getElementById('recipeCard');
@@ -163,7 +164,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 写真選択 (HEIC対応 & 背景画像としてセットして歪みと非表示を解決)
+    // 写真の元の縦横比を保ったまま枠いっぱいにぴったり収める計算関数
+    function fitImageToContainer() {
+        if (!displayImage.naturalWidth || !displayImage.naturalHeight) return;
+
+        const containerW = cardImageContainer.clientWidth;
+        const containerH = cardImageContainer.clientHeight;
+        const imgRatio = displayImage.naturalWidth / displayImage.naturalHeight;
+        const containerRatio = containerW / containerH;
+
+        if (imgRatio > containerRatio) {
+            // 写真が枠より横長の場合：高さを枠に合わせ、横幅を比率通りに計算
+            displayImage.style.height = `${containerH}px`;
+            displayImage.style.width = `${Math.round(containerH * imgRatio)}px`;
+        } else {
+            // 写真が枠より縦長の場合：横幅を枠に合わせ、高さを比率通りに計算
+            displayImage.style.width = `${containerW}px`;
+            displayImage.style.height = `${Math.round(containerW / imgRatio)}px`;
+        }
+    }
+
+    window.addEventListener('resize', fitImageToContainer);
+
+    // 写真選択 (HEIC対応 & 高画質＋縦伸びゼロ配置)
     if (imageInput) {
         imageInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
@@ -176,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const convertedBlob = await heic2any({
                         blob: file,
                         toType: 'image/jpeg',
-                        quality: 0.8
+                        quality: 0.92
                     });
                     imageFile = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
                 } catch (err) {
@@ -188,29 +211,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const reader = new FileReader();
             reader.onload = (event) => {
-                // 背景画像としてコンテナに直接セット
-                cardImageContainer.style.backgroundImage = `url('${event.target.result}')`;
-                // プレースホルダーの文字を確実に非表示にする
-                if (imagePlaceholder) {
-                    imagePlaceholder.style.display = 'none';
-                }
+                displayImage.onload = () => {
+                    displayImage.style.display = 'block';
+                    if (imagePlaceholder) {
+                        imagePlaceholder.style.display = 'none';
+                    }
+                    fitImageToContainer();
+                };
+                displayImage.src = event.target.result;
             };
             reader.readAsDataURL(imageFile);
         });
     }
 
-    // 画像保存処理
+    // 画像保存処理（高画質 scale: 4 & 正確な比率でキャプチャ）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
             downloadBtn.disabled = true;
 
             try {
+                // キャプチャ直前にもう一度正確な比率を計算
+                fitImageToContainer();
+
                 const width = recipeCard.offsetWidth;
                 const exactHeight = Math.round(width * 1.25);
 
                 const canvas = await html2canvas(recipeCard, {
-                    scale: 3,
+                    scale: 4, // 超高画質で書き出し
                     useCORS: true,
                     backgroundColor: null,
                     logging: false,
@@ -223,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     scrollY: 0
                 });
 
-                const imgDataUrl = canvas.toDataURL('image/png');
+                const imgDataUrl = canvas.toDataURL('image/png', 1.0);
                 const filename = cocktailNameInput.value.trim() || 'cocktail_card';
 
                 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
