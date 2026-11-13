@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 写真選択 (HEIC対応 & 背景画像セットで歪みゼロ)
+    // 写真選択 (HEIC対応 & 背景画像としてセットして歪みと非表示を解決)
     if (imageInput) {
         imageInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
@@ -188,8 +188,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const reader = new FileReader();
             reader.onload = (event) => {
+                // 背景画像としてコンテナに直接セット
                 cardImageContainer.style.backgroundImage = `url('${event.target.result}')`;
-                imagePlaceholder.style.display = 'none';
+                // プレースホルダーの文字を確実に非表示にする
+                if (imagePlaceholder) {
+                    imagePlaceholder.style.display = 'none';
+                }
             };
             reader.readAsDataURL(imageFile);
         });
