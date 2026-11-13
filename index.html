@@ -90,10 +90,9 @@
                     <div class="card-subtext" id="displaySubtext">&nbsp;</div>
                 </div>
 
-                <!-- 写真プレビューエリア -->
-                <div class="card-image-container">
+                <!-- 写真プレビューエリア（歪み防止のため背景画像として描画） -->
+                <div class="card-image-container" id="cardImageContainer">
                     <span class="placeholder-text" id="imagePlaceholder">写真未選択</span>
-                    <img id="displayImage" src="" alt="Cocktail Photo" style="display: none;">
                 </div>
 
                 <!-- 左下の作成者表示（初期は非表示） -->
@@ -114,7 +113,7 @@
     </div>
 
     <!-- スマホ確認用バージョン表記 -->
-    <div class="app-version">Ver 5.03</div>
+    <div class="app-version">Ver 5.04</div>
 
     <!-- HEIC変換ライブラリ -->
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>

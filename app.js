@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const displaySubtext = document.getElementById('displaySubtext');
     const displayAuthor = document.getElementById('displayAuthor');
     const displayNameText = document.getElementById('displayNameText');
-    const displayImage = document.getElementById('displayImage');
+    const cardImageContainer = document.getElementById('cardImageContainer');
     const imagePlaceholder = document.getElementById('imagePlaceholder');
     
     const recipeCard = document.getElementById('recipeCard');
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 写真選択 (HEIC対応)
+    // 写真選択 (HEIC対応 & 背景画像セットで歪みゼロ)
     if (imageInput) {
         imageInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
@@ -188,15 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const reader = new FileReader();
             reader.onload = (event) => {
-                displayImage.src = event.target.result;
-                displayImage.style.display = 'block';
+                cardImageContainer.style.backgroundImage = `url('${event.target.result}')`;
                 imagePlaceholder.style.display = 'none';
             };
             reader.readAsDataURL(imageFile);
         });
     }
 
-    // 画像保存処理（プレビューと100%同じ縦横比・比率でキャプチャ）
+    // 画像保存処理
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
@@ -225,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
                 
-                IdIsMobile: if (isMobile) {
+                if (isMobile) {
                     const overlay = document.createElement('div');
                     overlay.className = 'modal-overlay';
                     
