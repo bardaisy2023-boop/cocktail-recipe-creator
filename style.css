@@ -372,7 +372,7 @@ body {
 }
 
 /* ==========================================================
-   画像保存モーダルプレビュー（比率完全一致修正版）
+   画像保存モーダルプレビュー（縦伸び完全防止修正版）
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -414,9 +414,9 @@ body {
 
 .modal-image {
   width: 100% !important;
-  max-width: 100% !important;
+  aspect-ratio: 4 / 5 !important; /* 正確な4:5比率を強制固定して縦伸びを完全阻止 */
   height: auto !important;
-  aspect-ratio: auto !important; /* アスペクト比の強制を解除し、キャンバス自体の縦横比を100%維持 */
+  object-fit: contain !important;
   display: block;
   margin-bottom: 16px;
   border-radius: 0px;
