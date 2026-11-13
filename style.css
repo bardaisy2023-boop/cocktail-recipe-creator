@@ -267,7 +267,7 @@ body {
   justify-content: center;
 }
 
-/* 写真枠（object-fit: cover で確実に綺麗に表示） */
+/* 写真枠 */
 .card-image-container {
   width: 100%;
   flex: 1;
@@ -372,7 +372,7 @@ body {
 }
 
 /* ==========================================================
-   画像保存モーダルプレビュー
+   画像保存モーダルプレビュー（比率完全一致修正版）
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -414,9 +414,9 @@ body {
 
 .modal-image {
   width: 100% !important;
-  aspect-ratio: 4 / 5 !important;
+  max-width: 100% !important;
   height: auto !important;
-  object-fit: contain !important;
+  aspect-ratio: auto !important; /* アスペクト比の強制を解除し、キャンバス自体の縦横比を100%維持 */
   display: block;
   margin-bottom: 16px;
   border-radius: 0px;
