@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const recipeCard = document.getElementById('recipeCard');
     const downloadBtn = document.getElementById('downloadBtn');
 
+    // 元の高解像度画像データを保持する変数
+    let originalImageDataUrl = '';
+
     // 初期状態で空の項目に空白を入れて高さを保つ
     displayKana.innerHTML = '&nbsp;';
     displayName.innerHTML = '&nbsp;';
@@ -163,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 写真選択 (HEIC対応 & 標準のimg表示)
+    // 写真選択 (HEIC対応 & 高解像度データ保持)
     if (imageInput) {
         imageInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
@@ -188,7 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const reader = new FileReader();
             reader.onload = (event) => {
-                displayImage.src = event.target.result;
+                originalImageDataUrl = event.target.result;
+                displayImage.src = originalImageDataUrl;
                 displayImage.style.display = 'block';
                 if (imagePlaceholder) {
                     imagePlaceholder.style.display = 'none';
@@ -198,18 +202,70 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理（生成されたキャンバスの比率をプログラム側で完全に 4:5 に再クロップ・補正）
+    // 写真枠の実際の縦横比に合わせて高画質で中央クロップ（object-fit: cover の完全再現）する関数
+    function createCroppedImageDataUrl(dataUrl, targetWidth, targetHeight) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => {
+                const srcW = img.naturalWidth;
+                const srcH = img.naturalHeight;
+                const srcRatio = srcW / srcH;
+                const targetRatio = targetWidth / targetHeight;
+
+                let cropW, cropH, cropX, cropY;
+
+                if (srcRatio > targetRatio) {
+                    // 元画像が枠より横長：高さを基準に左右を均等にカット
+                    cropH = srcH;
+                    cropW = srcH * targetRatio;
+                    cropX = (srcW - cropW) / 2;
+                    cropY = 0;
+                } else {
+                    // 元画像が枠より縦長：幅を基準に上下を均等にカット
+                    cropW = srcW;
+                    cropH = srcW / targetRatio;
+                    cropX = 0;
+                    cropY = (srcH - cropH) / 2;
+                }
+
+                // 元の高解像度を維持したまま切り抜きキャンバスを作成
+                const canvas = document.createElement('canvas');
+                canvas.width = Math.round(cropW);
+                canvas.height = Math.round(cropH);
+                const ctx = canvas.getContext('2d');
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+
+                ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, canvas.width, canvas.height);
+                resolve(canvas.toDataURL('image/png', 1.0));
+            };
+            img.src = dataUrl;
+        });
+    }
+
+    // 画像保存処理
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
             downloadBtn.disabled = true;
 
             try {
+                const imageContainer = displayImage.parentElement;
+                const containerW = imageContainer.offsetWidth;
+                const containerH = imageContainer.offsetHeight;
+
+                // 写真が選択されている場合、html2canvasの縦伸びバグを防ぐため
+                // 枠の比率と100%同じ比率に高画質クロップした画像を一時的にセットする
+                if (originalImageDataUrl && containerW > 0 && containerH > 0) {
+                    const croppedDataUrl = await createCroppedImageDataUrl(originalImageDataUrl, containerW, containerH);
+                    displayImage.src = croppedDataUrl;
+                    await new Promise(r => setTimeout(r, 50));
+                }
+
                 const width = recipeCard.offsetWidth;
                 const exactHeight = Math.round(width * 1.25);
 
-                // 1. html2canvas で一旦キャプチャ
-                const rawCanvas = await html2canvas(recipeCard, {
+                const canvas = await html2canvas(recipeCard, {
                     scale: 3,
                     useCORS: true,
                     backgroundColor: null,
@@ -223,19 +279,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     scrollY: 0
                 });
 
-                // 2. ズレ（縦伸び）を完全排除するため、厳密な 4:5 比率の最終キャンバスをプログラムで生成
-                const finalWidth = rawCanvas.width;
-                const finalHeight = Math.round(finalWidth * 1.25); // 完全に数学的な 4:5 に固定
+                // プレビュー表示を元の画像に戻す
+                if (originalImageDataUrl) {
+                    displayImage.src = originalImageDataUrl;
+                }
 
-                const correctedCanvas = document.createElement('canvas');
-                correctedCanvas.width = finalWidth;
-                correctedCanvas.height = finalHeight;
-                const ctx = correctedCanvas.getContext('2d');
-
-                // 歪みなく中央に完璧に描画（クロップ処理）
-                ctx.drawImage(rawCanvas, 0, 0, finalWidth, finalHeight);
-
-                const imgDataUrl = correctedCanvas.toDataURL('image/png', 1.0);
+                const imgDataUrl = canvas.toDataURL('image/png', 1.0);
                 const filename = cocktailNameInput.value.trim() || 'cocktail_card';
 
                 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -282,6 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 console.error('画像保存エラー:', err);
                 alert('画像の生成に失敗しました。');
+                if (originalImageDataUrl) {
+                    displayImage.src = originalImageDataUrl;
+                }
             } finally {
                 downloadBtn.textContent = '画像を保存する';
                 downloadBtn.disabled = false;
