@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 作成者
+    // 作成者（入力されたときだけ表示し、空欄時は非表示にする）
     if (authorInput) {
         authorInput.addEventListener('input', (e) => {
             const val = e.target.value.trim();
@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayNameText.textContent = val;
                 displayAuthor.style.display = 'block';
             } else {
-                displayNameText.textContent = 'master';
-                displayAuthor.style.display = 'block';
+                displayNameText.textContent = '';
+                displayAuthor.style.display = 'none';
             }
         });
     }
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理（絶対比率固定による完全一致キャプチャ）
+    // 画像保存処理
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
