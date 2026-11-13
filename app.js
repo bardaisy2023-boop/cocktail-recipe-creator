@@ -198,18 +198,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理（誤差を完全に排除した正確な 4:5 比率キャプチャ）
+    // 画像保存処理（生成されたキャンバスの比率をプログラム側で完全に 4:5 に再クロップ・補正）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
             downloadBtn.disabled = true;
 
             try {
-                // カードの実際の表示幅を基準に、高さ（4:5 = 幅 × 1.25）を整数で完全同期
-                const width = recipeCard.clientWidth || recipeCard.offsetWidth;
-                const exactHeight = Math.floor(width * 1.25);
+                const width = recipeCard.offsetWidth;
+                const exactHeight = Math.round(width * 1.25);
 
-                const canvas = await html2canvas(recipeCard, {
+                // 1. html2canvas で一旦キャプチャ
+                const rawCanvas = await html2canvas(recipeCard, {
                     scale: 3,
                     useCORS: true,
                     backgroundColor: null,
@@ -223,7 +223,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     scrollY: 0
                 });
 
-                const imgDataUrl = canvas.toDataURL('image/png', 1.0);
+                // 2. ズレ（縦伸び）を完全排除するため、厳密な 4:5 比率の最終キャンバスをプログラムで生成
+                const finalWidth = rawCanvas.width;
+                const finalHeight = Math.round(finalWidth * 1.25); // 完全に数学的な 4:5 に固定
+
+                const correctedCanvas = document.createElement('canvas');
+                correctedCanvas.width = finalWidth;
+                correctedCanvas.height = finalHeight;
+                const ctx = correctedCanvas.getContext('2d');
+
+                // 歪みなく中央に完璧に描画（クロップ処理）
+                ctx.drawImage(rawCanvas, 0, 0, finalWidth, finalHeight);
+
+                const imgDataUrl = correctedCanvas.toDataURL('image/png', 1.0);
                 const filename = cocktailNameInput.value.trim() || 'cocktail_card';
 
                 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);

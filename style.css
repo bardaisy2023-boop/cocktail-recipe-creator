@@ -372,7 +372,7 @@ body {
 }
 
 /* ==========================================================
-   画像保存モーダルプレビュー（縦伸び完全解消版）
+   画像保存モーダルプレビュー（比率完全ロック版）
    ========================================================== */
 .modal-overlay {
   position: fixed;
@@ -415,9 +415,8 @@ body {
 .modal-image {
   width: 100% !important;
   height: auto !important;
-  max-height: 70vh !important;
+  aspect-ratio: 4 / 5 !important; /* モーダル上の表示枠も強制的に正確な4:5に固定 */
   object-fit: contain !important;
-  aspect-ratio: auto !important; /* 強制的な比率指定を完全に外し、画像自体の等倍表示にする */
   display: block;
   margin-bottom: 16px;
   border-radius: 0px;
