@@ -198,16 +198,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理（正確な4:5比率のキャンバス生成）
+    // 画像保存処理（誤差を完全に排除した正確な 4:5 比率キャプチャ）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
             downloadBtn.disabled = true;
 
             try {
-                const width = recipeCard.offsetWidth;
-                // 完全に正確な 4:5 (1.25倍) の高さを算出
-                const exactHeight = Math.round(width * 1.25);
+                // カードの実際の表示幅を基準に、高さ（4:5 = 幅 × 1.25）を整数で完全同期
+                const width = recipeCard.clientWidth || recipeCard.offsetWidth;
+                const exactHeight = Math.floor(width * 1.25);
 
                 const canvas = await html2canvas(recipeCard, {
                     scale: 3,
