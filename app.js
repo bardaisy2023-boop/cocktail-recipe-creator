@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理（高画質 scale: 3）
+    // 画像保存処理（正確な4:5比率のキャンバス生成）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
@@ -206,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const width = recipeCard.offsetWidth;
+                // 完全に正確な 4:5 (1.25倍) の高さを算出
                 const exactHeight = Math.round(width * 1.25);
 
                 const canvas = await html2canvas(recipeCard, {
