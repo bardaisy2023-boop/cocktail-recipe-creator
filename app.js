@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 写真選択 (HEIC対応 & 標準の img + object-fit: cover で確実に高画質表示)
+    // 写真選択 (HEIC対応 & 標準のimg表示)
     if (imageInput) {
         imageInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理（高画質 scale: 4）
+    // 画像保存処理（高画質 scale: 3）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const exactHeight = Math.round(width * 1.25);
 
                 const canvas = await html2canvas(recipeCard, {
-                    scale: 4,
+                    scale: 3,
                     useCORS: true,
                     backgroundColor: null,
                     logging: false,
