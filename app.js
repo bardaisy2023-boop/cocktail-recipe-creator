@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const displaySubtext = document.getElementById('displaySubtext');
     const displayAuthor = document.getElementById('displayAuthor');
     const displayNameText = document.getElementById('displayNameText');
-    const cardImageContainer = document.getElementById('cardImageContainer');
     const displayImage = document.getElementById('displayImage');
     const imagePlaceholder = document.getElementById('imagePlaceholder');
     
@@ -164,29 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 写真の元の縦横比を保ったまま枠いっぱいにぴったり収める計算関数
-    function fitImageToContainer() {
-        if (!displayImage.naturalWidth || !displayImage.naturalHeight) return;
-
-        const containerW = cardImageContainer.clientWidth;
-        const containerH = cardImageContainer.clientHeight;
-        const imgRatio = displayImage.naturalWidth / displayImage.naturalHeight;
-        const containerRatio = containerW / containerH;
-
-        if (imgRatio > containerRatio) {
-            // 写真が枠より横長の場合：高さを枠に合わせ、横幅を比率通りに計算
-            displayImage.style.height = `${containerH}px`;
-            displayImage.style.width = `${Math.round(containerH * imgRatio)}px`;
-        } else {
-            // 写真が枠より縦長の場合：横幅を枠に合わせ、高さを比率通りに計算
-            displayImage.style.width = `${containerW}px`;
-            displayImage.style.height = `${Math.round(containerW / imgRatio)}px`;
-        }
-    }
-
-    window.addEventListener('resize', fitImageToContainer);
-
-    // 写真選択 (HEIC対応 & 高画質＋縦伸びゼロ配置)
+    // 写真選択 (HEIC対応 & 標準の img + object-fit: cover で確実に高画質表示)
     if (imageInput) {
         imageInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
@@ -211,34 +188,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const reader = new FileReader();
             reader.onload = (event) => {
-                displayImage.onload = () => {
-                    displayImage.style.display = 'block';
-                    if (imagePlaceholder) {
-                        imagePlaceholder.style.display = 'none';
-                    }
-                    fitImageToContainer();
-                };
                 displayImage.src = event.target.result;
+                displayImage.style.display = 'block';
+                if (imagePlaceholder) {
+                    imagePlaceholder.style.display = 'none';
+                }
             };
             reader.readAsDataURL(imageFile);
         });
     }
 
-    // 画像保存処理（高画質 scale: 4 & 正確な比率でキャプチャ）
+    // 画像保存処理（高画質 scale: 4）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
             downloadBtn.disabled = true;
 
             try {
-                // キャプチャ直前にもう一度正確な比率を計算
-                fitImageToContainer();
-
                 const width = recipeCard.offsetWidth;
                 const exactHeight = Math.round(width * 1.25);
 
                 const canvas = await html2canvas(recipeCard, {
-                    scale: 4, // 超高画質で書き出し
+                    scale: 4,
                     useCORS: true,
                     backgroundColor: null,
                     logging: false,
