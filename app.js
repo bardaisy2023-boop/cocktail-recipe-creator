@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像保存処理
+    // 画像保存処理（プレビューと100%同じ縦横比・比率でキャプチャ）
     if (downloadBtn) {
         downloadBtn.addEventListener('click', async () => {
             downloadBtn.textContent = '画像を作成中...';
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
                 
-                if (isMobile) {
+                IdIsMobile: if (isMobile) {
                     const overlay = document.createElement('div');
                     overlay.className = 'modal-overlay';
                     
