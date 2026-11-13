@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageContainer = document.getElementById('imageContainer');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    let uploadedPhotoImg = null; // 読み込んだ写真Imageオブジェクトを保持
+    let uploadedPhotoImg = null;
 
     // 初期空白
     displayKana.innerHTML = '&nbsp;';
@@ -200,13 +200,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 画像アセット読み込みヘルパー
+    // 安全な画像読み込みヘルパー（スマホのCORS/読み込み失敗を防止）
     function loadImage(src) {
         return new Promise((resolve) => {
             const img = new Image();
-            img.crossOrigin = 'anonymous';
+            // ローカル環境でのセキュリティエラーを防ぐためクロスドメイン設定を調整
             img.onload = () => resolve(img);
-            img.onerror = () => resolve(null);
+            img.onerror = () => {
+                console.warn(`アセットの読み込みに失敗しました: ${src}`);
+                resolve(null); // 読み込めなくても処理が止まらないようにnullを返す
+            };
             img.src = src;
         });
     }
@@ -216,13 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
         await document.fonts.ready;
 
         const W = 1200;
-        const H = 1500; // 1200 * 1.25 = 厳密な4:5比率
+        const H = 1500;
         const canvas = document.createElement('canvas');
         canvas.width = W;
         canvas.height = H;
         const ctx = canvas.getContext('2d');
 
-        // プレビューの実際の寸法から、写真枠の相対位置・比率を1ピクセルの狂いもなく同期取得
         const cardRect = recipeCard.getBoundingClientRect();
         const imgBoxRect = imageContainer.getBoundingClientRect();
 
@@ -244,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, W, H);
 
-        // 2. カクテル写真（object-fit: cover の完全数学的再現）
+        // 2. カクテル写真
         if (uploadedPhotoImg) {
             const srcW = uploadedPhotoImg.naturalWidth;
             const srcH = uploadedPhotoImg.naturalHeight;
@@ -274,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.restore();
         }
 
-        // 3. フレーム画像（screenブレンド＋色調補正の再現）
+        // 3. フレーム画像
         const frameImg = await loadImage('frame.png');
         if (frameImg) {
             ctx.save();
@@ -285,7 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.restore();
         }
 
-        // スケール係数（基準幅 340px に対する 1200px の倍率）
         const scale = W / cardRect.width;
 
         // 4. 最上部の日付とナンバー
@@ -303,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText(displayNumber.textContent, W - sidePad, topY);
         ctx.restore();
 
-        // 5. ヘッダータイトル（Your Own Original / COCKTAIL）
+        // 5. ヘッダータイトル
         ctx.save();
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
@@ -368,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         ctx.restore();
 
-        // 7. 左下の作成者表示（入力時のみ）
+        // 7. 作成者
         const authorVal = authorInput.value.trim();
         if (authorVal) {
             ctx.save();
@@ -389,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.restore();
         }
 
-        // 8. フッターロゴ（Bar DAISY）
+        // 8. フッターロゴ
         const logoImg = await loadImage('rogo.PNG');
         if (logoImg) {
             ctx.save();
@@ -402,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.restore();
         }
 
-        // 9. 右下のデイジーイラスト
+        // 9. デイジーイラスト
         const daisyImg = await loadImage('daisy-icon.png');
         if (daisyImg) {
             ctx.save();
@@ -474,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.click();
                 }
             } catch (err) {
-                console.error('画像生成エラー:', err);
+                console.error('画像生成エラー詳細:', err);
                 alert('画像の生成に失敗しました。');
             } finally {
                 downloadBtn.textContent = '画像を保存する';
