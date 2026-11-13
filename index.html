@@ -66,10 +66,10 @@
         <div class="preview-area">
             <h2>完成カード</h2>
             
-            <!-- 生成されるレシピカード本体 -->
+            <!-- 生成されるレシピカード本体（リアルタイムプレビュー用） -->
             <div class="recipe-card" id="recipeCard">
                 <!-- フレーム画像 -->
-                <img src="frame.png" alt="" class="card-frame-image">
+                <img src="frame.png" alt="" class="card-frame-image" id="frameAsset">
 
                 <!-- 最上部の日付とナンバー -->
                 <div class="card-top-info">
@@ -91,7 +91,7 @@
                 </div>
 
                 <!-- 写真プレビューエリア -->
-                <div class="card-image-container">
+                <div class="card-image-container" id="imageContainer">
                     <span class="placeholder-text" id="imagePlaceholder">写真未選択</span>
                     <img id="displayImage" src="" alt="Cocktail Photo" style="display: none;">
                 </div>
@@ -103,8 +103,8 @@
 
                 <!-- フッター（ロゴ & デイジーイラスト） -->
                 <div class="card-footer">
-                    <img src="rogo.PNG" alt="Bar DAISY" class="footer-logo">
-                    <img src="daisy-icon.png" alt="" class="daisy-bottom-icon">
+                    <img src="rogo.PNG" alt="Bar DAISY" class="footer-logo" id="logoAsset">
+                    <img src="daisy-icon.png" alt="" class="daisy-bottom-icon" id="daisyAsset">
                 </div>
             </div>
 
@@ -114,14 +114,10 @@
     </div>
 
     <!-- スマホ確認用バージョン表記 -->
-    <div class="app-version">Ver 5.15
-    
-    </div>
+    <div class="app-version">Ver 1.00 (Pure Canvas Engine)</div>
 
     <!-- HEIC変換ライブラリ -->
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
-    <!-- html2canvasライブラリ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <!-- Custom JS -->
     <script src="app.js"></script>
 </body>
